@@ -19,13 +19,17 @@ public class ProceduralGenerationProtoType : MonoBehaviour
         print("Generating Environment");
         if (settingsFiles == null) return;
         if (settingsFiles.Count == 0) return;
-        foreach (GameObject prefab in settingsFiles[0].prefabs)
+        foreach (var item in settingsFiles[0].objects)
         {
-            Vector3 position = new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), 0, UnityEngine.Random.Range(-10.0f, 10.0f));
-            generatedObjects.Add(Instantiate(prefab, position, Quaternion.identity, transform));
+            for (int i = 0; i < item.objectCount; i++)
+            {
+                Vector3 position = new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), 0, UnityEngine.Random.Range(-10.0f, 10.0f));
+                generatedObjects.Add(Instantiate(item.prefab, position, Quaternion.identity, transform));
+            }
         }
     }
 
+    
     void RemoveObjects()
     {
         bool isPlaying = Application.isPlaying;
