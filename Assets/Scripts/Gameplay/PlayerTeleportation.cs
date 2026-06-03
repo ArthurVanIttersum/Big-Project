@@ -3,22 +3,21 @@ using UnityEngine;
 public class PlayerTeleportation : MonoBehaviour
 {
     private Vector3 startingPos;
-    private Vector3 currentPos;
     [SerializeField] private float offset;
 
     private void Awake()
     {
-        startingPos = transform.position.normalized;
+        startingPos = transform.localPosition;
     }
 
     private void Update()
     {
-        currentPos = transform.position;
+        float localX = Vector3.Dot(transform.position - startingPos, transform.right);
 
-        if (currentPos.x > startingPos.x + offset)
-            gameObject.transform.position = new Vector3(startingPos.x - offset, currentPos.y, currentPos.z).normalized;
+        if (localX > offset)
+            transform.position -= transform.right * (localX + offset);
 
-        if (currentPos.x < startingPos.x - offset)
-            gameObject.transform.position = new Vector3(startingPos.x + offset, currentPos.y, currentPos.z).normalized;
+        if (localX < -offset)
+            transform.position -= transform.right * (localX - offset);
     }
 }

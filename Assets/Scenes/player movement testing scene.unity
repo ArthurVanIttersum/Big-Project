@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 1901297217}
   - component: {fileID: 1901297223}
   - component: {fileID: 1901297222}
+  - component: {fileID: 1901297224}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -840,7 +841,7 @@ Transform:
   m_GameObject: {fileID: 1901297216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0.07, y: 1, z: 0.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -860,7 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
   force: 10
-  lateralBias: 0.2
+  lateralBias: 0.25
   maxSpeed: 15
   deceleraionRate: 100
   speed: 0
@@ -895,6 +896,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1901297224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901297216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6604b220574ff14485bdb5fe9228e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTeleportation
+  offset: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
