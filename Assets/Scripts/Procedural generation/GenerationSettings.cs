@@ -12,4 +12,12 @@ public struct RandomSpawnedObject
 {
     public GameObject prefab;
     public int objectCount;
+    public Type type;
+    public float value;
+}
+
+public enum Type
+{
+    Damage,
+    Health
 }
