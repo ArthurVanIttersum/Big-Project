@@ -55,8 +55,8 @@ public class TestMovement : MonoBehaviour
 
     private void ApplyForce(bool leftBias)
     {
-        float lateral = leftBias ? -lateralBias : lateralBias;
-        Vector3 localDir = new Vector3(lateral, 0f, 1f).normalized;
+        float lateral = leftBias ? -lateralBias * force : lateralBias * force;
+        Vector3 localDir = new Vector3(lateral, 0f, leftBias ? force + lateral : force - lateral).normalized;
         Vector3 worldDir = transform.TransformDirection(localDir);
 
         rb.AddForce(worldDir * force, ForceMode.Impulse);
