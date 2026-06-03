@@ -6,9 +6,9 @@ using System;
 
 public class ProceduralGenerationProtoType : MonoBehaviour
 {
-    public List<GenerationSettings> settingsFiles;
+    public GenerationSettings settingsFile;
     public List<GameObject> generatedObjects;
-
+    public float areaSize = 10.0f;
     
 
     [ContextMenu("GenerateEnvironment")]
@@ -17,14 +17,18 @@ public class ProceduralGenerationProtoType : MonoBehaviour
         print("Removing Objects");
         RemoveObjects();
         print("Generating Environment");
-        if (settingsFiles == null) return;
-        if (settingsFiles.Count == 0) return;
-        foreach (var item in settingsFiles[0].objects)
+        if (settingsFile == null) return;
+        
+        foreach (var item in settingsFile.objects)
         {
             for (int i = 0; i < item.objectCount; i++)
             {
-                Vector3 position = new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), 0, UnityEngine.Random.Range(-10.0f, 10.0f));
-                generatedObjects.Add(Instantiate(item.prefab, position, Quaternion.identity, transform));
+                Vector3 position = new Vector3(
+                    UnityEngine.Random.Range(-areaSize, areaSize),
+                    0,
+                    UnityEngine.Random.Range(-areaSize, areaSize)
+                );
+                generatedObjects.Add(Instantiate(item.prefab, position + transform.position, Quaternion.identity, transform));
             }
         }
     }
@@ -32,18 +36,10 @@ public class ProceduralGenerationProtoType : MonoBehaviour
     
     void RemoveObjects()
     {
-        bool isPlaying = Application.isPlaying;
-
         foreach (GameObject gameobject in generatedObjects)
         {
-            if (gameobject == null) continue;
-
-            if (isPlaying)
-                Destroy(gameobject);
-            else
-                DestroyImmediate(gameobject);
+            RemoveObjectHelper.RemoveObject(gameobject);
         }
-
         generatedObjects.Clear();
     }
 
