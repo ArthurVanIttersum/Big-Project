@@ -21,20 +21,20 @@ MonoBehaviour:
   - prefab: {fileID: 1194870270320064009, guid: 490e10e0e963aea459e66afb53ef468f,
       type: 3}
     objectCount: 0
-    type: 0
-    value: 0
+    type: 1
+    value: 1
   - prefab: {fileID: 8358683711586195111, guid: d40f731ff3ef6f64381dfed832dadcb4,
       type: 3}
-    objectCount: 5
+    objectCount: 2
     type: 0
-    value: 0
+    value: 2
   - prefab: {fileID: 9098201467818836936, guid: 6ac08ae3ccc609f4f8c010ea4fbe1b61,
       type: 3}
-    objectCount: 20
-    type: 0
-    value: 0
+    objectCount: 2
+    type: 1
+    value: 3
   - prefab: {fileID: 4472256692413487707, guid: 5545408d150d5754da4c4402b0a5a2b8,
       type: 3}
-    objectCount: 7
+    objectCount: 2
     type: 0
-    value: 0
+    value: 4
