@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ContinuousGeneration : MonoBehaviour
 {
     //important gameobjects
     public GameObject player;
-    public GameObject prefabEmptyGameObject;
 
     //settings files
     public ChunkSettings chunkSettings;
@@ -14,11 +12,10 @@ public class ContinuousGeneration : MonoBehaviour
     //private valiables
     private int lastPosition;
     private int currentPosition;
-    private Dictionary<int, GameObject> generatedChunks = new();
 
     //events
-    public event Action<GameObject> GenerateAtPosition;
-    public event Action<GameObject> DeleteChunkAtPosition;
+    public event Action<int> GenerateAtPosition;
+    public event Action<int> DeleteChunkAtPosition;
 
     private void Start()
     {
@@ -27,7 +24,6 @@ public class ContinuousGeneration : MonoBehaviour
         int chunkSize = chunkSettings.chunksize;
         int roundedPlayerPosition = (Mathf.FloorToInt(playerPosition.z) / chunkSize) * chunkSize;
         lastPosition = roundedPlayerPosition;
-        currentPosition = roundedPlayerPosition;
 
         //generate a few chunks ahead
         if (chunkSettings == null) return;//quick test
@@ -36,14 +32,7 @@ public class ContinuousGeneration : MonoBehaviour
         for (int i = currentPosition; i < chunkSettings.chunkGenerationDistanceInChunks * chunkSize; i += chunkSize)
         {
             print("Updating Chunk Generation");
-            
-            int zPos1 = i;
-
-            GameObject chunk = MakeChunkGameobject(zPos1);
-            generatedChunks.Add(zPos1, chunk);
-            GenerateAtPosition.Invoke(chunk);
-
-            GenerateAtPosition.Invoke(chunk);
+            GenerateAtPosition.Invoke(i);
         }
     }
     private void Update()
@@ -73,29 +62,10 @@ public class ContinuousGeneration : MonoBehaviour
         for (int i = lastPosition; i < currentPosition; i += chunkSettings.chunksize)
         {
             print("Updating Chunk Generation");
-            int zPos1 = i + chunkSettings.chunkGenerationDistanceInChunks * chunkSettings.chunksize;
-            int zPos2 = i - chunkSettings.chunkDeletionDistanceInChunks * chunkSettings.chunksize;
-            if (!generatedChunks.ContainsKey(zPos1))//quick test
-            {
-                GameObject chunk = MakeChunkGameobject(zPos1);
-                generatedChunks.Add(zPos1, chunk);
-                GenerateAtPosition.Invoke(chunk);
-            }
-            if (generatedChunks.ContainsKey(zPos1))
-            {
-                generatedChunks.Remove(zPos2, out GameObject removed);
-                DeleteChunkAtPosition.Invoke(removed);
-            }
+            GenerateAtPosition.Invoke(i + chunkSettings.chunkGenerationDistanceInChunks * chunkSettings.chunksize);
+            DeleteChunkAtPosition.Invoke(i - chunkSettings.chunkDeletionDistanceInChunks * chunkSettings.chunksize);
         }
     }
-
-    private GameObject MakeChunkGameobject(int zPos)
-    {
-        //Create an empty gameobject representing a chunk.
-        //store it in the dictionary instead of storing individual objects.
-        GameObject chunk = Instantiate(prefabEmptyGameObject, Vector3.zero + Vector3.forward * zPos, Quaternion.identity, transform);
-        chunk.name = "Chunk " + zPos.ToString();
-        return chunk;
-    }
+    
 }
 
