@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScoreLogic : MonoBehaviour
 {
-    [SerializeField] private float playTime;
+    [SerializeField] private float playTime; //in minutes
     public float score;
     public event Action timeEnded;
     public event Action scoreUpdate;
