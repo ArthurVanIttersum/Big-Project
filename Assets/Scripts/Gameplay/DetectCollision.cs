@@ -6,8 +6,15 @@ public class DetectCollision : MonoBehaviour
     public event Action<int> addHealth;
     public event Action<int> doDamage;
 
+    public PlayerData playerData;
+
     //settings
     public GenerationSettings settingsFile;
+
+    private void Awake()
+    {
+        addHealth?.Invoke(0); //initial update of the text 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +29,7 @@ public class DetectCollision : MonoBehaviour
         if (theType == Type.Damage)
         {
             doDamage?.Invoke((int)theValue);
+            playerData.health -= (int)theValue;
             print("doing damage" + "index:" + listIndex + " the value: " + theValue);
             
             
@@ -29,10 +37,10 @@ public class DetectCollision : MonoBehaviour
         if (theType == Type.Health)
         {
             addHealth?.Invoke((int)theValue);
+            playerData.health += (int)theValue;
             print("doing health" + "index:" + listIndex + " the value: " + theValue);
 
         }
 
     }
-    
 }
