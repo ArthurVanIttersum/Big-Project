@@ -2623,6 +2623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331996665}
   - component: {fileID: 1331996667}
+  - component: {fileID: 1331996668}
   - component: {fileID: 1331996666}
   m_Layer: 0
   m_Name: Continuous generation
@@ -2660,9 +2661,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ChunkBasedGeneration
   generationSettings: {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
+--- !u!114 &1331996667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331996664}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ece84087e0ec504a8496666c0768b74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContinuousGeneration
+  player: {fileID: 1711077499}
   prefabEmptyGameObject: {fileID: 4767840369881617725, guid: a1d944a9bf9112d4ebd1aa2e530e3f29,
     type: 3}
---- !u!114 &1331996667
+  chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
+--- !u!114 &1331996668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2671,10 +2686,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1331996664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ece84087e0ec504a8496666c0768b74, type: 3}
+  m_Script: {fileID: 11500000, guid: 13e5864db01398643a3d7c0392d95a9a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ContinuousGeneration
+  m_EditorClassIdentifier: Assembly-CSharp::Continuous3WideGeneration
   player: {fileID: 1711077499}
+  prefabEmptyGameObject: {fileID: 4767840369881617725, guid: a1d944a9bf9112d4ebd1aa2e530e3f29,
+    type: 3}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
 --- !u!1 &1481469935
 GameObject:
