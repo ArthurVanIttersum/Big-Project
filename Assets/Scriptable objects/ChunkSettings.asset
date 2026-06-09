@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c993eded7af7324f92040f11311d1c8, type: 3}
   m_Name: ChunkSettings
   m_EditorClassIdentifier: Assembly-CSharp::ChunkSettings
-  chunksize: 10
-  chunkGenerationDistanceInChunks: 5
-  chunkDeletionDistanceInChunks: 5
+  chunksize: 20
+  chunkGenerationDistanceInChunks: 8
+  chunkDeletionDistanceInChunks: 8
+  chunkGenerationAreaInChunks: {x: 11, y: 11}
