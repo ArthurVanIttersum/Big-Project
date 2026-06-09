@@ -40,6 +40,6 @@ MonoBehaviour:
     value: 4
   - prefab: {fileID: 4472256692413487707, guid: 5545408d150d5754da4c4402b0a5a2b8,
       type: 3}
-    objectCount: 10
+    objectCount: 2
     type: 0
     value: 4
