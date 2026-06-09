@@ -11,7 +11,7 @@ public class DetectCollision : MonoBehaviour
     //settings
     public GenerationSettings settingsFile;
 
-    private void Awake()
+    private void Start()
     {
         addHealth?.Invoke(0); //initial update of the text 
     }
