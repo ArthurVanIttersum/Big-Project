@@ -11,23 +11,14 @@ public class PlayerWinObserver : PlayerObserver
     [SerializeField] float coroutineTime;
     private Coroutine currentCoroutine;
 
-    protected override void OnAddHealth(int value)
-    { }
-
-    protected override void OnDoDamage(int value)
-    { }
-
     protected override void OnScoreUpdate()
     { }
 
     protected override void OnTimeEnd()
     {
         movement.enabled = false;
-
         currentCoroutine = StartCoroutine(Ending());
-
         restart.gameObject.SetActive(true);
-
 
         Debug.Log("Time finished");
     }

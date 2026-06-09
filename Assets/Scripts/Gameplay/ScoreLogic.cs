@@ -18,7 +18,7 @@ public class ScoreLogic : MonoBehaviour
             Debug.LogError($"Score multiplier is set to O.");
 
         adjustedTime = playtimeValues.playTime * 60;
-        scoreUpdate?.Invoke();
+        InvokeScoreUpdate();
     }
 
     private void Update()
@@ -33,13 +33,9 @@ public class ScoreLogic : MonoBehaviour
         {
             timer += Time.deltaTime;
             score += Time.deltaTime * playtimeValues.scoreMultiplier;
-            scoreUpdate?.Invoke();
+            InvokeScoreUpdate();
         }
     }
 
-    public void AddScore(float value)
-    {
-        score += value;
-        scoreUpdate?.Invoke();
-    }
+    public void InvokeScoreUpdate() => scoreUpdate?.Invoke();
 }

@@ -3,18 +3,11 @@ using UnityEngine;
 
 public class DetectCollision : MonoBehaviour
 {
-    public event Action<int> addHealth;
-    public event Action<int> doDamage;
-
-    public PlayerData playerData;
+    //public PlayerData playerData;
+    public ScoreLogic scoreLogic;
 
     //settings
     public GenerationSettings settingsFile;
-
-    private void Start()
-    {
-        addHealth?.Invoke(0); //initial update of the text 
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,23 +17,19 @@ public class DetectCollision : MonoBehaviour
         var theType = settingsFile.objects[listIndex].type;
         float theValue = settingsFile.objects[listIndex].value;
 
-        
-
         if (theType == Type.Damage)
         {
-            doDamage?.Invoke((int)theValue);
-            playerData.health -= (int)theValue;
+            scoreLogic.score -= (int)theValue;
+            scoreLogic.InvokeScoreUpdate();
             print("doing damage" + "index:" + listIndex + " the value: " + theValue);
-            
-            
+
         }
+
         if (theType == Type.Health)
         {
-            addHealth?.Invoke((int)theValue);
-            playerData.health += (int)theValue;
+            scoreLogic.score += (int)theValue;
+            scoreLogic.InvokeScoreUpdate();
             print("doing health" + "index:" + listIndex + " the value: " + theValue);
-
         }
-
     }
 }
