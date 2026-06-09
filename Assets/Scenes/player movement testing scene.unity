@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12e4577914eb8046a45b5fb89db4a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
-  playTime: 0.25
+  playtime: {fileID: 11400000, guid: dc8f5f10d1b467046b5d41c01a914c5a, type: 2}
   score: 0
 --- !u!4 &657109066
 Transform:
@@ -1508,8 +1508,6 @@ GameObject:
   - component: {fileID: 1901297222}
   - component: {fileID: 1901297224}
   - component: {fileID: 1901297225}
-  - component: {fileID: 1901297227}
-  - component: {fileID: 1901297226}
   - component: {fileID: 1901297228}
   m_Layer: 0
   m_Name: Cube
@@ -1716,33 +1714,6 @@ MonoBehaviour:
   scoreLogic: {fileID: 657109065}
   health: {fileID: 353898459}
   score: {fileID: 724056473}
---- !u!114 &1901297226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901297216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adfd6169cdaeb0745a2aa7c703f9ff53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DetectCollision
-  playerData: {fileID: 1901297227}
-  settingsFile: {fileID: 0}
---- !u!114 &1901297227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1901297216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0acebf7ad8cb8dc45a0c4d76a4bb8c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  health: 2
 --- !u!114 &1901297228
 MonoBehaviour:
   m_ObjectHideFlags: 0

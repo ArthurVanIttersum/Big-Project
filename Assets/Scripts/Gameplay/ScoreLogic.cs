@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScoreLogic : MonoBehaviour
 {
-    [SerializeField] private float playTime; //in minutes
+    [SerializeField] private PlaytimeValues playtimeValues;
     public float score;
     public event Action timeEnded;
     public event Action scoreUpdate;
@@ -14,7 +14,10 @@ public class ScoreLogic : MonoBehaviour
 
     private void Start()
     {
-        adjustedTime = playTime * 60;
+        if (playtimeValues.scoreMultiplier == 0)
+            Debug.LogError($"Score multiplier is set to O.");
+
+        adjustedTime = playtimeValues.playTime * 60;
         scoreUpdate?.Invoke();
     }
 
@@ -29,10 +32,9 @@ public class ScoreLogic : MonoBehaviour
         if (!winHappen)
         {
             timer += Time.deltaTime;
-            score += Time.deltaTime;
+            score += Time.deltaTime * playtimeValues.scoreMultiplier;
             scoreUpdate?.Invoke();
         }
-            
     }
 
     public void AddScore(float value)
