@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 20, y: 20, z: 1}
+    PositionDamping: {x: 20, y: 1, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -515,8 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12e4577914eb8046a45b5fb89db4a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
-  playTime: 0.25
-  score: 0
 --- !u!4 &657109066
 Transform:
   m_ObjectHideFlags: 0
@@ -1872,9 +1870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIObserver
   detectCollision: {fileID: 0}
-  scoreLogic: {fileID: 657109065}
   health: {fileID: 353898459}
-  score: {fileID: 724056473}
 --- !u!114 &1901297226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1914,10 +1910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b46302503df84e408c3f27b26525e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWinObserver
-  detectCollision: {fileID: 0}
-  scoreLogic: {fileID: 657109065}
-  restart: {fileID: 1178256402}
-  movement: {fileID: 1901297222}
 --- !u!1 &2005807663
 GameObject:
   m_ObjectHideFlags: 0
