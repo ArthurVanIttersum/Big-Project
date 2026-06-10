@@ -18,10 +18,9 @@ MonoBehaviour:
     objectCount: 1
     type: 1
     value: 0
-  - prefab: {fileID: 1194870270320064009, guid: 490e10e0e963aea459e66afb53ef468f,
-      type: 3}
-    objectCount: 0
-    type: 1
+  - prefab: {fileID: 919132149155446097, guid: 677e7de4c31c72c4b9464cc7819f583d, type: 3}
+    objectCount: 1
+    type: 0
     value: 1
   - prefab: {fileID: 8358683711586195111, guid: d40f731ff3ef6f64381dfed832dadcb4,
       type: 3}
