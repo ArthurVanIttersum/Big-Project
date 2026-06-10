@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ChunkSettings
   m_EditorClassIdentifier: Assembly-CSharp::ChunkSettings
   chunksize: 25
-  chunkGenerationDistanceInChunks: 8
-  chunkDeletionDistanceInChunks: 8
-  chunkGenerationAreaInChunks: {x: 11, y: 11}
+  chunkGenerationDistanceInChunks: 15
+  chunkDeletionDistanceInChunks: 1
+  chunkGenerationAreaInChunks: {x: 10, y: 16}

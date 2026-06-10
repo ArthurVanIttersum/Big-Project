@@ -15,8 +15,8 @@ MonoBehaviour:
   objects:
   - prefab: {fileID: 8627038817736207140, guid: 8eeb94af3f477074aa0875cefee3b07a,
       type: 3}
-    objectCount: 2
-    type: 0
+    objectCount: 1
+    type: 1
     value: 0
   - prefab: {fileID: 1194870270320064009, guid: 490e10e0e963aea459e66afb53ef468f,
       type: 3}
@@ -36,10 +36,10 @@ MonoBehaviour:
   - prefab: {fileID: 4472256692413487707, guid: 5545408d150d5754da4c4402b0a5a2b8,
       type: 3}
     objectCount: 2
-    type: 0
+    type: 1
     value: 4
   - prefab: {fileID: 4472256692413487707, guid: 5545408d150d5754da4c4402b0a5a2b8,
       type: 3}
-    objectCount: 2
+    objectCount: 0
     type: 0
     value: 4

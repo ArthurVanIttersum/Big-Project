@@ -379,6 +379,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungBall_v1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -426,7 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b46302503df84e408c3f27b26525e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWinObserver
-  detectCollision: {fileID: 0}
   scoreLogic: {fileID: 0}
   restart: {fileID: 0}
   movement: {fileID: 1117377927}
@@ -443,9 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b3aaa793ec4304ea01658c059b99fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIObserver
-  detectCollision: {fileID: 0}
   scoreLogic: {fileID: 0}
-  health: {fileID: 0}
   score: {fileID: 0}
 --- !u!114 &1117377927
 MonoBehaviour:
@@ -459,10 +461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341d6878f0352964b9273e2110eb1e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
-  force: 3
+  force: 15
   maxSpeed: 50
-  deceleraionRate: 0.5
-  degreesPerClick: 3
+  deceleraionRate: 80
+  degreesPerClick: 8
   maxDegree: 45
   thresholdPercentage: 0.6
   exponentialStrength: 5
@@ -571,7 +573,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 7babf569819f75d4ca34a4a4940db9ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -602,7 +604,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117377924}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8219499742440135881, guid: 06a85f4896b47a24db33c51e01a1ff99, type: 3}
 --- !u!4 &1117377933
 Transform:
   m_ObjectHideFlags: 0
@@ -612,8 +614,8 @@ Transform:
   m_GameObject: {fileID: 1117377924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1.6789, y: 1.6789, z: 1.6789}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 805160539}
@@ -708,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 1387599907}
   serializedVersion: 2
   m_LocalRotation: {x: 0.062988564, y: -0, z: -0, w: 0.9980143}
-  m_LocalPosition: {x: 0.017, y: 4.089506, z: -11.439}
+  m_LocalPosition: {x: 0.028541302, y: 5.1502724, z: -12.415937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1026,7 +1028,7 @@ Transform:
   m_GameObject: {fileID: 1726183846}
   serializedVersion: 2
   m_LocalRotation: {x: 0.062988564, y: 0, z: 0, w: 0.9980143}
-  m_LocalPosition: {x: 0.017, y: 4.089506, z: -11.439}
+  m_LocalPosition: {x: 0.028541302, y: 5.1502724, z: -12.415937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
