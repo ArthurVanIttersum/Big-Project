@@ -2,19 +2,23 @@ using UnityEngine;
 
 public abstract class PlayerObserver : MonoBehaviour
 {
-    [SerializeField] protected ScoreLogic scoreLogic;
+    [SerializeField] protected DetectCollision detectCollision;
 
     protected void OnEnable()
     {
-        scoreLogic.timeEnded += OnTimeEnd;
-        scoreLogic.scoreUpdate += OnScoreUpdate;
+        detectCollision.vsfx += OnVSFX;
+        detectCollision.scoreLogic.timeEnded += OnTimeEnd;
+        detectCollision.scoreLogic.scoreUpdate += OnScoreUpdate;
     }
 
     protected void OnDisable()
     {
-        scoreLogic.timeEnded -= OnTimeEnd;
-        scoreLogic.scoreUpdate -= OnScoreUpdate;
+        detectCollision.vsfx -= OnVSFX;
+        detectCollision.scoreLogic.timeEnded -= OnTimeEnd;
+        detectCollision.scoreLogic.scoreUpdate -= OnScoreUpdate;
     }
+
+    protected abstract void OnVSFX(int value);
 
     protected abstract void OnTimeEnd();
 

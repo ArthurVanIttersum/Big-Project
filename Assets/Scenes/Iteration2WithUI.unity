@@ -377,8 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 11338292}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10710726, y: -0.0000000147647095, z: 0.0000000015905571,
-    w: 0.9942475}
+  m_LocalRotation: {x: 0.107107244, y: -0.0000000397878, z: 0.000000004286218, w: 0.9942475}
   m_LocalPosition: {x: 0.017, y: 5.089506, z: -9.439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -861,6 +860,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 06a85f4896b47a24db33c51e01a1ff99,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.017
       objectReference: {fileID: 0}
@@ -909,11 +923,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 06a85f4896b47a24db33c51e01a1ff99,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7babf569819f75d4ca34a4a4940db9ad, type: 2}
+      objectReference: {fileID: 2100000, guid: 3e94a04115fab144ba6c7b13499285c7, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8219499742440135881, guid: 06a85f4896b47a24db33c51e01a1ff99,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 06a85f4896b47a24db33c51e01a1ff99,
         type: 3}
       propertyPath: m_Name
@@ -1048,7 +1073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016286289}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.107107244, y: -0.000000014764707, z: 0.0000000015905566,
+  m_LocalRotation: {x: 0.10710723, y: -0.000000039009603, z: -0.0000000029375486,
     w: 0.9942475}
   m_LocalPosition: {x: 0.017, y: 5.089506, z: -9.439}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1075,6 +1100,7 @@ GameObject:
   - component: {fileID: 1117377925}
   - component: {fileID: 1117377935}
   - component: {fileID: 1117377934}
+  - component: {fileID: 1117377936}
   m_Layer: 0
   m_Name: Player with rotation
   m_TagString: Untagged
@@ -1094,7 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b46302503df84e408c3f27b26525e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerWinObserver
-  scoreLogic: {fileID: 2143357684}
+  detectCollision: {fileID: 1117377935}
   restart: {fileID: 1155048644}
   movement: {fileID: 1117377927}
   coroutineTime: 0
@@ -1110,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b3aaa793ec4304ea01658c059b99fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUIObserver
-  scoreLogic: {fileID: 2143357684}
+  detectCollision: {fileID: 1117377935}
   score: {fileID: 272711341}
 --- !u!114 &1117377927
 MonoBehaviour:
@@ -1312,6 +1338,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DetectCollision
   scoreLogic: {fileID: 2143357684}
   settingsFile: {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
+--- !u!114 &1117377936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117377924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1893565053e5a047b03b1659096c092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSFXObserver
+  detectCollision: {fileID: 1117377935}
 --- !u!1 &1155048642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,6 +2235,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
   playtimeValues: {fileID: 11400000, guid: dc8f5f10d1b467046b5d41c01a914c5a, type: 2}
+  ball: {fileID: 1858739565}
+  ballScoreRatio: 0
+  maxBallSize: 2
   score: 0
 --- !u!4 &2143357685
 Transform:
