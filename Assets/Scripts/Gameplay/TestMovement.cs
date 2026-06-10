@@ -71,6 +71,10 @@ public class TestMovement : MonoBehaviour
         euler.y = currentYAngle;
         transform.eulerAngles = euler;
 
+        float currentSpeed = rb.linearVelocity.magnitude;
+        if (currentSpeed > 0f)
+            rb.linearVelocity = transform.forward * currentSpeed;
+
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
 
