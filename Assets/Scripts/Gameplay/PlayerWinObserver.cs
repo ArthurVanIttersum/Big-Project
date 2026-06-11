@@ -32,7 +32,7 @@ public class PlayerWinObserver : PlayerObserver
 
         Debug.Log("Restart");
 
-        //SceneManager.LoadScene(scene.buildIndex); //need to add all scenes in side 
+        SceneManager.LoadScene(scene.buildIndex); //need to add all scenes in side 
     }
 
     IEnumerator Ending()
