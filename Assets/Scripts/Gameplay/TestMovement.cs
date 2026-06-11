@@ -71,7 +71,12 @@ public class TestMovement : MonoBehaviour
         euler.y = currentYAngle;
         transform.eulerAngles = euler;
 
-        rb.AddForce(transform.forward * force, ForceMode.Impulse);
+        float currentSpeed = rb.linearVelocity.magnitude;
+        if (currentSpeed > 0f)
+            rb.linearVelocity = transform.forward * currentSpeed;
+
+        float forceMultiplier = 1f - Mathf.Clamp01(speed / maxSpeed);
+        rb.AddForce(transform.forward * force * forceMultiplier, ForceMode.Impulse);
     }
 
     private float CalculateRotation(int direction)

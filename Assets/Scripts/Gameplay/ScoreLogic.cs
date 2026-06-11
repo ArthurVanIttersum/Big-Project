@@ -4,10 +4,13 @@ using UnityEngine;
 public class ScoreLogic : MonoBehaviour
 {
     [SerializeField] private PlaytimeValues playtimeValues;
+    [SerializeField] private GameObject ball;
     public float score;
     public event Action timeEnded;
     public event Action scoreUpdate;
 
+    private Vector3 ballStartScale;
+    private float ballScoreMultiplier;
     private float adjustedTime;
     private float timer;
     private bool winHappen = false;
@@ -17,8 +20,10 @@ public class ScoreLogic : MonoBehaviour
         if (playtimeValues.scoreMultiplier == 0)
             Debug.LogError($"Score multiplier is set to O.");
 
+        ballStartScale = ball.transform.localScale;
+
         adjustedTime = playtimeValues.playTime * 60;
-        scoreUpdate?.Invoke();
+        InvokeScoreUpdate();
     }
 
     private void Update()
@@ -33,13 +38,14 @@ public class ScoreLogic : MonoBehaviour
         {
             timer += Time.deltaTime;
             score += Time.deltaTime * playtimeValues.scoreMultiplier;
-            scoreUpdate?.Invoke();
+            ballScoreMultiplier = score * playtimeValues.ballScoreRatio;
+            ball.transform.localScale = ballStartScale + new Vector3(ballScoreMultiplier, ballScoreMultiplier, ballScoreMultiplier);
+            InvokeScoreUpdate();
         }
+
+        if (ball.transform.localScale.x >= playtimeValues.maxBallSize)
+            ball.transform.localScale = new Vector3 (playtimeValues.maxBallSize, playtimeValues.maxBallSize, playtimeValues.maxBallSize);
     }
 
-    public void AddScore(float value)
-    {
-        score += value;
-        scoreUpdate?.Invoke();
-    }
+    public void InvokeScoreUpdate() => scoreUpdate?.Invoke();
 }

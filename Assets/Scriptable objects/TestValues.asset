@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaytimeValues
   playTime: 0.5
   scoreMultiplier: 1
+  ballScoreRatio: 0.5
+  maxBallSize: 1.5

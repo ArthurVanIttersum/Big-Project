@@ -11,10 +11,7 @@ public class PlayerWinObserver : PlayerObserver
     [SerializeField] float coroutineTime;
     private Coroutine currentCoroutine;
 
-    protected override void OnAddHealth(int value)
-    { }
-
-    protected override void OnDoDamage(int value)
+    protected override void OnVSFX(int value)
     { }
 
     protected override void OnScoreUpdate()
@@ -23,11 +20,8 @@ public class PlayerWinObserver : PlayerObserver
     protected override void OnTimeEnd()
     {
         movement.enabled = false;
-
         currentCoroutine = StartCoroutine(Ending());
-
         restart.gameObject.SetActive(true);
-
 
         Debug.Log("Time finished");
     }
@@ -38,7 +32,7 @@ public class PlayerWinObserver : PlayerObserver
 
         Debug.Log("Restart");
 
-        //SceneManager.LoadScene(scene.buildIndex); //need to add all scenes in side 
+        SceneManager.LoadScene(scene.buildIndex); //need to add all scenes in side 
     }
 
     IEnumerator Ending()
