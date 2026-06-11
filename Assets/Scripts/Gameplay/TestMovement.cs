@@ -75,7 +75,8 @@ public class TestMovement : MonoBehaviour
         if (currentSpeed > 0f)
             rb.linearVelocity = transform.forward * currentSpeed;
 
-        rb.AddForce(transform.forward * force, ForceMode.Impulse);
+        float forceMultiplier = 1f - Mathf.Clamp01(speed / maxSpeed);
+        rb.AddForce(transform.forward * force * forceMultiplier, ForceMode.Impulse);
     }
 
     private float CalculateRotation(int direction)

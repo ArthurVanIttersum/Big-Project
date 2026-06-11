@@ -5,8 +5,6 @@ public class ScoreLogic : MonoBehaviour
 {
     [SerializeField] private PlaytimeValues playtimeValues;
     [SerializeField] private GameObject ball;
-    [SerializeField] private float ballScoreRatio;
-    [SerializeField] private float maxBallSize; 
     public float score;
     public event Action timeEnded;
     public event Action scoreUpdate;
@@ -40,13 +38,13 @@ public class ScoreLogic : MonoBehaviour
         {
             timer += Time.deltaTime;
             score += Time.deltaTime * playtimeValues.scoreMultiplier;
-            ballScoreMultiplier = score * ballScoreRatio;
+            ballScoreMultiplier = score * playtimeValues.ballScoreRatio;
             ball.transform.localScale = ballStartScale + new Vector3(ballScoreMultiplier, ballScoreMultiplier, ballScoreMultiplier);
             InvokeScoreUpdate();
         }
 
-        if (ball.transform.localScale.x >= maxBallSize)
-            ball.transform.localScale = new Vector3 (maxBallSize, maxBallSize, maxBallSize);
+        if (ball.transform.localScale.x >= playtimeValues.maxBallSize)
+            ball.transform.localScale = new Vector3 (playtimeValues.maxBallSize, playtimeValues.maxBallSize, playtimeValues.maxBallSize);
     }
 
     public void InvokeScoreUpdate() => scoreUpdate?.Invoke();

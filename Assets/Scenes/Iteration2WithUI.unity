@@ -2236,8 +2236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
   playtimeValues: {fileID: 11400000, guid: dc8f5f10d1b467046b5d41c01a914c5a, type: 2}
   ball: {fileID: 1858739565}
-  ballScoreRatio: 0
-  maxBallSize: 2
   score: 0
 --- !u!4 &2143357685
 Transform:
