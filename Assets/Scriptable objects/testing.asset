@@ -17,27 +17,27 @@ MonoBehaviour:
       type: 3}
     objectCount: 1
     type: 1
-    value: 0
+    value: 5
   - prefab: {fileID: 5994624041533239603, guid: 3f14111c45442ab45aa519bbe7a2bfe2,
       type: 3}
-    objectCount: 1
+    objectCount: 0
     type: 0
     value: 1
   - prefab: {fileID: 8358683711586195111, guid: d40f731ff3ef6f64381dfed832dadcb4,
       type: 3}
     objectCount: 2
     type: 0
-    value: 2
+    value: 10
   - prefab: {fileID: 9098201467818836936, guid: 6ac08ae3ccc609f4f8c010ea4fbe1b61,
       type: 3}
-    objectCount: 2
+    objectCount: 0
     type: 1
     value: 3
   - prefab: {fileID: 4472256692413487707, guid: 5545408d150d5754da4c4402b0a5a2b8,
       type: 3}
     objectCount: 2
     type: 1
-    value: 4
+    value: 1
   - prefab: {fileID: 4089764599993967337, guid: 79c1c7fa49f18c84291d82bb34223f50,
       type: 3}
     objectCount: 1
