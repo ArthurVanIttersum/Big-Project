@@ -934,9 +934,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
   force: 10
-  lateralBias: 0.5
   maxSpeed: 15
   deceleraionRate: 100
+  degreesPerClick: 1
+  maxDegree: 1
+  thresholdPercentage: 0.3
+  exponentialStrength: 5
   speed: 0
 --- !u!114 &1901297223
 MonoBehaviour:
