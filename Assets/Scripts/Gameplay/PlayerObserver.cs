@@ -6,17 +6,21 @@ public abstract class PlayerObserver : MonoBehaviour
 
     protected void OnEnable()
     {
-        detectCollision.addHealth += OnAddHealth;
-        detectCollision.doDamage += OnDoDamage;
+        detectCollision.vsfx += OnVSFX;
+        detectCollision.scoreLogic.timeEnded += OnTimeEnd;
+        detectCollision.scoreLogic.scoreUpdate += OnScoreUpdate;
     }
 
     protected void OnDisable()
     {
-        detectCollision.addHealth -= OnAddHealth;
-        detectCollision.doDamage -= OnDoDamage;
+        detectCollision.vsfx -= OnVSFX;
+        detectCollision.scoreLogic.timeEnded -= OnTimeEnd;
+        detectCollision.scoreLogic.scoreUpdate -= OnScoreUpdate;
     }
 
-    protected abstract void OnAddHealth(int value);
+    protected abstract void OnVSFX(int value);
 
-    protected abstract void OnDoDamage(int value);
+    protected abstract void OnTimeEnd();
+
+    protected abstract void OnScoreUpdate();
 }
