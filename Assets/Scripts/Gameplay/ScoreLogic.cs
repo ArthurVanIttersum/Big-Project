@@ -11,8 +11,10 @@ public class ScoreLogic : MonoBehaviour
 
     private Vector3 ballStartScale;
     private float ballScoreMultiplier;
-    private float adjustedTime;
-    private float timer;
+    [HideInInspector]
+    public float adjustedTime;
+    [HideInInspector]
+    public float timer;
     private bool winHappen = false;
 
     private void Start()
