@@ -15,7 +15,7 @@ vec3   vec3int <---> vec3
 
 
 
-public class Vector2IntToVector3Float : MonoBehaviour
+public class VectorConversion : MonoBehaviour
 {
     //horizontal
     //naive translation between int and notint
@@ -66,9 +66,9 @@ public class Vector2IntToVector3Float : MonoBehaviour
         return new Vector3(vec2IntTovec3.x, 0, vec2IntTovec3.y);
     }
 
-    public static Vector3Int vec2IntTovec3(Vector2 vec2IntTovec3)
+    public static Vector3Int vec2Tovec3Int(Vector2 vec2Tovec3Int)
     {
-        return new Vector3Int((int)vec2IntTovec3.x, 0, (int)vec2IntTovec3.y);
+        return new Vector3Int((int)vec2Tovec3Int.x, 0, (int)vec2Tovec3Int.y);
     }
 
     public static Vector2 vec3IntTovec2(Vector3Int vec3IntTovec2)
@@ -76,8 +76,8 @@ public class Vector2IntToVector3Float : MonoBehaviour
         return new Vector2(vec3IntTovec2.x, vec3IntTovec2.y);
     }
 
-    public static Vector2Int vec3IntTovec2(Vector3 vec3IntTovec2)
+    public static Vector2Int vec3Tovec2Int(Vector3 vec3Tovec2Int)
     {
-        return new Vector2Int((int)vec3IntTovec2.x, (int)vec3IntTovec2.z);
+        return new Vector2Int((int)vec3Tovec2Int.x, (int)vec3Tovec2Int.z);
     }
 }
