@@ -15,19 +15,19 @@ MonoBehaviour:
   objects:
   - prefab: {fileID: 8627038817736207140, guid: 8eeb94af3f477074aa0875cefee3b07a,
       type: 3}
-    ambientSpawnChance: 30
+    ambientSpawnChance: 2
     clusteredObjects: []
   - prefab: {fileID: 1194870270320064009, guid: 490e10e0e963aea459e66afb53ef468f,
       type: 3}
-    ambientSpawnChance: 15
+    ambientSpawnChance: 1
     clusteredObjects:
     - indexInList: 0
-      addedSpawnChance: -15
+      addedSpawnChance: 1
   - prefab: {fileID: 9098201467818836936, guid: 6ac08ae3ccc609f4f8c010ea4fbe1b61,
       type: 3}
     ambientSpawnChance: 0
     clusteredObjects:
     - indexInList: 0
-      addedSpawnChance: -5
+      addedSpawnChance: 2
     - indexInList: 1
-      addedSpawnChance: 10
+      addedSpawnChance: -5
