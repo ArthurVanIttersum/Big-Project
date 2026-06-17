@@ -13,17 +13,17 @@ public class ScoreLogic : MonoBehaviour
     private float startMass;
     private Vector3 ballStartScale;
     private float ballScoreMultiplier;
+    private float clampScore;
     [HideInInspector] public float adjustedTime;
     [HideInInspector] public float timer;
     private bool winHappen = false;
 
     private void Start()
     {
-        rb = ball.GetComponent<Rigidbody>();
-
         if (playtimeValues.scoreMultiplier == 0)
             Debug.LogError($"Score multiplier is set to O.");
 
+        rb = ball.GetComponent<Rigidbody>();
         ballStartScale = ball.transform.localScale;
         startMass = rb.mass; 
 
@@ -43,8 +43,13 @@ public class ScoreLogic : MonoBehaviour
         {
             timer += Time.deltaTime;
             score += Time.deltaTime * playtimeValues.scoreMultiplier;
-            ballScoreMultiplier = score * playtimeValues.ballScoreRatio;
-            rb.mass = startMass + score * playtimeValues.massScoreRatio;
+
+            clampScore = score;
+            clampScore = Mathf.Clamp(clampScore, 0, playtimeValues.maxClampScore);
+
+            ballScoreMultiplier = clampScore * playtimeValues.ballScoreRatio;
+            rb.mass = startMass + clampScore * playtimeValues.massScoreRatio;
+
             ball.transform.localScale = ballStartScale + new Vector3(ballScoreMultiplier, ballScoreMultiplier, ballScoreMultiplier);
             InvokeScoreUpdate();
         }
