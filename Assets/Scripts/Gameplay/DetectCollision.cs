@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DetectCollision : MonoBehaviour
 {
-    //public PlayerData playerData;
     public ScoreLogic scoreLogic;
 
     public event Action<int> vsfx;

@@ -16,3 +16,5 @@ MonoBehaviour:
   scoreMultiplier: 1
   ballScoreRatio: 0.01
   maxBallSize: 3
+  massScoreRatio: 1
+  maxMass: 10

@@ -286,6 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SunRotation
   scoreLogic: {fileID: 657109065}
+  rotationAxis: 1
+  startAngle: 90
+  endAngle: -90
 --- !u!4 &354413465
 Transform:
   m_ObjectHideFlags: 0
@@ -437,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
   playtimeValues: {fileID: 11400000, guid: dc8f5f10d1b467046b5d41c01a914c5a, type: 2}
-  ball: {fileID: 1901297216}
+  ball: {fileID: 1901297222}
   score: 0
   adjustedTime: 0
   timer: 0
@@ -1540,6 +1543,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178256400}
   m_CullTransparentMesh: 1
+--- !u!1 &1730671667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1730671669}
+  - component: {fileID: 1730671668}
+  - component: {fileID: 1730671670}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1730671668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730671667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834222d97af8f646bff036df5995fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BiomeSelection
+  biomes:
+  - {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
+  - {fileID: 11400000, guid: 4b2db66fbe9759d439e8cdad2e852c41, type: 2}
+  secBetweenBiomeChange: 2
+  chanceForBiomeChange: 1
+  randomBiomeChance: 0
+--- !u!4 &1730671669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730671667}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.50912, y: -0, z: 47.1784}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1730671670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730671667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0297ac0815b224fb8c58bc9d587ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChunkBasedGeneration
+  biomeSelection: {fileID: 1730671668}
+  generationSettings: {fileID: 0}
+  chunkSettings: {fileID: 0}
 --- !u!1 &1803985502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2003,3 +2072,4 @@ SceneRoots:
   - {fileID: 657109066}
   - {fileID: 493714311}
   - {fileID: 792810461}
+  - {fileID: 1730671669}

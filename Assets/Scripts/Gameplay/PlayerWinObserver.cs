@@ -19,8 +19,8 @@ public class PlayerWinObserver : PlayerObserver
 
     protected override void OnTimeEnd()
     {
-        movement.enabled = false;
-        currentCoroutine = StartCoroutine(Ending());
+        movement.enabled = false; //Disable the movement of the player
+        currentCoroutine = StartCoroutine(Ending()); //Start the coroutine for the ending
         restart.gameObject.SetActive(true);
 
         Debug.Log("Time finished");
@@ -28,11 +28,8 @@ public class PlayerWinObserver : PlayerObserver
 
     public void Restart()
     {
-        Scene scene = SceneManager.GetActiveScene();
-
-        Debug.Log("Restart");
-
-        SceneManager.LoadScene(scene.buildIndex); //need to add all scenes in side 
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.buildIndex); //Load the current scene
     }
 
     IEnumerator Ending()

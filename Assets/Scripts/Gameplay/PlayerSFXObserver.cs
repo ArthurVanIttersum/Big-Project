@@ -8,12 +8,14 @@ public class PlayerSFXObserver : PlayerObserver
 
     protected override void OnVSFX(int value)
     {
+        //Subtract Score
         if (value == 0)
         {
             audio[0].Play();
             Debug.Log("SFX lose");
         }
 
+        //Add Score
         else
         {
             audio[1].Play();

@@ -1,15 +1,38 @@
 using UnityEngine;
 
+public enum RotationAxis
+{
+    X, Y,Z
+}
+
 public class SunRotation : MonoBehaviour
 {
     [SerializeField] private ScoreLogic scoreLogic;
+    [SerializeField] private RotationAxis rotationAxis;
 
-    private const float startAngle = 90f;
-    private const float endAngle = -90f;
+    [SerializeField] private float startAngle = 90f;
+    [SerializeField] private float endAngle = -90f;
+
+    private Vector3 rotationVector;
 
     private void Start()
     {
         transform.rotation = Quaternion.AngleAxis(startAngle, Vector3.forward);
+
+        switch (rotationAxis)
+        {
+            case RotationAxis.X:
+                rotationVector = Vector3.right;
+                break;
+
+            case RotationAxis.Y:
+                rotationVector = Vector3.up;
+                break;
+
+            case RotationAxis.Z:
+                rotationVector = Vector3.forward;
+                break; 
+        }
     }
 
     private void Update()
@@ -19,6 +42,6 @@ public class SunRotation : MonoBehaviour
         float progress = Mathf.Clamp01(scoreLogic.timer / scoreLogic.adjustedTime);
         float currentAngle = Mathf.Lerp(startAngle, endAngle, progress);
 
-        transform.rotation = Quaternion.AngleAxis(currentAngle, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(currentAngle, rotationVector);
     }
 }
