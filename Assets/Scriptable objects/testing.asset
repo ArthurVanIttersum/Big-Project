@@ -17,7 +17,7 @@ MonoBehaviour:
       type: 3}
     objectCount: 1
     type: 1
-    value: 5
+    value: 3
   - prefab: {fileID: 5994624041533239603, guid: 3f14111c45442ab45aa519bbe7a2bfe2,
       type: 3}
     objectCount: 0

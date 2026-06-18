@@ -2176,7 +2176,6 @@ GameObject:
   - component: {fileID: 1117377926}
   - component: {fileID: 1117377925}
   - component: {fileID: 1117377935}
-  - component: {fileID: 1117377934}
   - component: {fileID: 1117377936}
   - component: {fileID: 1117377937}
   m_Layer: 0
@@ -2229,12 +2228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341d6878f0352964b9273e2110eb1e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
-  force: 3
+  force: 2
   maxSpeed: 120
   deceleraionRate: 10
   degreesPerClick: 10
   maxDegree: 45
-  thresholdPercentage: 0.638
+  thresholdPercentage: 0.398
   exponentialStrength: 5
   speed: 0
 --- !u!114 &1117377928
@@ -2373,19 +2372,6 @@ Transform:
   - {fileID: 1256389436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1117377934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117377924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0acebf7ad8cb8dc45a0c4d76a4bb8c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  health: 50
 --- !u!114 &1117377935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2705,6 +2691,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1106150761}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1353582966
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1201821817432055935, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_Name
+      value: small_rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.956069
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5064933
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.21701024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.048426963
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.8197848
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.03364949
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5696275
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 6.761
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 110.413
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010411106071902917, guid: 7da224d010869ae4cad01e00af0f9f51,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -180
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7da224d010869ae4cad01e00af0f9f51, type: 3}
 --- !u!1001 &1426767252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4502,7 +4556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
   playtimeValues: {fileID: 11400000, guid: dc8f5f10d1b467046b5d41c01a914c5a, type: 2}
-  ball: {fileID: 1117377924}
+  ball: {fileID: 1117377927}
   score: 0
   adjustedTime: 0
   timer: 0
@@ -4805,3 +4859,4 @@ SceneRoots:
   - {fileID: 915813277}
   - {fileID: 1426767252}
   - {fileID: 451539333}
+  - {fileID: 1353582966}
