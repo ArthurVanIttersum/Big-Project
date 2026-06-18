@@ -20,14 +20,14 @@ MonoBehaviour:
   GUID: ee93cf73-d5e5-45f2-a9d8-3b5e1078b1fa
   Index: 0
   Input:
-  - rid: 2735701689627050189
-  - rid: 2735701689627050190
-  - rid: 2735701689627050191
-  - rid: 2735701689627050192
-  - rid: 2735701689627050193
-  - rid: 2735701689627050194
-  - rid: 2735701689627050195
-  - rid: 2735701689627050196
+  - rid: 2735701736728821827
+  - rid: 2735701736728821828
+  - rid: 2735701736728821829
+  - rid: 2735701736728821830
+  - rid: 2735701736728821831
+  - rid: 2735701736728821832
+  - rid: 2735701736728821833
+  - rid: 2735701736728821834
   Output:
   - Index: 0
     VirtualOutputIndex: 7
@@ -158,9 +158,7 @@ MonoBehaviour:
   GenerateAllOutputs: 0
   GenerateAllMipmaps: 1
   OutputMaterial: {fileID: 2100000, guid: ab3fa5731b0e9c649922a25303aecc80, type: 2}
-  DefaultPreset: " <sbspreset pkgurl=\"pkg://BeetleGame_Ground\" label=\"\" >\n 
-    <presetinput identifier=\"$outputsize\" uid=\"3118363202\" type=\"8\" value=\"10,10\"
-    />\n </sbspreset>\n"
+  DefaultPreset: " <sbspreset pkgurl=\"pkg://BeetleGame_Ground\" label=\"\" >\n </sbspreset>\n"
   MaterialShader: HDRP/Lit
   RenderTextures: 0
   OutputRemaped: 0
@@ -168,7 +166,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2735701689627050189
+    - rid: 2735701736728821827
       type: {class: SubstanceInputInt2, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 0
@@ -187,7 +185,7 @@ MonoBehaviour:
           SliderClamp: 0
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050190
+    - rid: 2735701736728821828
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 1
@@ -209,7 +207,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050191
+    - rid: 2735701736728821829
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 2
@@ -231,7 +229,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050192
+    - rid: 2735701736728821830
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 3
@@ -253,7 +251,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050193
+    - rid: 2735701736728821831
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 4
@@ -275,7 +273,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050194
+    - rid: 2735701736728821832
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 5
@@ -297,7 +295,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050195
+    - rid: 2735701736728821833
       type: {class: SubstanceInputInt, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 6
@@ -319,7 +317,7 @@ MonoBehaviour:
           LabelTrue: 
           EnumValueCount: 0
           EnumValues: []
-    - rid: 2735701689627050196
+    - rid: 2735701736728821834
       type: {class: SubstanceInputFloat, ns: Adobe.Substance.Input, asm: Adobe.Substance}
       data:
         Index: 7
