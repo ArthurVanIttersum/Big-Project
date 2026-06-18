@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0a7142245367c418e5dacaa8ef00e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleType
-  listIndex: 4
+  listIndex: 1

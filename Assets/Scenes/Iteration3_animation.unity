@@ -4900,7 +4900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
   playtimeValues: {fileID: 11400000, guid: 8f9cb08cae941914b8fba01bac92a769, type: 2}
   ball: {fileID: 1117377927}
-  camera: {fileID: 0}
+  camera: {fileID: 641755058}
   score: 0
   adjustedTime: 0
   timer: 0
