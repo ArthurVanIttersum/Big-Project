@@ -34,7 +34,7 @@ public class Continuous2DGeneration : MonoBehaviour
         //generate a few chunks
         UpdateAABBList();
         UpdateChunkGeneration();
-        print("are we generating");
+        
     }
     private void Update()
     {
@@ -43,7 +43,7 @@ public class Continuous2DGeneration : MonoBehaviour
         UpdateAABBList();
         UpdateChunkGeneration();
         lastPosition = currentPosition;
-        print("are we updating");
+        
     }
 
     void UpdatePosition()
@@ -57,7 +57,7 @@ public class Continuous2DGeneration : MonoBehaviour
 
     void UpdateChunkGeneration()
     {
-        print("are we chunkGenerating");
+        
         if (chunkSettings == null) return;//quick test
 
         //delete bad chunks
@@ -78,7 +78,6 @@ public class Continuous2DGeneration : MonoBehaviour
                 GameObject chunk = MakeChunkGameobject(key);
                 generatedChunks.Add(key, chunk);
                 GenerateAtPosition?.Invoke(chunk);
-                print("are we invoking");
             }
         }
     }
@@ -108,19 +107,19 @@ public class Continuous2DGeneration : MonoBehaviour
         Vector2Int maxPos = currentPosition + (centerOffset + Vector2Int.one) * chunksize;
         Vector2Int minPos = currentPosition - centerOffset * chunksize;
 
-        print("area is: " + maxPos + ", " + minPos);
+        //print("area is: " + maxPos + ", " + minPos);
 
         //interpolate to generate and delete chunks
         for (int x = minPos.x; x < maxPos.x; x += chunksize)
         {
-            print("AABB size: " + chunksInAABB.Count);
+            //print("AABB size: " + chunksInAABB.Count);
             for (int y = minPos.y; y < maxPos.y; y += chunksize)
             {
                 chunksInAABB.Add(new Vector2Int(x, y));
-                print("AABB size: " + chunksInAABB.Count);
+                //print("AABB size: " + chunksInAABB.Count);
             }
         }
-        print("AABB size: " + chunksInAABB.Count);
+        //print("AABB size: " + chunksInAABB.Count);
     }
 
     private Vector2Int GetPlayerChunkPosition()
