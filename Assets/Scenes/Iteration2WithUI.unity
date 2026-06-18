@@ -764,7 +764,7 @@ Transform:
   m_GameObject: {fileID: 641755057}
   serializedVersion: 2
   m_LocalRotation: {x: 0.062988564, y: -0, z: -0, w: 0.9980143}
-  m_LocalPosition: {x: 0, y: 4, z: -10}
+  m_LocalPosition: {x: 0, y: 4.2200003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1320,8 +1320,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016286289}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10710723, y: 0.000000015953635, z: -0.0000000017186358, w: 0.9942475}
-  m_LocalPosition: {x: 0.017, y: 5.089506, z: -9.439}
+  m_LocalRotation: {x: 0.10710724, y: 0.0000000020091877, z: -2.1644364e-10, w: 0.9942475}
+  m_LocalPosition: {x: 0.017, y: 5.3095064, z: -9.439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1388,7 +1388,6 @@ GameObject:
   - component: {fileID: 1117377926}
   - component: {fileID: 1117377925}
   - component: {fileID: 1117377935}
-  - component: {fileID: 1117377934}
   - component: {fileID: 1117377936}
   - component: {fileID: 1117377937}
   m_Layer: 0
@@ -1573,7 +1572,7 @@ Transform:
   m_GameObject: {fileID: 1117377924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1583,19 +1582,6 @@ Transform:
   - {fileID: 1715533046}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1117377934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117377924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0acebf7ad8cb8dc45a0c4d76a4bb8c37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  health: 50
 --- !u!114 &1117377935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2911,8 +2897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12e4577914eb8046a45b5fb89db4a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreLogic
-  playtimeValues: {fileID: 11400000, guid: dc8f5f10d1b467046b5d41c01a914c5a, type: 2}
-  ball: {fileID: 1117377924}
+  playtimeValues: {fileID: 11400000, guid: 8f9cb08cae941914b8fba01bac92a769, type: 2}
+  ball: {fileID: 1117377927}
+  camera: {fileID: 641755058}
   score: 0
   adjustedTime: 0
   timer: 0
@@ -3190,7 +3177,7 @@ Transform:
   m_GameObject: {fileID: 2145852164}
   serializedVersion: 2
   m_LocalRotation: {x: 0.062988564, y: 0, z: 0, w: 0.9980143}
-  m_LocalPosition: {x: 0, y: 4, z: -10}
+  m_LocalPosition: {x: 0, y: 4.2200003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

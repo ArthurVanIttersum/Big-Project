@@ -16,5 +16,7 @@ MonoBehaviour:
   scoreMultiplier: 0.1
   ballScoreRatio: 0.05
   maxBallSize: 3
+  maxClampScore: 200
+  cameraZAxisMultiplier: 6
   massScoreRatio: 0.01
   maxMass: 3

@@ -1,14 +1,17 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ScoreLogic : MonoBehaviour
 {
     [SerializeField] private PlaytimeValues playtimeValues;
     [SerializeField] private TestMovement ball;
+    [SerializeField] private CinemachineFollow camera;
     [HideInInspector] public float score;
     public event Action timeEnded;
     public event Action scoreUpdate;
 
+    private Vector3 cameraStartOffeset;
     private Rigidbody rb;
     private float startMass;
     private Vector3 ballStartScale;
@@ -23,6 +26,7 @@ public class ScoreLogic : MonoBehaviour
         if (playtimeValues.scoreMultiplier == 0)
             Debug.LogError($"Score multiplier is set to O.");
 
+        cameraStartOffeset = camera.FollowOffset;
         rb = ball.GetComponent<Rigidbody>();
         ballStartScale = ball.transform.localScale;
         startMass = rb.mass; 
@@ -50,7 +54,9 @@ public class ScoreLogic : MonoBehaviour
             ballScoreMultiplier = clampScore * playtimeValues.ballScoreRatio;
             rb.mass = startMass + clampScore * playtimeValues.massScoreRatio;
 
-            ball.transform.localScale = ballStartScale + new Vector3(ballScoreMultiplier, ballScoreMultiplier, ballScoreMultiplier);
+            camera.FollowOffset = cameraStartOffeset + new Vector3(0, ballScoreMultiplier, -ballScoreMultiplier * playtimeValues.cameraZAxisMultiplier);
+
+            ball.transform.localScale = ballStartScale + (new Vector3(ballScoreMultiplier, ballScoreMultiplier, ballScoreMultiplier));
             InvokeScoreUpdate();
         }
 
