@@ -1,26 +1,29 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSFXObserver : PlayerObserver
 {
-    //Add the proper sound effects to showcase when a player loses or wins
-    [SerializeField] private List<AudioSource> audio = new List<AudioSource>();
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private ObjectInformation objectInformation;
 
-    protected override void OnVSFX(int value)
+    protected override void OnVSFX(int listIndex)
     {
-        //Subtract Score
-        if (value == 0)
+        if (objectInformation == null)
         {
-            audio[0].Play();
-            Debug.Log("SFX lose");
+            Debug.LogError($"ObjectInformations is missing");
+            return;
         }
 
-        //Add Score
-        else
+        AudioClip clip = objectInformation.objects[listIndex].clip;
+
+        if (clip == null)
         {
-            audio[1].Play();
-            Debug.Log("SFX win");
+            Debug.LogError($"{objectInformation.objects[listIndex]} does not have a audio clip assigned to it.");
+            return;
         }
+
+        audioSource.PlayOneShot(clip);
+
+        Debug.Log($"Playing clip for {clip}");
     }
 
     protected override void OnTimeEnd()
