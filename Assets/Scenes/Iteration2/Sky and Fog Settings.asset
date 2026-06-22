@@ -82,11 +82,11 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 55261.973
   aerosolDensity:
-    m_OverrideState: 0
-    m_Value: 0.01192826
+    m_OverrideState: 1
+    m_Value: 0.581
   aerosolTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.8792453, g: 0.03815583, b: 0.8314424, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.18622535, g: 0.13292272, b: 0.554717, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 0
     m_Value: 8289.296
@@ -137,7 +137,7 @@ MonoBehaviour:
     m_Value: 1
   horizonTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0, b: 0.6931164, a: 1}
+    m_Value: {r: 0.589142, g: 0.93207544, b: 0.90302867, a: 1}
   zenithTint:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -252,13 +252,13 @@ MonoBehaviour:
     m_Value: 50
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 40.39
+    m_Value: 80.5
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 0.5245282, g: 0, b: 0.48097062, a: 1}
+    m_Value: {r: 0.90188676, g: 0.13443208, b: 0.7611671, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 0
     m_Value: 1
