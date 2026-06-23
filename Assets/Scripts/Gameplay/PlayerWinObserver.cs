@@ -11,7 +11,7 @@ public class PlayerWinObserver : PlayerObserver
     [SerializeField] float coroutineTime;
     private Coroutine currentCoroutine;
 
-    protected override void OnVSFX(int value)
+    protected override void OnVSFX(int listIndex)
     { }
 
     protected override void OnScoreUpdate()

@@ -7,21 +7,32 @@ public class DetectCollision : MonoBehaviour
 
     public event Action<int> vsfx;
 
-    //settings
+    ///To be deleted
+    //settings 
     public GenerationSettings settingsFile;
+    ///
+
+    public ObjectInformation objectInformation;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (settingsFile == null) return;
+        ObstacleType obstacleType = other.gameObject.GetComponent<ObstacleType>();
+
+        if (obstacleType == null)
+            return;
+
         int listIndex = other.GetComponent<ObstacleType>().listIndex;
         RemoveObjectHelper.RemoveObject(other.gameObject);
+
+        /// to be deleted
+        if (settingsFile == null) return;
         var theType = settingsFile.objects[listIndex].type;
         float theValue = settingsFile.objects[listIndex].value;
 
         if (theType == Type.Damage)
         {
             scoreLogic.score -= (int)theValue;
-            vsfx?.Invoke(0);
+            vsfx?.Invoke(listIndex);
             scoreLogic.InvokeScoreUpdate();
             print("doing damage" + "index:" + listIndex + " the value: " + theValue);
 
@@ -30,9 +41,29 @@ public class DetectCollision : MonoBehaviour
         if (theType == Type.Health)
         {
             scoreLogic.score += (int)theValue;
-            vsfx?.Invoke(1);
+            vsfx?.Invoke(listIndex);
             scoreLogic.InvokeScoreUpdate();
             print("doing health" + "index:" + listIndex + " the value: " + theValue);
+        }
+        ///
+
+        if (objectInformation != null && listIndex <= objectInformation.objects.Count)
+        {
+            var info = objectInformation.objects[listIndex];
+
+            if (info.kind == Kind.Add)
+            {
+                scoreLogic.score += (int)info.value;
+                scoreLogic.InvokeScoreUpdate();
+                vsfx?.Invoke(listIndex);
+            }
+
+            if (info.kind == Kind.Subtract)
+            {
+                scoreLogic.score -= (int)info.value;
+                scoreLogic.InvokeScoreUpdate();
+                vsfx?.Invoke(listIndex);
+            }
         }
     }
 }

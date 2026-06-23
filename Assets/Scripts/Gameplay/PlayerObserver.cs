@@ -18,7 +18,7 @@ public abstract class PlayerObserver : MonoBehaviour
         detectCollision.scoreLogic.scoreUpdate -= OnScoreUpdate;
     }
 
-    protected abstract void OnVSFX(int value);
+    protected abstract void OnVSFX(int listIndex);
 
     protected abstract void OnTimeEnd();
 
