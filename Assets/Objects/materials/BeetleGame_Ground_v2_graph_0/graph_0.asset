@@ -157,7 +157,7 @@ MonoBehaviour:
     type=\"4\" value=\"5\" />\n  <presetinput identifier=\"Cracks_Y\" uid=\"3737524562\"
     type=\"4\" value=\"9\" />\n  <presetinput identifier=\"Cracks_Density\" uid=\"3737522739\"
     type=\"0\" value=\"0.468\" />\n  <presetinput identifier=\"basecolor\" uid=\"3737613905\"
-    type=\"3\" value=\"1,0,0.952381,1\" />\n  <presetinput identifier=\"bpebbles_density\"
+    type=\"3\" value=\"0.909434,0.57298,0.389512,1\" />\n  <presetinput identifier=\"bpebbles_density\"
     uid=\"3738752529\" type=\"0\" value=\"0.481\" />\n </sbspreset>\n"
   IsRuntimeOnly: 0
   GenerateAllOutputs: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
           GuiDescription: Gives the main color of the material
           Type: 3
           WidgetType: 3
-        Data: {x: 1, y: 0, z: 0.9523809, w: 1}
+        Data: {x: 0.90943396, y: 0.5729803, z: 0.38951227, w: 1}
         NumericalDescription:
           DefaultValue: {x: 0.536232, y: 0.373737, z: 0.087747, w: 1}
           MinValue: {x: 0, y: 0, z: 0, w: 0}
