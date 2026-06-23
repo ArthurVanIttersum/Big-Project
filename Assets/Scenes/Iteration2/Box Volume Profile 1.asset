@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.Fog
-  active: 1
+  active: 0
   quality:
     m_OverrideState: 0
     m_Value: 1
@@ -44,7 +44,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 0, b: 0.5290997, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 100
+    m_Value: 160.5
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -56,19 +56,19 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: -8.4
+    m_Value: -3.8
   maximumHeight:
     m_OverrideState: 0
     m_Value: 86.3
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 9.86
+    m_Value: 25.2
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 0.335849, g: 0.039921656, b: 0.30687714, a: 0.40392157}
+    m_Value: {r: 0.335849, g: 0.039921656, b: 0.30687714, a: 0.47843137}
   globalLightProbeDimmer:
     m_OverrideState: 0
     m_Value: 1

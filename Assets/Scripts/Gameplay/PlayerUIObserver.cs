@@ -9,9 +9,9 @@ public class PlayerUIObserver : PlayerObserver
     //Add the proper UI elements to showcase when a player loses or wins
     //[SerializeField] private List<GameObject> images = new List<GameObject>();
 
-    protected override void OnVSFX(int value)
+    protected override void OnVSFX(int listIndex)
     {
-        if (value == 0)
+        if (listIndex == 0)
         {
             //images[0].gameObject.SetActive(true);
             Debug.Log("Score lowered");
