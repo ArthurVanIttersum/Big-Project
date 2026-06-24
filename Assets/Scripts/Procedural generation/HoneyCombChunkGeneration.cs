@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HoneyCombChunkGeneration : MonoBehaviour
 {
     //settings Files
-    public HoneyGenerationSettings generationSettings;
+    public ReworkedHoneyGenerationSettings generationSettings;
     public ChunkSettings chunkSettings;
 
     //booleans
@@ -31,35 +33,54 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     //hex grid
     public Grid theHexGrid = new();
 
-    private void Start()
-    {
-        
-    }
+    //caching
+    private bool cached = false;
+
+    //special data for generation
+    private List<Vector2> masterAvailableKeys = new();
+    private Dictionary<Vector2, int> revMasterAvailableKeys = new();
+    private int[] indices;
+    
+    //special data for coin generation
+    private HashSet<Vector2> coinPositions = new();
+    private HashSet<Vector2> bigCoinPositions = new();
+    private HashSet<Vector2> smallCoinPositions = new();
+    private Vector2[] smallCoinArray;
+    private Vector2[] bigCoinArray;
+
 
     void GenerateChunk(GameObject chunk)
     {
-        print("Generating Chunk");
+        //print("Generating Chunk");
         if (generationSettings == null) return;//quick test
         if (chunkSettings == null) return;//quick test
 
-        print("pastChecks");
+        //print("pastChecks");
         this.chunk = chunk;
 
         int chunkSize = chunkSettings.chunksize;
-        Vector2Int centerPos = VectorConversion.vec3Tovec2Int(chunk.transform.position);
+        Vector2Int centerPos = Vector2Int.zero;
 
         areaMax = (Vector2Int.one * (int)chunkSize / 2) + centerPos;
         areaMin = -(Vector2Int.one * (int)chunkSize / 2) + centerPos;
 
-        ClearDataStructures();
-        MakeDataStructures();
+        if (!cached)
+        {
+            print("caching data");
+            CacheData();
+            cached = true;
+
+        }
 
 
+        
+        ResetTerrainGeneration();
         GenerateTerrain();
 
 
         //print(TestPathfinding());
 
+        
         int tries = 1;
         while (!TestPathfinding())
         {
@@ -72,11 +93,20 @@ public class HoneyCombChunkGeneration : MonoBehaviour
                 break;
             }
         }
+        //generate coin chance
+        GenerateCoins();
 
 
         //actually place the objects
-        PlaceObjects();
+        PlaceObjects(); //this is about 1/3 of garbage collection allocation
     }
+
+    private void CacheData()
+    {
+        ClearDataStructures();
+        MakeDataStructures();
+    }
+
 
     private void ClearDataStructures()
     {
@@ -117,7 +147,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         }
     }
 
-    private void MakeDataStructures()
+    private void MakeDataStructures()//this might be part of the problem
     {
         //make triangles
         if (playerMoveAlongZaxis)
@@ -133,6 +163,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
                     else
                         halfSpaceOffset = 0;
                     triToHex.Add(new Vector2(hor + halfSpaceOffset, ver), new());
+                    //print("adding values");
                 }
             }
         }
@@ -148,6 +179,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
                 for (int ver = areaMin.y; ver < areaMax.y; ver++)
                 {
                     triToHex.Add(new Vector2(hor, ver + halfSpaceOffset), new());
+                    //print("adding values");
                 }
             }
         }
@@ -181,7 +213,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
                 foreach (var tri2 in hexToTri[hex])
                 {
                     if (tri1 == tri2) continue;
-
+                    if (triToTri[tri1].Contains(tri2)) continue;
                     triToTri[tri1].Add(tri2);
                 }
             }
@@ -256,17 +288,22 @@ public class HoneyCombChunkGeneration : MonoBehaviour
             }
         }
 
+        //build datastructures for generation
+        BuildAvailableKeys();
 
         //make grid
 
         //initiate nodes
+        int iD = 0;
         foreach (var item in hexToTri.Keys)//hexnodes
         {
-            theHexGrid.theGraph.Add(item, new Node(item));
+            iD++;
+            theHexGrid.theGraph.Add(item, new Node(item, iD));
         }
+        iD = 0;
         foreach (var item in triToHex.Keys)//trinodes
         {
-            theHexGrid.theGraph.Add(item, new Node(item));
+            theHexGrid.theGraph.Add(item, new Node(item, iD));
         }
 
         //add neighbors
@@ -281,11 +318,41 @@ public class HoneyCombChunkGeneration : MonoBehaviour
                 Vector2 pos0 = triToHex[item][i];
                 Vector2 pos1 = triToHex[item][more];
                 Vector2 pos1n = triToHex[item][less];
-                theHexGrid.theGraph[pos0].neighborsHex.Add(theHexGrid.theGraph[pos1]);
-                theHexGrid.theGraph[pos0].neighborsHex.Add(theHexGrid.theGraph[pos1n]);
-                theHexGrid.theGraph[pos0].neighborsTri.Add(theHexGrid.theGraph[item]);
-                theHexGrid.theGraph[item].neighborsHex.Add(theHexGrid.theGraph[pos0]);
+                if (VectorCompareDirectional(pos0, pos1))
+                {
+                    theHexGrid.theGraph[pos0].neighborsHex.Add(theHexGrid.theGraph[pos1]);
+                }
+                if (VectorCompareDirectional(pos0, pos1n))
+                {
+                    theHexGrid.theGraph[pos0].neighborsHex.Add(theHexGrid.theGraph[pos1n]);
+                }
+                if (VectorCompareDirectional(pos0, item))
+                {
+                    theHexGrid.theGraph[pos0].neighborsHex.Add(theHexGrid.theGraph[item]);
+                }
+                if (VectorCompareDirectional(item, pos0))
+                {
+                    theHexGrid.theGraph[item].neighborsHex.Add(theHexGrid.theGraph[pos0]);
+                }
             }
+        }
+
+        //initiate destination list
+        foreach (var item in destinationPoints)
+        {
+            theHexGrid.destinationIDs.Add(theHexGrid.theGraph[item].iD);
+        }
+    }
+
+    private bool VectorCompareDirectional(Vector2 node, Vector2 neighbor)
+    {
+        if (playerMoveAlongZaxis)
+        {
+            return (node.y < neighbor.y);
+        }
+        else
+        {
+            return (node.x < neighbor.x);
         }
     }
 
@@ -305,60 +372,125 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         if (MathF.Abs(third - rounded) < epsilon)
             return rounded / 3f;
 
-        return value; // leave unchanged
+        return value;
     }
+
+    private void BuildAvailableKeys()
+    {
+        masterAvailableKeys.Clear();
+        revMasterAvailableKeys.Clear();
+        foreach (var key in triToHex.Keys)
+        {
+            revMasterAvailableKeys.Add(key, masterAvailableKeys.Count);
+            masterAvailableKeys.Add(key);
+        }
+    }
+
+
+    
+
 
     private void GenerateTerrain()
     {
-        //spawning
-        int tempiteration = 0;
-        foreach (var honeyGeneration in generationSettings.objects)
+        
+        int masterCount = masterAvailableKeys.Count;
+        if (masterCount == 0) return;
+
+        // Create an index buffer 0..n-1
+        indices = new int[masterCount];
+        for (int i = 0; i < masterCount; i++) indices[i] = i;
+
+        // active prefix length (number of available keys remaining)
+        int keyCount = masterCount;
+        int toSpawnCount;
+        int spawnedObjectCount = 0;
+        int rangeStart;
+        int rangeEnd;
+
+
+        int tmpIdx;
+        int randomIndex;
+
+        // iterate over object types
+        for (int objectToSpawn = 0; objectToSpawn < generationSettings.objects.Count; objectToSpawn++)
         {
-
-            foreach (var triPoint in triToHex.Keys)
+            // compute how many objects to spawn for this type
+            ReworkedHoneySpawnedObject reworkedHoneyGeneration = generationSettings.objects[objectToSpawn];
+            toSpawnCount = UnityEngine.Random.Range(reworkedHoneyGeneration.minSpawnCount, reworkedHoneyGeneration.maxSpawnCount);
+            
+            //calculate range
+            rangeStart = spawnedObjectCount;
+            rangeEnd = rangeStart + toSpawnCount;
+            if (rangeEnd > keyCount)
             {
-                //check if the space is empty
-                if (theHexGrid.theGraph[triPoint].spawnedIndex != -1) continue;
+                rangeEnd = keyCount;
+            }
 
-                //calculate chance
-                int chance = honeyGeneration.ambientSpawnChance;
-                foreach (var cluster in honeyGeneration.clusteredObjects)
+            //randomize the indices array for the first n indices
+            for (int j = rangeStart; j < rangeEnd; j++)
+            {
+                // pick random index in the remaining range [i, keyCount-1]
+                randomIndex = UnityEngine.Random.Range(j, keyCount);
+
+                // swap indices[randomIndex] <-> indices[i]
+                tmpIdx = indices[randomIndex];
+                indices[randomIndex] = indices[j];
+                indices[j] = tmpIdx;
+            }
+
+            //step1 spawn basic objects
+            for (int j = rangeStart; j < rangeEnd; j++)
+            { 
+                // chosen key is masterAvailableKeys[ indices[i] ]
+                Vector2 chosenKey = masterAvailableKeys[indices[j]];
+
+                // defensive checks using theHexGrid
+                if (!theHexGrid.theGraph.TryGetValue(chosenKey, out var chosenNode)) continue;
+                if (chosenNode.spawnedIndex != -1) continue;
+
+                chosenNode.spawnedIndex = objectToSpawn;
+                spawnedObjectCount ++;
+
+            }
+
+
+
+            //step2, spawn objects around it.
+            foreach (IncreaseSpawnChance extraObject in reworkedHoneyGeneration.extraObjects)
+            {
+                int chance = extraObject.addedSpawnChance;
+
+                for (int j = rangeStart; j < rangeEnd; j++)
                 {
-                    int addedChance = cluster.addedSpawnChance;
-
-                    foreach (var triNeighborPos in triToTri[triPoint])
+                    Vector2 chosenKey = masterAvailableKeys[indices[j]];
+                    foreach (Vector2 pos in triToTri[chosenKey])
                     {
-                        if (theHexGrid.theGraph[triNeighborPos].spawnedIndex != cluster.indexInList) continue;
-                        chance += addedChance;
-                        //print("adding chance " + addedChance + " " + chance + " " + tempiteration);
+                        if (!theHexGrid.theGraph.TryGetValue(pos, out var chosenNode)) continue;
+                        if (chosenNode.spawnedIndex != -1) continue;
+                        if (UnityEngine.Random.Range(0, 100) > chance) continue;
+
+                        chosenNode.spawnedIndex = extraObject.indexInList;
+
+                        //swap
+                        tmpIdx = indices[revMasterAvailableKeys[pos]];
+                        indices[revMasterAvailableKeys[pos]] = indices[spawnedObjectCount];
+                        indices[spawnedObjectCount] = tmpIdx;
+
+                        spawnedObjectCount++;
                     }
                 }
-                theHexGrid.theGraph[triPoint].spawnchance.Add(chance);
-
-                //maximum chance
-                if (chance > 100)
-                {
-                    chance = 100;
-                }
-
-                int random = UnityEngine.Random.Range(0, 100);
-                if (random < chance)
-                {
-                    //Instantiate(honeyGeneration.prefab, VectorConversion.vec2Tovec3(triPoint), Quaternion.identity, chunk.transform);
-
-                    theHexGrid.theGraph[triPoint].spawnedIndex = tempiteration;
-
-                }
             }
-            tempiteration++;
         }
     }
+
+
+
 
     private void ResetTerrainGeneration()
     {
         foreach (Vector2 triPoint in triToHex.Keys)
         {
-            theHexGrid.theGraph[triPoint].spawnchance.Clear();
+            
             theHexGrid.theGraph[triPoint].spawnedIndex = -1;
         }
 
@@ -381,36 +513,151 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         }
 
         //test
-        bool success = false;
+        bool result = false;
         foreach (var startingPoint in startingPoints)
         {
-            bool result = theHexGrid.BFD(startingPoint, destinationPoints, out List<Vector2> path, playerMoveAlongZaxis);
-
-            if (result == true)
+            result = theHexGrid.ReworkedBFS(startingPoint, playerMoveAlongZaxis);
+            
+            if (result == false)
             {
-                success = true;
+                return false;
             }
-
         }
-        return success;
+        return true;
+    }
+
+    private void GenerateCoins()
+    {
+        //reset everything
+        coinPositions.Clear();
+        smallCoinPositions.Clear();
+        bigCoinPositions.Clear();
+
+        //generate hashset
+        foreach (Vector2 key in triToTri.Keys)
+        {
+            if (theHexGrid.theGraph[key].spawnedIndex == -1) continue;
+            foreach (var neighbor in triToTri[key])
+            {
+                if (theHexGrid.theGraph[neighbor].spawnedIndex != -1) continue;
+                coinPositions.Add(neighbor);
+            }
+        }
+        int neighbors = 0;
+        foreach (Vector2 key in coinPositions)
+        {
+            foreach (Vector2 neighbor in triToTri[key])
+            {
+                if (theHexGrid.theGraph[neighbor].spawnedIndex == -1) continue;
+                neighbors++;
+            }
+            if (neighbors == 1)
+            {
+                smallCoinPositions.Add(key);
+            }
+            else
+            {
+                bigCoinPositions.Add(key);
+            }
+            neighbors = 0;
+        }
+        print("coinPositions: " + coinPositions.Count.ToString() + ", smallCoinPositions: " + smallCoinPositions.Count.ToString() + ", bigCoinPositions: " + bigCoinPositions.Count.ToString());
+
+
+        //initialize ints
+        int randomIndex;
+        int tmpIdx;
+
+
+        //      small coins
+
+        //initialize arrays
+
+        indices = new int[smallCoinPositions.Count];
+        for (int i = 0; i < smallCoinPositions.Count; i++) indices[i] = i;
+        smallCoinArray = smallCoinPositions.ToArray();
+
+
+        //compute how many objects to spawn for this type
+        CoinData coinData = generationSettings.smallCoinData;
+        int toSpawnCount = UnityEngine.Random.Range(coinData.minSpawnCount, coinData.maxSpawnCount);
+
+        //calculate range
+        if (toSpawnCount > smallCoinPositions.Count)
+        {
+            toSpawnCount = smallCoinPositions.Count;
+        }
+
+        //randomize the indices array for the first n indices
+        for (int j = 0; j < toSpawnCount; j++)
+        {
+            // pick random index in the remaining range [i, keyCount-1]
+            randomIndex = UnityEngine.Random.Range(j, smallCoinPositions.Count);
+
+            // swap indices[randomIndex] <-> indices[i]
+            tmpIdx = indices[randomIndex];
+            indices[randomIndex] = indices[j];
+            indices[j] = tmpIdx;
+        }
+
+        for (int j = 0; j < toSpawnCount; j++)
+        {
+            Instantiate(generationSettings.smallCoinData.prefab, VectorConversion.vec2Tovec3(smallCoinArray[indices[j]]) + chunk.transform.position, Quaternion.identity, chunk.transform);
+        }
+
+        //      big coins
+
+        //initialize arrays
+
+        indices = new int[bigCoinPositions.Count];
+        for (int i = 0; i < bigCoinPositions.Count; i++) indices[i] = i;
+        bigCoinArray = bigCoinPositions.ToArray();
+
+
+        //compute how many objects to spawn for this type
+        coinData = generationSettings.bigCoinData;
+        toSpawnCount = UnityEngine.Random.Range(coinData.minSpawnCount, coinData.maxSpawnCount);
+
+        //calculate range
+        if (toSpawnCount > bigCoinPositions.Count)
+        {
+            toSpawnCount = bigCoinPositions.Count;
+        }
+
+        //randomize the indices array for the first n indices
+        for (int j = 0; j < toSpawnCount; j++)
+        {
+            // pick random index in the remaining range [i, keyCount-1]
+            randomIndex = UnityEngine.Random.Range(j, bigCoinPositions.Count);
+
+            // swap indices[randomIndex] <-> indices[i]
+            tmpIdx = indices[randomIndex];
+            indices[randomIndex] = indices[j];
+            indices[j] = tmpIdx;
+        }
+
+        for (int j = 0; j < toSpawnCount; j++)
+        {
+            Instantiate(generationSettings.bigCoinData.prefab, VectorConversion.vec2Tovec3(bigCoinArray[indices[j]]) + chunk.transform.position, Quaternion.identity, chunk.transform);
+        }
+
     }
 
     private void PlaceObjects()
     {
+        int indexValue = 0;
         foreach (var hexPos in triToHex.Keys)
         {
-            int indexValue = theHexGrid.theGraph[hexPos].spawnedIndex;
+            indexValue = theHexGrid.theGraph[hexPos].spawnedIndex;
             if (indexValue != -1)
             {
-                Instantiate(generationSettings.objects[indexValue].prefab, VectorConversion.vec2Tovec3(hexPos), Quaternion.identity, chunk.transform);
+                Instantiate(generationSettings.objects[indexValue].prefab, VectorConversion.vec2Tovec3(hexPos) + chunk.transform.position, Quaternion.identity, chunk.transform);
             }
         }
     }
 
     void RemoveChunk(GameObject removed)
     {
-        print("Removing Chunk");
-
         RemoveObjectHelper.RemoveObject(removed);
     }
 
@@ -424,4 +671,6 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         script2.DeleteChunkAtPosition += RemoveChunk;
         script2.GenerateAtPosition += GenerateChunk;
     }
+
+    
 }
