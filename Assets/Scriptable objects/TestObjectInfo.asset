@@ -14,11 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectInformation
   objects:
   - kind: 0
-    value: 3
-    clip: {fileID: 8300000, guid: 663787a8dd9f70746b2327ac360e3a5e, type: 3}
-  - kind: 0
     value: 1
     clip: {fileID: 8300000, guid: 663787a8dd9f70746b2327ac360e3a5e, type: 3}
+  - kind: 0
+    value: 3
+    clip: {fileID: 8300000, guid: 663787a8dd9f70746b2327ac360e3a5e, type: 3}
+  - kind: 1
+    value: 3
+    clip: {fileID: 8300000, guid: 98be7226cf2fe054993744baee21c5aa, type: 3}
   - kind: 1
     value: 5
+    clip: {fileID: 8300000, guid: 98be7226cf2fe054993744baee21c5aa, type: 3}
+  - kind: 1
+    value: 2
+    clip: {fileID: 8300000, guid: 98be7226cf2fe054993744baee21c5aa, type: 3}
+  - kind: 1
+    value: 2
+    clip: {fileID: 8300000, guid: 98be7226cf2fe054993744baee21c5aa, type: 3}
+  - kind: 1
+    value: 2
     clip: {fileID: 8300000, guid: 98be7226cf2fe054993744baee21c5aa, type: 3}
