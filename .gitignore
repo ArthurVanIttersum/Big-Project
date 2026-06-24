@@ -56,3 +56,4 @@ crashlytics-build.properties
 /Assets/StreamingAssets/aa/*
 Assets/Adobe/Substance3DForUnity
 Big-Project.slnx
+ProjectSettings/HDRPProjectSettings.asset

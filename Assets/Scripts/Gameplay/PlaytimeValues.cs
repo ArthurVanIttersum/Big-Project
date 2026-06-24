@@ -14,6 +14,7 @@ public class PlaytimeValues : ScriptableObject
                                 //If is less than that, the ball will never reach it's max size. In that example the maxBallSize multiplication should be 1 less than he variable itself,
                                 //because the ball itself start at a scale of 1,1,1 and maxBallSize show the final size - 3,3,3. This means that the scale of the ball needs to change by 2,
                                 //which in the current setup would be 200 score, meaning that to reach the max size of the ball of 3,3,3 the clamped score needs to be 200. 
+    public float cameraZAxisMultiplier; //Both z and y axis move by 2 units. This is a multipler to change the z axis more compared to y. 
     public float massScoreRatio; //Compared to the score how the mass of the ball changes (ex. 1 -> 1 score = 1 unit increase of the mass; 0.01 -> 100 score = 1 unit increase of the mass)
     public float maxMass; //How much mass can the ball have
 }
