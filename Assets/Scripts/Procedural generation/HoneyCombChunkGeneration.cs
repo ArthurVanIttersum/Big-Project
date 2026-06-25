@@ -7,6 +7,7 @@ using UnityEngine;
 public class HoneyCombChunkGeneration : MonoBehaviour
 {
     //settings Files
+    [SerializeField] private BiomeSelection biomeSelection;
     public ReworkedHoneyGenerationSettings generationSettings;
     public ChunkSettings chunkSettings;
 
@@ -49,13 +50,21 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     private Vector2[] bigCoinArray;
 
 
+    private void Awake()
+    {
+        generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+    }
+
     void GenerateChunk(GameObject chunk)
     {
-        //print("Generating Chunk");
+        generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+
+        print("Generating Chunk");
         if (generationSettings == null) return;//quick test
+        Debug.Log("genSetting passed");
         if (chunkSettings == null) return;//quick test
 
-        //print("pastChecks");
+        print("pastChecks");
         this.chunk = chunk;
 
         int chunkSize = chunkSettings.chunksize;
@@ -663,14 +672,8 @@ public class HoneyCombChunkGeneration : MonoBehaviour
 
     private void OnEnable()
     {
-
-        ContinuousGeneration script = FindAnyObjectByType<ContinuousGeneration>();
+        Continuous2DGeneration script = FindAnyObjectByType<Continuous2DGeneration>();
         script.DeleteChunkAtPosition += RemoveChunk;
         script.GenerateAtPosition += GenerateChunk;
-        Continuous2DGeneration script2 = FindAnyObjectByType<Continuous2DGeneration>();
-        script2.DeleteChunkAtPosition += RemoveChunk;
-        script2.GenerateAtPosition += GenerateChunk;
     }
-
-    
 }
