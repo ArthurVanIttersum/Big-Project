@@ -605,7 +605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Score
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Time
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1851,79 +1851,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5545408d150d5754da4c4402b0a5a2b8, type: 3}
---- !u!1001 &915813277
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4089764599993967337, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_Name
-      value: Floor prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 4089764599993967337, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8102362607756999693, guid: 477ba338177208d4183e4528d09c92dd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 477ba338177208d4183e4528d09c92dd, type: 3}
 --- !u!1 &1016286289
 GameObject:
   m_ObjectHideFlags: 0
@@ -3660,8 +3587,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 435.54486
+  m_Color: {r: 0.8792453, g: 0.675194, b: 0.8432362, a: 1}
+  m_Intensity: 45.72012
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3704,7 +3631,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5536
+  m_ColorTemperature: 5111
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 6.87e-43, y: 8.4602e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -4368,7 +4295,6 @@ SceneRoots:
   - {fileID: 1787662830}
   - {fileID: 1641942102}
   - {fileID: 1107567481}
-  - {fileID: 915813277}
   - {fileID: 451539333}
   - {fileID: 1806817771}
   - {fileID: 703213371}
