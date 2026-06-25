@@ -23,7 +23,8 @@ MonoBehaviour:
     minSpawnCount: 1
     maxSpawnCount: 3
   objects:
-  - prefab: {fileID: 919132149155446097, guid: 96978c6775491014ea66a25f5e4f9a5a, type: 3}
+  - prefab: {fileID: 9003685584751524420, guid: eff504d3e79852f439c02cb884f7ea26,
+      type: 3}
     minSpawnCount: 10
     maxSpawnCount: 10
     extraObjects:

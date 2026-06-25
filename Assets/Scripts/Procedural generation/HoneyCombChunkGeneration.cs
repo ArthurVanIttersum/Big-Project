@@ -561,7 +561,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
             }
             neighbors = 0;
         }
-        print("coinPositions: " + coinPositions.Count.ToString() + ", smallCoinPositions: " + smallCoinPositions.Count.ToString() + ", bigCoinPositions: " + bigCoinPositions.Count.ToString());
+        //print("coinPositions: " + coinPositions.Count.ToString() + ", smallCoinPositions: " + smallCoinPositions.Count.ToString() + ", bigCoinPositions: " + bigCoinPositions.Count.ToString());
 
 
         //initialize ints
