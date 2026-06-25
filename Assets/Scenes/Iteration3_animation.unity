@@ -820,7 +820,6 @@ GameObject:
   - component: {fileID: 462112200}
   - component: {fileID: 462112199}
   - component: {fileID: 462112198}
-  - component: {fileID: 462112197}
   - component: {fileID: 462112201}
   m_Layer: 0
   m_Name: Continuous generation
@@ -829,21 +828,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &462112197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462112196}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0297ac0815b224fb8c58bc9d587ce6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChunkBasedGeneration
-  biomeSelection: {fileID: 226547323}
-  generationSettings: {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
-  chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
 --- !u!114 &462112198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +835,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462112196}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13e5864db01398643a3d7c0392d95a9a, type: 3}
   m_Name: 
@@ -860,7 +844,7 @@ MonoBehaviour:
   prefabEmptyGameObject: {fileID: 4767840369881617725, guid: a1d944a9bf9112d4ebd1aa2e530e3f29,
     type: 3}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
-  maxFrameTime: 0.5
+  maxFrameTime: 0.001
 --- !u!114 &462112199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b0d47f5d2fc0d4795167db8212e145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoneyCombChunkGeneration
-  generationSettings: {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
+  biomeSelection: {fileID: 226547323}
+  generationSettings: {fileID: 0}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
   playerMoveAlongZaxis: 0
   displayDebugVisualization: 0
