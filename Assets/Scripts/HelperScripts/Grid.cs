@@ -8,8 +8,19 @@ public class Grid
 {
     public Dictionary<Vector2, Node> theGraph = new();
 
+    //caching
+    public List<Vector2> path;
+    private Queue<Node> toBeExplored = new(100);
+    private HashSet<int> discovered = new(100);
+    private Node currentNode;
+    
 
-    public bool BFD(Vector2 startingPosition, HashSet<Vector2> destinations, out List<Vector2> path, bool playerMoveAlongZaxis)
+    //spacial caching
+    public HashSet<int> destinationIDs = new(100);
+
+
+    
+public bool BFS(Vector2 startingPosition, HashSet<Vector2> destinations, out List<Vector2> path, bool playerMoveAlongZaxis)
     {
         Node currentNode = theGraph[startingPosition];
         Queue<Node> toBeExplored = new();
@@ -57,6 +68,43 @@ public class Grid
         path = discovered.ToList();
         return false;
     }
+
+    public bool ReworkedBFS(Vector2 startingPosition, bool playerMoveAlongZaxis)
+    {
+        currentNode = theGraph[startingPosition];
+        toBeExplored.Clear();
+        discovered.Clear();
+
+        toBeExplored.Enqueue(currentNode);
+        discovered.Add(currentNode.iD);
+        while (toBeExplored.Count > 0)
+        {
+            currentNode = toBeExplored.Dequeue();
+
+
+            foreach (Node foundHex in currentNode.neighborsHex)
+            {
+                if (destinationIDs.Contains(foundHex.iD))
+                {
+                    return true;
+                }
+                if (discovered.Contains(foundHex.iD)) continue;
+                if (foundHex.obstructed) continue;
+
+
+                toBeExplored.Enqueue(foundHex);
+                discovered.Add(foundHex.iD);
+            }
+            if (toBeExplored.Count > 1000)
+            {
+                Debug.Log("warning BFS problem");
+                
+                return false;
+            }
+        }
+        
+        return false;
+    }
 }
 
 [System.Serializable]
@@ -68,15 +116,16 @@ public class Node
     public List<Node> neighborsTri;
     public int spawnedIndex = -1;
     public List<int> spawnchance = new();
+    public int iD;
 
     //pathfinding
     public bool obstructed = false;
 
-    public Node(Vector2 pos)
+    public Node(Vector2 pos, int iD)
     {
         position = pos;
         neighborsHex = new();
-        neighborsTri = new();
+        this.iD = iD;
     }
 }
 

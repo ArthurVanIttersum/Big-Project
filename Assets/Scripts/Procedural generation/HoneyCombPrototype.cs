@@ -260,7 +260,7 @@ public class HoneyCombPrototype : MonoBehaviour
             }
         }
 
-        
+
 
 
 
@@ -268,13 +268,16 @@ public class HoneyCombPrototype : MonoBehaviour
         //make grid
 
         //initiate nodes
+        int iD = 0;
         foreach (var item in hexToTri.Keys)//hexnodes
         {
-            theHexGrid.theGraph.Add(item, new Node(item));
+            iD++;
+            theHexGrid.theGraph.Add(item, new Node(item, iD));
         }
+        iD = 0;
         foreach (var item in triToHex.Keys)//trinodes
         {
-            theHexGrid.theGraph.Add(item, new Node(item));
+            theHexGrid.theGraph.Add(item, new Node(item, iD));
         }
 
         //add neighbors
@@ -374,7 +377,7 @@ public class HoneyCombPrototype : MonoBehaviour
         bool success = false;
         foreach (var startingPoint in startingPoints)
         {
-            bool result = theHexGrid.BFD(startingPoint, destinationPoints, out List<Vector2> path, playerMoveAlongZaxis);
+            bool result = theHexGrid.BFS(startingPoint, destinationPoints, out List<Vector2> path, playerMoveAlongZaxis);
 
             if (result == true)
             {
@@ -545,18 +548,7 @@ public class HoneyCombPrototype : MonoBehaviour
             Gizmos.DrawSphere(VectorConversion.vec2Tovec3(item) + Vector3.up * 5, 0.1f);
         }
 
-        Gizmos.color = Color.olive;
-        foreach (var item in theHexGrid.theGraph.Keys)
-        {
-            int number = theHexGrid.theGraph[item].neighborsHex.Count;
-
-            for (int i = 0; i < number; i++)
-            {
-                Vector3 origin = VectorConversion.vec2Tovec3(item);
-                Vector3 destination = VectorConversion.vec2Tovec3(theHexGrid.theGraph[item].neighborsHex[i].position);
-                //Gizmos.DrawLine(origin + Vector3.up * 10, destination + Vector3.up * 10.2f);
-            }
-        }
+        
 
         Gizmos.color = Color.red;
         foreach (var item in triToTri.Keys)
