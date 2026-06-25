@@ -8,13 +8,25 @@ using static UnityEditor.Progress;
 public class ChunkBasedGeneration : MonoBehaviour
 {
     //settings Files
+    [SerializeField] private BiomeSelection biomeSelection;
     public GenerationSettings generationSettings;
     public ChunkSettings chunkSettings;
 
+    private void Awake()
+    {
+        generationSettings = (GenerationSettings)biomeSelection.Biome(0);
+    }
 
-    
+    //private void Update()
+    //{
+    //    generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+    //}
+
+
     void GenerateChunk(GameObject chunk)
     {
+        generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+
         print("Generating Chunk");
         if (generationSettings == null) return;//quick test
         if (chunkSettings == null) return;//quick test

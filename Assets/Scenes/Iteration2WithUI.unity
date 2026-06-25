@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 462112199}
   - component: {fileID: 462112198}
   - component: {fileID: 462112197}
+  - component: {fileID: 462112201}
   m_Layer: 0
   m_Name: Continuous generation
   m_TagString: Untagged
@@ -514,7 +515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0297ac0815b224fb8c58bc9d587ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkBasedGeneration
-  generationSettings: {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
+  biomeSelection: {fileID: 462112201}
+  generationSettings: {fileID: 0}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
 --- !u!114 &462112198
 MonoBehaviour:
@@ -563,6 +565,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462112201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462112196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834222d97af8f646bff036df5995fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BiomeSelection
+  biomes:
+  - {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
+  - {fileID: 11400000, guid: 4b2db66fbe9759d439e8cdad2e852c41, type: 2}
+  secBetweenBiomeChange: 2
+  chanceForBiomeChange: 1
+  randomBiomeChance: 0
 --- !u!1 &539554218
 GameObject:
   m_ObjectHideFlags: 0
