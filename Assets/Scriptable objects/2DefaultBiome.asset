@@ -25,17 +25,19 @@ MonoBehaviour:
   objects:
   - prefab: {fileID: 9003685584751524420, guid: eff504d3e79852f439c02cb884f7ea26,
       type: 3}
-    minSpawnCount: 10
-    maxSpawnCount: 10
+    minSpawnCount: 3
+    maxSpawnCount: 7
     extraObjects:
+    - indexInList: 1
+      addedSpawnChance: 30
     - indexInList: 2
-      addedSpawnChance: 20
-  - prefab: {fileID: 1194870270320064009, guid: 490e10e0e963aea459e66afb53ef468f,
+      addedSpawnChance: 30
+  - prefab: {fileID: 2796245195815721328, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
       type: 3}
-    minSpawnCount: 15
-    maxSpawnCount: 30
+    minSpawnCount: 0
+    maxSpawnCount: 0
     extraObjects: []
-  - prefab: {fileID: 9098201467818836936, guid: 6ac08ae3ccc609f4f8c010ea4fbe1b61,
+  - prefab: {fileID: 1628923153988324278, guid: 747ba33e48cdd30499cee4002490d1c0,
       type: 3}
     minSpawnCount: 0
     maxSpawnCount: 0

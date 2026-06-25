@@ -354,7 +354,7 @@ PrefabInstance:
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1844797
+      value: 23.9
       objectReference: {fileID: 0}
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
@@ -364,7 +364,7 @@ PrefabInstance:
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.856137
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HoneyCombChunkGeneration
   biomeSelection: {fileID: 226547323}
-  generationSettings: {fileID: 0}
+  generationSettings: {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
   playerMoveAlongZaxis: 0
   displayDebugVisualization: 0
