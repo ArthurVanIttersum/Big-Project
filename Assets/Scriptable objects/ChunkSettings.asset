@@ -16,3 +16,4 @@ MonoBehaviour:
   chunkGenerationDistanceInChunks: 15
   chunkDeletionDistanceInChunks: 1
   chunkGenerationAreaInChunks: {x: 6, y: 6}
+  playerOffsetFromCenterInChunks: {x: 0, y: 3}

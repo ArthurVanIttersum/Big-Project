@@ -195,8 +195,9 @@ public class Continuous2DGeneration : MonoBehaviour
         int chunksize = chunkSettings.chunksize;
 
         //corners
-        Vector2Int maxPos = currentPosition + (centerOffset + Vector2Int.one) * chunksize;
-        Vector2Int minPos = currentPosition - centerOffset * chunksize;
+        Vector2Int centerPosition = currentPosition + chunkSettings.playerOffsetFromCenterInChunks * chunksize;
+        Vector2Int maxPos = centerPosition + (centerOffset + Vector2Int.one) * chunksize;
+        Vector2Int minPos = centerPosition - centerOffset * chunksize;
 
         
 
