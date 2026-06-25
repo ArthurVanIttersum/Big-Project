@@ -127,6 +127,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819402623245735096, guid: 8eeb94af3f477074aa0875cefee3b07a,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a86475e536987545b26586602a4ed2b, type: 2}
     - target: {fileID: 3296069369535031355, guid: 8eeb94af3f477074aa0875cefee3b07a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -289,6 +294,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 264469770}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &226547322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226547324}
+  - component: {fileID: 226547323}
+  m_Layer: 0
+  m_Name: BiomeSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &226547323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226547322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834222d97af8f646bff036df5995fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BiomeSelection
+  biomes:
+  - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
+  secBetweenBiomeChange: 30
+  chanceForBiomeChange: 0.5
+  randomBiomeChance: 0
+--- !u!4 &226547324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226547322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.08403, y: 0, z: 5.92058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &264469770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -766,7 +820,7 @@ GameObject:
   - component: {fileID: 462112200}
   - component: {fileID: 462112199}
   - component: {fileID: 462112198}
-  - component: {fileID: 462112197}
+  - component: {fileID: 462112201}
   m_Layer: 0
   m_Name: Continuous generation
   m_TagString: Untagged
@@ -774,20 +828,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &462112197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462112196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0297ac0815b224fb8c58bc9d587ce6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ChunkBasedGeneration
-  generationSettings: {fileID: 11400000, guid: 9d0cb4249cd70f44182e0f1a239cc368, type: 2}
-  chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
 --- !u!114 &462112198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +844,7 @@ MonoBehaviour:
   prefabEmptyGameObject: {fileID: 4767840369881617725, guid: a1d944a9bf9112d4ebd1aa2e530e3f29,
     type: 3}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
+  maxFrameTime: 0.001
 --- !u!114 &462112199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,6 +876,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462112201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462112196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b0d47f5d2fc0d4795167db8212e145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoneyCombChunkGeneration
+  biomeSelection: {fileID: 226547323}
+  generationSettings: {fileID: 0}
+  chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
+  playerMoveAlongZaxis: 0
+  displayDebugVisualization: 0
+  enableDebugprints: 0
+  theHexGrid:
+    path: []
 --- !u!1 &539554218
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,3 +4361,4 @@ SceneRoots:
   - {fileID: 160370108}
   - {fileID: 1784267095}
   - {fileID: 1895963114}
+  - {fileID: 226547324}
