@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BiomeSelection
   biomes:
   - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
+  - {fileID: 11400000, guid: 2b7f8b750a3b5564084eb12ac1316100, type: 2}
   secBetweenBiomeChange: 30
   chanceForBiomeChange: 0.5
   randomBiomeChance: 0
@@ -1687,7 +1688,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5e577e27ee4bc7443918bf0bfdfa14f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.66
+      value: -0.559
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e577e27ee4bc7443918bf0bfdfa14f6,
         type: 3}
@@ -3694,7 +3695,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5e577e27ee4bc7443918bf0bfdfa14f6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.66
+      value: -0.559
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e577e27ee4bc7443918bf0bfdfa14f6,
         type: 3}
