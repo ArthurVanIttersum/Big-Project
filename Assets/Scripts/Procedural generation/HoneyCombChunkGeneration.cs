@@ -136,59 +136,62 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         //floating point math
         float onethird = 1.0f / 3.0f;
         float twothird = 2.0f / 3.0f;
+        Vector2 hexScale = chunkSettings.hexScalar;
+
         if (playerMoveAlongZaxis)
         {
-            hexOffsets2.Add(new Vector2(0f, twothird));
-            hexOffsets2.Add(new Vector2(-0.5f, onethird));
-            hexOffsets2.Add(new Vector2(-0.5f, -onethird));
-            hexOffsets2.Add(new Vector2(0f, -twothird));
-            hexOffsets2.Add(new Vector2(0.5f, -onethird));
-            hexOffsets2.Add(new Vector2(0.5f, onethird));
+            hexOffsets2.Add(new Vector2(0f, twothird) * hexScale);
+            hexOffsets2.Add(new Vector2(-0.5f, onethird) * hexScale);
+            hexOffsets2.Add(new Vector2(-0.5f, -onethird) * hexScale);
+            hexOffsets2.Add(new Vector2(0f, -twothird) * hexScale);
+            hexOffsets2.Add(new Vector2(0.5f, -onethird) * hexScale);
+            hexOffsets2.Add(new Vector2(0.5f, onethird) * hexScale);
         }
         else
         {
-            hexOffsets2.Add(new Vector2(twothird, 0f));
-            hexOffsets2.Add(new Vector2(onethird, -0.5f));
-            hexOffsets2.Add(new Vector2(-onethird, -0.5f));
-            hexOffsets2.Add(new Vector2(-twothird, 0f));
-            hexOffsets2.Add(new Vector2(-onethird, 0.5f));
-            hexOffsets2.Add(new Vector2(onethird, 0.5f));
+            hexOffsets2.Add(new Vector2(twothird, 0f) * hexScale);
+            hexOffsets2.Add(new Vector2(onethird, -0.5f) * hexScale);
+            hexOffsets2.Add(new Vector2(-onethird, -0.5f) * hexScale);
+            hexOffsets2.Add(new Vector2(-twothird, 0f) * hexScale);
+            hexOffsets2.Add(new Vector2(-onethird, 0.5f) * hexScale);
+            hexOffsets2.Add(new Vector2(onethird, 0.5f) * hexScale);
         }
     }
 
-    private void MakeDataStructures()//this might be part of the problem
+    private void MakeDataStructures()
     {
-        //make triangles
+        Vector2 hexScale = chunkSettings.hexScalar;
+
+        // make triangles
         if (playerMoveAlongZaxis)
         {
-            float halfSpaceOffset = 0;
-            for (int hor = areaMin.x; hor < areaMax.x; hor++)
+            int horCount = Mathf.CeilToInt((areaMax.x - areaMin.x) / hexScale.x);
+            for (int h = 0; h < horCount; h++)
             {
-
-                for (int ver = areaMin.y; ver < areaMax.y; ver++)
+                float hor = areaMin.x + h * hexScale.x;
+                int verCount = Mathf.CeilToInt((areaMax.y - areaMin.y) / hexScale.y);
+                for (int v = 0; v < verCount; v++)
                 {
-                    if (ver % 2 == 0)
-                        halfSpaceOffset = 0.5f;
-                    else
-                        halfSpaceOffset = 0;
-                    triToHex.Add(new Vector2(hor + halfSpaceOffset, ver), new());
-                    //print("adding values");
+                    float ver = areaMin.y + v * hexScale.y;
+                    float halfSpaceOffset = (v % 2 == 0) ? hexScale.x * 0.5f : 0f;
+                    Vector2 triPos = new Vector2(hor + halfSpaceOffset, ver);
+                    triToHex.Add(SnapVector(triPos), new());
                 }
             }
         }
         else
         {
-            float halfSpaceOffset = 0;
-            for (int hor = areaMin.x; hor < areaMax.x; hor++)
+            int horCount = Mathf.CeilToInt((areaMax.x - areaMin.x) / hexScale.x);
+            for (int h = 0; h < horCount; h++)
             {
-                if (hor % 2 == 0)
-                    halfSpaceOffset = 0.5f;
-                else
-                    halfSpaceOffset = 0;
-                for (int ver = areaMin.y; ver < areaMax.y; ver++)
+                float hor = areaMin.x + h * hexScale.x;
+                float halfSpaceOffset = (h % 2 == 0) ? hexScale.y * 0.5f : 0f;
+                int verCount = Mathf.CeilToInt((areaMax.y - areaMin.y) / hexScale.y);
+                for (int v = 0; v < verCount; v++)
                 {
-                    triToHex.Add(new Vector2(hor, ver + halfSpaceOffset), new());
-                    //print("adding values");
+                    float ver = areaMin.y + v * hexScale.y;
+                    Vector2 triPos = new Vector2(hor, ver + halfSpaceOffset);
+                    triToHex.Add(SnapVector(triPos), new());
                 }
             }
         }
@@ -367,21 +370,57 @@ public class HoneyCombChunkGeneration : MonoBehaviour
 
     Vector2 SnapVector(Vector2 vector2)
     {
+        return Canonicalize(SnapVector(vector2, chunkSettings.hexScalar), chunkSettings.hexScalar);
+    }
+
+    // Explicit overload that accepts a scale
+    Vector2 SnapVector(Vector2 vector2, Vector2 hexScale)
+    {
         return new Vector2(
-            SnapToThirdIfClose(vector2.x),
-            SnapToThirdIfClose(vector2.y)
+            SnapToScaledGridIfClose(vector2.x, hexScale.x),
+            SnapToScaledGridIfClose(vector2.y, hexScale.y)
         );
     }
 
-    float SnapToThirdIfClose(float value, float epsilon = 0.0005f)
-    {
-        float third = value * 3f;
-        float rounded = MathF.Round(third);
 
-        if (MathF.Abs(third - rounded) < epsilon)
-            return rounded / 3f;
+
+
+    float SnapToScaledGridIfClose(float value, float scale, float relEpsilon = 1e-4f, float minEpsilon = 1e-5f)
+    {
+        if (MathF.Abs(scale) < 1e-9f)
+            return value;
+
+        // Use unit = scale / 6 so both 1/3 and 1/2 offsets are representable
+        double unit = (double)scale / 6.0;
+
+        double valueD = (double)value;
+        double snappedUnits = Math.Round(valueD / unit);
+        double snapped = snappedUnits * unit;
+
+        double epsilonWorld = Math.Max((double)minEpsilon, Math.Abs(unit) * (double)relEpsilon);
+
+        if (Math.Abs(valueD - snapped) <= epsilonWorld)
+            return (float)snapped;
 
         return value;
+    }
+
+    // Canonicalize a world position to the exact grid-aligned Vector2
+    Vector2 Canonicalize(Vector2 pos, Vector2 hexScale)
+    {
+        double unitX = (double)hexScale.x / 6.0;
+        double unitY = (double)hexScale.y / 6.0;
+
+        if (Math.Abs(unitX) < 1e-12) unitX = 1e-12;
+        if (Math.Abs(unitY) < 1e-12) unitY = 1e-12;
+
+        int ix = (int)Math.Round((double)pos.x / unitX, MidpointRounding.AwayFromZero);
+        int iy = (int)Math.Round((double)pos.y / unitY, MidpointRounding.AwayFromZero);
+
+        double cx = ix * unitX;
+        double cy = iy * unitY;
+
+        return new Vector2((float)cx, (float)cy);
     }
 
     private void BuildAvailableKeys()
@@ -675,5 +714,170 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         Continuous2DGeneration script = FindAnyObjectByType<Continuous2DGeneration>();
         script.DeleteChunkAtPosition += RemoveChunk;
         script.GenerateAtPosition += GenerateChunk;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!displayDebugVisualization) return;
+
+
+        //style
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 48;
+        style.fontStyle = FontStyle.Normal;
+        style.normal.textColor = Color.white;
+
+        //chunkArea
+        Gizmos.color = Color.blue;
+        Vector3 topleft = new Vector3(areaMin.x, 0, areaMax.y);
+        Vector3 bottomleft = new Vector3(areaMin.x, 0, areaMin.y);
+        Vector3 topright = new Vector3(areaMax.x, 0, areaMax.y);
+        Vector3 bottomright = new Vector3(areaMax.x, 0, areaMin.y);
+
+        Gizmos.DrawSphere(topleft, 0.3f);
+        Gizmos.DrawSphere(topright, 0.3f);
+        Gizmos.DrawSphere(bottomleft, 0.3f);
+        Gizmos.DrawSphere(bottomright, 0.3f);
+
+        Gizmos.DrawLine(topleft, topright);
+        Gizmos.DrawLine(bottomleft, bottomright);
+        Gizmos.DrawLine(topleft, bottomleft);
+        Gizmos.DrawLine(topright, bottomright);
+
+        //grid test
+        Gizmos.color = Color.red;
+        for (int i = 0; i < chunkSettings.chunksize; i++)
+        {
+            Vector3 horOffset = Vector3.right * i;
+            Vector3 verOffset = Vector3.forward * i;
+
+            //Gizmos.DrawLine(bottomleft + horOffset, topleft + horOffset);
+            //Gizmos.DrawLine(bottomleft + verOffset, bottomright + verOffset);
+        }
+
+        //triangles
+        Gizmos.color = Color.yellow;
+        foreach (var item in triToHex.Keys)
+        {
+            Gizmos.DrawSphere(VectorConversion.vec2Tovec3(item), 0.2f);
+        }
+        Gizmos.color = Color.green;
+        foreach (var item in hexToTri.Keys)
+        {
+            Gizmos.DrawSphere(VectorConversion.vec2Tovec3(item), 0.1f);
+        }
+
+        //lines for hexes
+        Gizmos.color = Color.darkGreen;
+        foreach (var item in triToHex.Keys)
+        {
+            for (int i = 0; i < triToHex[item].Count; i++)
+            {
+                int next = i + 1;
+                if (next == triToHex[item].Count)
+                {
+                    next = 0;
+                }
+                Vector3 hexCorner1 = VectorConversion.vec2Tovec3(triToHex[item][i]);
+                Vector3 hexCorner2 = VectorConversion.vec2Tovec3(triToHex[item][next]) + Vector3.up * 0f;
+                Gizmos.DrawLine(hexCorner1, hexCorner2);
+            }
+        }
+
+        //lines tri to hex
+        Gizmos.color = Color.limeGreen;
+        foreach (var item in triToHex.Keys)
+        {
+            for (int i = 0; i < triToHex[item].Count; i++)
+            {
+                Gizmos.DrawLine(VectorConversion.vec2Tovec3(item), VectorConversion.vec2Tovec3(triToHex[item][i]));
+            }
+        }
+
+        //lines hex to tri
+        Gizmos.color = Color.magenta;
+        foreach (var item in hexToTri.Keys)
+        {
+            for (int i = 0; i < hexToTri[item].Count; i++)
+            {
+                Gizmos.DrawLine(VectorConversion.vec2Tovec3(item), VectorConversion.vec2Tovec3(hexToTri[item][i]));
+                UnityEditor.Handles.Label(VectorConversion.vec2Tovec3(item), hexToTri[item].Count.ToString(), style);
+            }
+        }
+
+        //display grid
+        Gizmos.color = Color.blue;
+        foreach (var item in theHexGrid.theGraph.Keys)
+        {
+            Gizmos.DrawSphere(VectorConversion.vec2Tovec3(item) + Vector3.up * 5, 0.1f);
+        }
+
+
+
+        Gizmos.color = Color.red;
+        foreach (var item in triToTri.Keys)
+        {
+            int number2 = triToTri[item].Count;
+
+            for (int i = 0; i < number2; i++)
+            {
+                Vector3 origin = VectorConversion.vec2Tovec3(item);
+                Vector3 destination = VectorConversion.vec2Tovec3(triToTri[item][i]);
+                Gizmos.DrawLine(origin + Vector3.up * 20.2f, destination + Vector3.up * 20.4f);
+            }
+        }
+
+        
+
+        
+
+
+
+
+        foreach (var item in theHexGrid.theGraph.Keys)//display chances
+        {
+
+            int tempiteration = 0;
+            foreach (var chance in theHexGrid.theGraph[item].spawnchance)
+            {
+                tempiteration++;
+                if (tempiteration == 1)
+                {
+                    style.normal.textColor = Color.red;
+                }
+                if (tempiteration == 2)
+                {
+                    style.normal.textColor = Color.green;
+                }
+                if (tempiteration == 3)
+                {
+                    style.normal.textColor = Color.blue;
+                }
+                //UnityEditor.Handles.Label(VectorConversion.vec2Tovec3(item) + Vector3.up * (1.1f + tempiteration), chance.ToString(), style);
+            }
+        }
+
+        //display startingpoints
+        Gizmos.color = Color.cyan;
+        foreach (var startingPoint in startingPoints)
+        {
+            Gizmos.DrawSphere(VectorConversion.vec2Tovec3(startingPoint), 0.3f);
+        }
+
+        //display endpoints
+        Gizmos.color = Color.magenta;
+        foreach (var destinationpoint in destinationPoints)
+        {
+            Gizmos.DrawSphere(VectorConversion.vec2Tovec3(destinationpoint), 0.3f);
+        }
+
+        //display obstructed points
+        Gizmos.color = Color.orangeRed;
+        foreach (var item in hexToTri.Keys)
+        {
+            if (!theHexGrid.theGraph[item].obstructed) continue;
+
+            Gizmos.DrawSphere(VectorConversion.vec2Tovec3(item) + Vector3.up * 5, 0.3f);
+        }
     }
 }

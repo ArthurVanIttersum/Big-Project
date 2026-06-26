@@ -10,4 +10,5 @@ public class ChunkSettings : ScriptableObject
     //2D
     public Vector2Int chunkGenerationAreaInChunks = new Vector2Int(11, 3);
     public Vector2Int playerOffsetFromCenterInChunks = new Vector2Int(0, -2);
+    public Vector2 hexScalar = Vector2.one;
 }

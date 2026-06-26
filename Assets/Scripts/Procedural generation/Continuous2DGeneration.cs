@@ -30,7 +30,7 @@ public class Continuous2DGeneration : MonoBehaviour
     //events
     public event Action<GameObject> GenerateAtPosition;
     public event Action<GameObject> DeleteChunkAtPosition;
-    private bool publishEvents = true;
+    public bool generateOnStart = true;
 
     private void Start()
     {
@@ -44,7 +44,6 @@ public class Continuous2DGeneration : MonoBehaviour
         //generate a few chunks
         UpdateAABBList();
         UpdateChunkGeneration();
-        publishEvents = true;
     }
     private void Update()
     {
@@ -144,7 +143,7 @@ public class Continuous2DGeneration : MonoBehaviour
 
                 generatedChunks[pos] = chunk;
 
-                if (publishEvents)
+                if (generateOnStart)
                     GenerateAtPosition?.Invoke(chunk);
 
                 float t2 = Time.realtimeSinceStartup;
@@ -173,6 +172,7 @@ public class Continuous2DGeneration : MonoBehaviour
         }
 
         generationCoroutineRunning = false;
+        generateOnStart = true;
     }
 
 
