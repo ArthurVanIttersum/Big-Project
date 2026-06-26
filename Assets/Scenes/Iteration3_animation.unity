@@ -325,6 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BiomeSelection
   biomes:
   - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
+  - {fileID: 11400000, guid: 2b7f8b750a3b5564084eb12ac1316100, type: 2}
   secBetweenBiomeChange: 30
   chanceForBiomeChange: 0.5
   randomBiomeChance: 0
