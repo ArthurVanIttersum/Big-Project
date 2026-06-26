@@ -3246,7 +3246,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a4e8ed0e7390ff142ad4849d423edff9, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e2345084184554498fcc73f7b495580, type: 2}
     - target: {fileID: 7487940608794133316, guid: 90e7e520776df0b45bd26480a8df33a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3301,6 +3301,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Village_v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7827628762473028094, guid: 90e7e520776df0b45bd26480a8df33a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
