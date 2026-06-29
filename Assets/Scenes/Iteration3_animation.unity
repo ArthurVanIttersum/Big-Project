@@ -326,8 +326,8 @@ MonoBehaviour:
   biomes:
   - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
   - {fileID: 11400000, guid: 2b7f8b750a3b5564084eb12ac1316100, type: 2}
-  secBetweenBiomeChange: 30
-  chanceForBiomeChange: 0.5
+  secBetweenBiomeChange: 10
+  chanceForBiomeChange: 1
   randomBiomeChance: 0
 --- !u!4 &226547324
 Transform:
@@ -846,6 +846,7 @@ MonoBehaviour:
     type: 3}
   chunkSettings: {fileID: 11400000, guid: 33626824f2f1c554a9774980e1b5c324, type: 2}
   maxFrameTime: 0.001
+  generateOnStart: 1
 --- !u!114 &462112199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1394,6 +1395,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Floor prefab_pLANE
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102362607756999693, guid: 79c1c7fa49f18c84291d82bb34223f50,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102362607756999693, guid: 79c1c7fa49f18c84291d82bb34223f50,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102362607756999693, guid: 79c1c7fa49f18c84291d82bb34223f50,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8102362607756999693, guid: 79c1c7fa49f18c84291d82bb34223f50,
         type: 3}
@@ -4287,5 +4303,5 @@ SceneRoots:
   - {fileID: 910051453}
   - {fileID: 160370108}
   - {fileID: 1784267095}
-  - {fileID: 1895963114}
   - {fileID: 226547324}
+  - {fileID: 1895963114}

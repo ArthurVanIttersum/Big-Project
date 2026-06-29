@@ -26,7 +26,7 @@ MonoBehaviour:
   - prefab: {fileID: 2284881884688275089, guid: 4ebe593ec1041444284e80b42ce3d876,
       type: 3}
     minSpawnCount: 3
-    maxSpawnCount: 7
+    maxSpawnCount: 5
     extraObjects:
     - indexInList: 1
       addedSpawnChance: 30
@@ -41,4 +41,9 @@ MonoBehaviour:
       type: 3}
     minSpawnCount: 0
     maxSpawnCount: 0
+    extraObjects: []
+  - prefab: {fileID: 9003685584751524420, guid: eff504d3e79852f439c02cb884f7ea26,
+      type: 3}
+    minSpawnCount: 1
+    maxSpawnCount: 1
     extraObjects: []
