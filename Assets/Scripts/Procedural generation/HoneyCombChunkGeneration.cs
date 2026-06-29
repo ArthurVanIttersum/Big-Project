@@ -32,7 +32,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     private List<Vector2> hexOffsets2 = new();
 
     //hex grid
-    public Grid theHexGrid = new();
+    private Grid theHexGrid = new();
 
     //caching
     private bool cached = false;
