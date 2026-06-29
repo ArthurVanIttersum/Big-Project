@@ -49,6 +49,11 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     private Vector2[] smallCoinArray;
     private Vector2[] bigCoinArray;
 
+    //Object settings
+    [SerializeField] private float minSize;
+    [SerializeField] private float maxSize;
+
+
 
     private void Awake()
     {
@@ -707,13 +712,16 @@ public class HoneyCombChunkGeneration : MonoBehaviour
 
     private void PlaceObjects()
     {
+        GameObject objects;
         int indexValue = 0;
         foreach (var hexPos in triToHex.Keys)
         {
             indexValue = theHexGrid.theGraph[hexPos].spawnedIndex;
             if (indexValue != -1)
             {
-                Instantiate(generationSettings.objects[indexValue].prefab, VectorConversion.vec2Tovec3(hexPos) + chunk.transform.position, Quaternion.identity, chunk.transform);
+                objects = Instantiate(generationSettings.objects[indexValue].prefab, VectorConversion.vec2Tovec3(hexPos) + chunk.transform.position, Quaternion.identity, chunk.transform);
+                objects.transform.localScale *= UnityEngine.Random.Range(minSize, maxSize);
+                objects.transform.rotation = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up);
             }
         }
     }
