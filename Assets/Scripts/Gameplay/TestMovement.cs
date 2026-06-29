@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,6 +21,9 @@ public class TestMovement : MonoBehaviour
     private Rigidbody rb;
     private float startYAngle;
     private float currentYAngle;
+
+    public event Action player1Press;
+    public event Action player2Press;
 
     private void Awake()
     {
@@ -47,12 +51,14 @@ public class TestMovement : MonoBehaviour
         if (player1Pressed)
         {
             ApplyForce(-1);
+            player1Press.Invoke();
             player1Pressed = false;
         }
 
         if (player2Pressed)
         {
             ApplyForce(1);
+            player2Press.Invoke();
             player2Pressed = false;
         }
 
