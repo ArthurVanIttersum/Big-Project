@@ -21,6 +21,10 @@ public class PlayerSFXObserver : PlayerObserver
             return;
         }
 
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
         audioSource.PlayOneShot(clip);
 
         Debug.Log($"Playing clip for {clip}");
