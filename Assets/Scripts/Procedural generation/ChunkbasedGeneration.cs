@@ -14,7 +14,14 @@ public class ChunkBasedGeneration : MonoBehaviour
 
     private void Awake()
     {
-        generationSettings = (GenerationSettings)biomeSelection.Biome(0);
+        if (biomeSelection == null)
+        {
+            generationSettings = (GenerationSettings)biomeSelection.Biome(0);
+        }
+        else
+        {
+            Debug.LogWarning("generation settings not assigned");
+        }
     }
 
     //private void Update()
@@ -25,7 +32,14 @@ public class ChunkBasedGeneration : MonoBehaviour
 
     void GenerateChunk(GameObject chunk)
     {
-        generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+        if (biomeSelection == null)
+        {
+            generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+        }
+        else
+        {
+            Debug.LogWarning("generation settings not assigned");
+        }
 
         print("Generating Chunk");
         if (generationSettings == null) return;//quick test

@@ -52,12 +52,26 @@ public class HoneyCombChunkGeneration : MonoBehaviour
 
     private void Awake()
     {
-        generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+        if (biomeSelection != null)
+        {
+            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+        }
+        else
+        {
+            Debug.LogWarning("generation settings not assigned");
+        }
     }
 
     void GenerateChunk(GameObject chunk)
     {
-        generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+        if (biomeSelection != null)
+        {
+            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+        }
+        else
+        {
+            Debug.LogWarning("generation settings not assigned");
+        }
 
         print("Generating Chunk");
         if (generationSettings == null) return;//quick test
