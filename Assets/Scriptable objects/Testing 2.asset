@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Testing 2
   m_EditorClassIdentifier: Assembly-CSharp::GenerationSettings
   objects:
-  - prefab: {fileID: 919132149155446097, guid: 06a85f4896b47a24db33c51e01a1ff99, type: 3}
+  - prefab: {fileID: 919132149155446097, guid: fbd91affb09a2a84db5d7af741164e5b, type: 3}
     objectCount: 5
     type: 0
     value: 0
-  - prefab: {fileID: 919132149155446097, guid: 677e7de4c31c72c4b9464cc7819f583d, type: 3}
+  - prefab: {fileID: 919132149155446097, guid: c1b904351164d6542be8e420c3061629, type: 3}
     objectCount: 5
     type: 0
     value: 0
