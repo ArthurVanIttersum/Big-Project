@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 712e241521558f546898ce8974f36a5b, type: 3}
-  m_Name: 2DefaultBiome
+  m_Name: Grassyrocks
   m_EditorClassIdentifier: Assembly-CSharp::ReworkedHoneyGenerationSettings
   smallCoinData:
     prefab: {fileID: 4472256692413487707, guid: 5545408d150d5754da4c4402b0a5a2b8,
@@ -23,22 +23,15 @@ MonoBehaviour:
     minSpawnCount: 1
     maxSpawnCount: 3
   objects:
-  - prefab: {fileID: 9003685584751524420, guid: eff504d3e79852f439c02cb884f7ea26,
+  - prefab: {fileID: 2284881884688275089, guid: 4ebe593ec1041444284e80b42ce3d876,
       type: 3}
     minSpawnCount: 3
-    maxSpawnCount: 7
+    maxSpawnCount: 5
     extraObjects:
     - indexInList: 1
       addedSpawnChance: 30
-    - indexInList: 2
-      addedSpawnChance: 30
-  - prefab: {fileID: 2796245195815721328, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+  - prefab: {fileID: 8170576382531459598, guid: b80a9bdb4fb74514d920448469d47d80,
       type: 3}
-    minSpawnCount: 0
-    maxSpawnCount: 0
-    extraObjects: []
-  - prefab: {fileID: 1628923153988324278, guid: 747ba33e48cdd30499cee4002490d1c0,
-      type: 3}
-    minSpawnCount: 0
-    maxSpawnCount: 0
+    minSpawnCount: 2
+    maxSpawnCount: 5
     extraObjects: []
