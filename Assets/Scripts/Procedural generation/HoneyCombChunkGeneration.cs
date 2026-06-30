@@ -32,7 +32,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     private List<Vector2> hexOffsets2 = new();
 
     //hex grid
-    public Grid theHexGrid = new();
+    private Grid theHexGrid = new();
 
     //caching
     private bool cached = false;
@@ -49,15 +49,34 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     private Vector2[] smallCoinArray;
     private Vector2[] bigCoinArray;
 
+    //Object settings
+    [SerializeField] private float minSize;
+    [SerializeField] private float maxSize;
+
+
 
     private void Awake()
     {
-        generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+        if (biomeSelection != null)
+        {
+            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+        }
+        else
+        {
+            Debug.LogWarning("generation settings not assigned");
+        }
     }
 
     void GenerateChunk(GameObject chunk)
     {
-        generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+        if (biomeSelection != null)
+        {
+            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+        }
+        else
+        {
+            Debug.LogWarning("generation settings not assigned");
+        }
 
         print("Generating Chunk");
         if (generationSettings == null) return;//quick test
@@ -693,13 +712,16 @@ public class HoneyCombChunkGeneration : MonoBehaviour
 
     private void PlaceObjects()
     {
+        GameObject objects;
         int indexValue = 0;
         foreach (var hexPos in triToHex.Keys)
         {
             indexValue = theHexGrid.theGraph[hexPos].spawnedIndex;
             if (indexValue != -1)
             {
-                Instantiate(generationSettings.objects[indexValue].prefab, VectorConversion.vec2Tovec3(hexPos) + chunk.transform.position, Quaternion.identity, chunk.transform);
+                objects = Instantiate(generationSettings.objects[indexValue].prefab, VectorConversion.vec2Tovec3(hexPos) + chunk.transform.position, Quaternion.identity, chunk.transform);
+                objects.transform.localScale *= UnityEngine.Random.Range(minSize, maxSize);
+                objects.transform.rotation = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up);
             }
         }
     }

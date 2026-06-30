@@ -36,8 +36,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Beetle_BaseMovement Loop
-      takeName: Beetle_BaseMovement
+      name: Beetle_Armature|Beetle_AllMovement (1)
+      takeName: Beetle_Armature|Beetle_AllMovement
       internalID: -1952706054150330700
       firstFrame: 0
       lastFrame: 48
@@ -47,7 +47,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -163,7 +163,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
