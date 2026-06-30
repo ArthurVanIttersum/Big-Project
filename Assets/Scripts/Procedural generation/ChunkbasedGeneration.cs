@@ -16,11 +16,11 @@ public class ChunkBasedGeneration : MonoBehaviour
     {
         if (biomeSelection == null)
         {
-            generationSettings = (GenerationSettings)biomeSelection.Biome(0);
+            Debug.LogWarning("generation settings not assigned");
         }
         else
         {
-            Debug.LogWarning("generation settings not assigned");
+            generationSettings = (GenerationSettings)biomeSelection.Biome(0);
         }
     }
 
@@ -34,11 +34,11 @@ public class ChunkBasedGeneration : MonoBehaviour
     {
         if (biomeSelection == null)
         {
-            generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+            Debug.LogWarning("generation settings not assigned");
         }
         else
         {
-            Debug.LogWarning("generation settings not assigned");
+            generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
         }
 
         print("Generating Chunk");
