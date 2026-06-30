@@ -326,6 +326,7 @@ MonoBehaviour:
   biomes:
   - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
   - {fileID: 11400000, guid: 2b7f8b750a3b5564084eb12ac1316100, type: 2}
+  - {fileID: 11400000, guid: 821a9c9d1cf35f44f9ca61d39fe1294e, type: 2}
   secBetweenBiomeChange: 10
   chanceForBiomeChange: 1
   randomBiomeChance: 0
@@ -355,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.9
+      value: 4.98
       objectReference: {fileID: 0}
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
@@ -365,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.5
+      value: -12.05
       objectReference: {fileID: 0}
     - target: {fileID: 8626738516511629566, guid: eff504d3e79852f439c02cb884f7ea26,
         type: 3}
