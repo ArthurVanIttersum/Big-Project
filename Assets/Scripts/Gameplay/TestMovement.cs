@@ -51,14 +51,14 @@ public class TestMovement : MonoBehaviour
         if (player1Pressed)
         {
             ApplyForce(-1);
-            player1Press.Invoke();
+            player1Press?.Invoke();
             player1Pressed = false;
         }
 
         if (player2Pressed)
         {
             ApplyForce(1);
-            player2Press.Invoke();
+            player2Press?.Invoke();
             player2Pressed = false;
         }
 
