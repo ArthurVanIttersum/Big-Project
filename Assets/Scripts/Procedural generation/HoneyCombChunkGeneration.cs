@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -48,6 +49,9 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     private HashSet<Vector2> smallCoinPositions = new();
     private Vector2[] smallCoinArray;
     private Vector2[] bigCoinArray;
+
+    //grassStuff
+    private Vector2[] grassStuffArray;
 
     //Object settings
     [SerializeField] private float minSize;
@@ -123,7 +127,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         }
         //generate coin chance
         GenerateCoins();
-
+        PlaceGrass();
 
         //actually place the objects
         PlaceObjects(); //this is about 1/3 of garbage collection allocation
@@ -321,6 +325,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
 
         //build datastructures for generation
         BuildAvailableKeys();
+        grassStuffArray = hexToTri.Keys.ToArray();
 
         //make grid
 
@@ -467,6 +472,9 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         indices = new int[masterCount];
         for (int i = 0; i < masterCount; i++) indices[i] = i;
 
+        //object
+        ReworkedHoneySpawnedObject reworkedHoneyGeneration;
+
         // active prefix length (number of available keys remaining)
         int keyCount = masterCount;
         int toSpawnCount;
@@ -482,7 +490,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
         for (int objectToSpawn = 0; objectToSpawn < generationSettings.objects.Count; objectToSpawn++)
         {
             // compute how many objects to spawn for this type
-            ReworkedHoneySpawnedObject reworkedHoneyGeneration = generationSettings.objects[objectToSpawn];
+            reworkedHoneyGeneration = generationSettings.objects[objectToSpawn];
             toSpawnCount = UnityEngine.Random.Range(reworkedHoneyGeneration.minSpawnCount, reworkedHoneyGeneration.maxSpawnCount);
             
             //calculate range
@@ -708,6 +716,78 @@ public class HoneyCombChunkGeneration : MonoBehaviour
             Instantiate(generationSettings.bigCoinData.prefab, VectorConversion.vec2Tovec3(bigCoinArray[indices[j]]) + chunk.transform.position, Quaternion.identity, chunk.transform);
         }
 
+    }
+
+
+    private void PlaceGrass()
+    {
+        int masterCount = grassStuffArray.Length;
+        if (masterCount == 0) return;
+
+        // Create an index buffer 0..n-1
+        indices = new int[masterCount];
+        for (int i = 0; i < masterCount; i++) indices[i] = i;
+
+        //coindata
+        CoinData grassData;
+        GameObject newObject;
+
+        // active prefix length (number of available keys remaining)
+        int keyCount = masterCount;
+        int toSpawnCount;
+        int spawnedObjectCount = 0;
+        int rangeStart;
+        int rangeEnd;
+
+
+        int tmpIdx;
+        int randomIndex;
+
+        // iterate over object types
+        for (int objectToSpawn = 0; objectToSpawn < generationSettings.grassAndStuff.Count; objectToSpawn++)
+        {
+            // compute how many objects to spawn for this type
+            grassData = generationSettings.grassAndStuff[objectToSpawn];
+            toSpawnCount = UnityEngine.Random.Range(grassData.minSpawnCount, grassData.maxSpawnCount);
+
+            //calculate range
+            rangeStart = spawnedObjectCount;
+            rangeEnd = rangeStart + toSpawnCount;
+            if (rangeEnd > keyCount)
+            {
+                rangeEnd = keyCount;
+            }
+
+            //randomize the indices array for the first n indices
+            for (int j = rangeStart; j < rangeEnd; j++)
+            {
+                // pick random index in the remaining range [i, keyCount-1]
+                randomIndex = UnityEngine.Random.Range(j, keyCount);
+
+                // swap indices[randomIndex] <-> indices[i]
+                tmpIdx = indices[randomIndex];
+                indices[randomIndex] = indices[j];
+                indices[j] = tmpIdx;
+            }
+
+            //step1 spawn basic objects
+            for (int j = rangeStart; j < rangeEnd; j++)
+            {
+                newObject = Instantiate(generationSettings.grassAndStuff[objectToSpawn].prefab, VectorConversion.vec2Tovec3(grassStuffArray[indices[j]]) + chunk.transform.position, Quaternion.identity, chunk.transform);
+                newObject.transform.localScale *= UnityEngine.Random.Range(minSize, maxSize);
+                spawnedObjectCount++;
+
+            }
+        }
+
+
+        
+
+        //initialize arrays
+
+        indices = new int[hexToTri.Count];
+        for (int i = 0; i < hexToTri.Count; i++) indices[i] = i;
+        
     }
 
     private void PlaceObjects()

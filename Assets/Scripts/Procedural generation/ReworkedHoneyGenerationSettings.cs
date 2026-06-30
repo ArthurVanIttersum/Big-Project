@@ -7,6 +7,7 @@ public class ReworkedHoneyGenerationSettings : ScriptableObject
 {
     public CoinData smallCoinData;
     public CoinData bigCoinData;
+    public List<CoinData> grassAndStuff;//objects ignored by pathfinding
     public List<ReworkedHoneySpawnedObject> objects;
 }
 
