@@ -20,6 +20,6 @@ public class ActivateAnimation : MonoBehaviour
     {
         TestMovement script = FindAnyObjectByType<TestMovement>();
         script.player1Press += ActivateAnimation1;
-        script.player2Press += ActivateAnimation1;
+        script.player2Press += ActivateAnimation2;
     }
 }
