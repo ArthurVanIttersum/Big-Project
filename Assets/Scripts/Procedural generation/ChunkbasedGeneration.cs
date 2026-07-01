@@ -20,7 +20,15 @@ public class ChunkBasedGeneration : MonoBehaviour
         }
         else
         {
-            generationSettings = (GenerationSettings)biomeSelection.Biome(0);
+            ScriptableObject settingsFile = biomeSelection.Biome(0);
+            if (settingsFile is GenerationSettings)
+            {
+                generationSettings = (GenerationSettings)settingsFile;
+            }
+            else
+            {
+                Debug.LogWarning("generation settings not assigned");
+            }
         }
     }
 
@@ -38,7 +46,15 @@ public class ChunkBasedGeneration : MonoBehaviour
         }
         else
         {
-            generationSettings = (GenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
+            ScriptableObject settingsFile = biomeSelection.Biome(biomeSelection.randomBiomeChance);
+            if (settingsFile is GenerationSettings)
+            {
+                generationSettings = (GenerationSettings)settingsFile;
+            }
+            else
+            {
+                Debug.LogWarning("generation settings not assigned");
+            }
         }
 
         print("Generating Chunk");

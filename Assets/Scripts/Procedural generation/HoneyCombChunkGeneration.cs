@@ -57,30 +57,47 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     [SerializeField] private float minSize;
     [SerializeField] private float maxSize;
 
-
-
     private void Awake()
     {
-        if (biomeSelection != null)
+        if (biomeSelection == null)
         {
-            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+            Debug.LogWarning("generation settings not assigned");
         }
         else
         {
-            Debug.LogWarning("generation settings not assigned");
+            ScriptableObject settingsFile = biomeSelection.Biome(0);
+            if (settingsFile is ReworkedHoneyGenerationSettings)
+            {
+                generationSettings = (ReworkedHoneyGenerationSettings)settingsFile;
+            }
+            else
+            {
+                Debug.LogWarning("generation settings not assigned");
+            }
         }
     }
 
+    
+
     void GenerateChunk(GameObject chunk)
     {
-        if (biomeSelection != null)
-        {
-            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
-        }
-        else
+        if (biomeSelection == null)
         {
             Debug.LogWarning("generation settings not assigned");
         }
+        else
+        {
+            ScriptableObject settingsFile = biomeSelection.Biome(biomeSelection.randomBiomeChance);
+            if (settingsFile is ReworkedHoneyGenerationSettings)
+            {
+                generationSettings = (ReworkedHoneyGenerationSettings)settingsFile;
+            }
+            else
+            {
+                Debug.LogWarning("generation settings not assigned");
+            }
+        }
+
 
         print("Generating Chunk");
         if (generationSettings == null) return;//quick test

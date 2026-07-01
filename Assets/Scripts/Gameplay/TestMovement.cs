@@ -64,7 +64,7 @@ public class TestMovement : MonoBehaviour
 
         catch (System.Exception e)
         {
-            Debug.LogError("Could not open serial port: " + e.Message);
+            Debug.LogWarning("Could not open serial port: " + e.Message);
         }
     }
 
