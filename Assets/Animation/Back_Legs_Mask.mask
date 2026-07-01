@@ -34,13 +34,13 @@ AvatarMask:
   - m_Path: Beetle_Armature/BackLeg3.R/R_BackLeg3
     m_Weight: 1
   - m_Path: Beetle_Armature/FrontLeg3.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Beetle_Armature/FrontLeg3.L/FrontLeg3.L_end
     m_Weight: 1
   - m_Path: Beetle_Armature/FrontLeg3.L/L_FrontLeg3
     m_Weight: 1
   - m_Path: Beetle_Armature/FrontLeg3.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Beetle_Armature/FrontLeg3.R/FrontLeg3.R_end
     m_Weight: 1
   - m_Path: Beetle_Armature/FrontLeg3.R/R_FrontLeg3
