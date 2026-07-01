@@ -2255,14 +2255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341d6878f0352964b9273e2110eb1e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
-  force: 2.5
-  maxSpeed: 120
-  deceleraionRate: 10
-  degreesPerClick: 10
-  maxDegree: 45
-  thresholdPercentage: 0.605
-  exponentialStrength: 20
-  speed: 0
+  movementVariables: {fileID: 11400000, guid: 03113db3d405f8c4b8d67d092d3aaee8, type: 2}
 --- !u!114 &1117377928
 MonoBehaviour:
   m_ObjectHideFlags: 0
