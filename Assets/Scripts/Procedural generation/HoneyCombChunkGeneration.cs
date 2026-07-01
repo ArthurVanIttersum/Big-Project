@@ -56,6 +56,8 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     //Object settings
     [SerializeField] private float minSize;
     [SerializeField] private float maxSize;
+    [SerializeField] private float minGrassSize = 0.5f;
+    [SerializeField] private float maxGrassSize = 0.8f;
 
     private void Awake()
     {
@@ -791,7 +793,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
             for (int j = rangeStart; j < rangeEnd; j++)
             {
                 newObject = Instantiate(generationSettings.grassAndStuff[objectToSpawn].prefab, VectorConversion.vec2Tovec3(grassStuffArray[indices[j]]) + chunk.transform.position, Quaternion.identity, chunk.transform);
-                newObject.transform.localScale *= UnityEngine.Random.Range(minSize, maxSize);
+                newObject.transform.localScale *= UnityEngine.Random.Range(minGrassSize, maxGrassSize);
                 spawnedObjectCount++;
 
             }
