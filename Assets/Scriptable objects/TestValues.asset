@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66af4b89e1af45a44affeab9f8d31cc1, type: 3}
   m_Name: TestValues
   m_EditorClassIdentifier: Assembly-CSharp::PlaytimeValues
-  playTime: 2
+  playTime: 5
   scoreMultiplier: 0.1
   ballScoreRatio: 0.005
   maxBallSize: 3
   maxClampScore: 200
   cameraZAxisMultiplier: 6
-  massScoreRatio: 0.01
-  maxMass: 3
+  massScoreRatio: 0.005
+  maxMass: 1

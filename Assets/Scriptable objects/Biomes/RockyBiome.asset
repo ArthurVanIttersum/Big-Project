@@ -22,11 +22,12 @@ MonoBehaviour:
       type: 3}
     minSpawnCount: 1
     maxSpawnCount: 3
+  grassAndStuff: []
   objects:
   - prefab: {fileID: 2284881884688275089, guid: 4ebe593ec1041444284e80b42ce3d876,
       type: 3}
-    minSpawnCount: 3
-    maxSpawnCount: 5
+    minSpawnCount: 2
+    maxSpawnCount: 4
     extraObjects:
     - indexInList: 1
       addedSpawnChance: 30
@@ -37,7 +38,7 @@ MonoBehaviour:
   - prefab: {fileID: 8170576382531459598, guid: b80a9bdb4fb74514d920448469d47d80,
       type: 3}
     minSpawnCount: 2
-    maxSpawnCount: 5
+    maxSpawnCount: 4
     extraObjects: []
   - prefab: {fileID: 1628923153988324278, guid: 747ba33e48cdd30499cee4002490d1c0,
       type: 3}
