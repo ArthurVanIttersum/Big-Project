@@ -20,6 +20,7 @@ public class ScoreLogic : MonoBehaviour
     [HideInInspector] public float adjustedTime;
     [HideInInspector] public float timer;
     private bool winHappen = false;
+    [SerializeField] private scores publishScore;
 
     private void Start()
     {
@@ -68,4 +69,9 @@ public class ScoreLogic : MonoBehaviour
     }
 
     public void InvokeScoreUpdate() => scoreUpdate?.Invoke();
+
+    public void PublishScore()
+    {
+        publishScore.scoresList.Add((int)clampScore);
+    }
 }
