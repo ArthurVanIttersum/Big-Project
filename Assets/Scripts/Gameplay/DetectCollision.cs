@@ -24,7 +24,7 @@ public class DetectCollision : MonoBehaviour
         int listIndex = other.GetComponent<ObstacleType>().listIndex;
         RemoveObjectHelper.RemoveObject(other.gameObject);
 
-        /// to be deleted
+        /*
         if (settingsFile == null) return;
         var theType = settingsFile.objects[listIndex].type;
         float theValue = settingsFile.objects[listIndex].value;
@@ -45,7 +45,7 @@ public class DetectCollision : MonoBehaviour
             scoreLogic.InvokeScoreUpdate();
             print("doing health" + "index:" + listIndex + " the value: " + theValue);
         }
-        ///
+        */
 
         if (objectInformation != null && listIndex <= objectInformation.objects.Count)
         {

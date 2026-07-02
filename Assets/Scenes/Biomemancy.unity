@@ -886,6 +886,8 @@ MonoBehaviour:
   enableDebugprints: 0
   minSize: 0.8
   maxSize: 1.2
+  minGrassSize: 0.5
+  maxGrassSize: 0.8
 --- !u!1 &539554218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,6 +2304,9 @@ MonoBehaviour:
   restart: {fileID: 1155048644}
   movement: {fileID: 1117377927}
   coroutineTime: 0
+  prefabVillage: {fileID: 0}
+  playerTransform: {fileID: 0}
+  offsetFromPlayer: {x: 0, y: 0, z: 0}
 --- !u!114 &1117377926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2329,8 +2334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 341d6878f0352964b9273e2110eb1e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
-  movementVariables: {fileID: 11400000, guid: 03113db3d405f8c4b8d67d092d3aaee8, type: 2}
-  comPort: COM7
+  movementVariables: {fileID: 11400000, guid: 438d57fd78b259d40a305efe3e9aaf5c, type: 2}
+  player1Active: 0
+  player2Active: 0
 --- !u!114 &1117377928
 MonoBehaviour:
   m_ObjectHideFlags: 0

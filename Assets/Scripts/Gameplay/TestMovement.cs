@@ -110,7 +110,6 @@ public class TestMovement : MonoBehaviour
         {
             latestPot1 = raw1 / 1023f;
             latestPot2 = raw2 / 1023f;
-            Debug.Log($"val1={latestPot1} val2={latestPot2}");
         }
     }
 

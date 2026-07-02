@@ -1413,6 +1413,7 @@ GameObject:
   - component: {fileID: 1117377936}
   - component: {fileID: 1117377937}
   - component: {fileID: 1117377938}
+  - component: {fileID: 1117377939}
   m_Layer: 0
   m_Name: Player with rotation
   m_TagString: Untagged
@@ -1436,6 +1437,9 @@ MonoBehaviour:
   restart: {fileID: 1155048644}
   movement: {fileID: 1117377927}
   coroutineTime: 0
+  prefabVillage: {fileID: 0}
+  playerTransform: {fileID: 0}
+  offsetFromPlayer: {x: 0, y: 0, z: 0}
 --- !u!114 &1117377926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1464,6 +1468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
   movementVariables: {fileID: 11400000, guid: 03113db3d405f8c4b8d67d092d3aaee8, type: 2}
+  player1Active: 0
+  player2Active: 0
 --- !u!114 &1117377928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,6 +1752,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1117377939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117377924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63472090bfd7429499bd89ecfe93f4fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StartRestart
+  testMovement: {fileID: 1117377927}
+  timeToStartRestart: 2
+  sceneName: 
 --- !u!1 &1155048642
 GameObject:
   m_ObjectHideFlags: 0
