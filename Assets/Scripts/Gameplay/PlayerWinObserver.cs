@@ -8,7 +8,7 @@ public class PlayerWinObserver : PlayerObserver
     [SerializeField] Button restart;
     [SerializeField] TestMovement movement;
 
-    [SerializeField] float coroutineTime;
+    [SerializeField] float coroutineTime = 600f;
     private Coroutine currentCoroutine;
     [SerializeField] GameObject prefabVillage;
     [SerializeField] Transform playerTransform;
@@ -40,6 +40,7 @@ public class PlayerWinObserver : PlayerObserver
         //code
         Instantiate(prefabVillage, playerTransform.position + offsetFromPlayer, Quaternion.identity);
         yield return new WaitForSeconds(coroutineTime);
+        Restart();
         //code
         //yield return new WaitForSeconds(coroutineTime);
     }

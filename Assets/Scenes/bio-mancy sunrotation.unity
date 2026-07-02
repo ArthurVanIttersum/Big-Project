@@ -5244,7 +5244,7 @@ MonoBehaviour:
   detectCollision: {fileID: 1117377934}
   restart: {fileID: 0}
   movement: {fileID: 1117377927}
-  coroutineTime: 0
+  coroutineTime: 600
   prefabVillage: {fileID: 1676369960213860110, guid: 04979d63d35aa4d4a97efa706f2f8bbd,
     type: 3}
   playerTransform: {fileID: 1117377933}
