@@ -795,6 +795,7 @@ GameObject:
   - component: {fileID: 1117377937}
   - component: {fileID: 1117377936}
   - component: {fileID: 1117377935}
+  - component: {fileID: 1117377943}
   m_Layer: 0
   m_Name: Player with rotation
   m_TagString: Untagged
@@ -3175,6 +3176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
   movementVariables: {fileID: 11400000, guid: 03113db3d405f8c4b8d67d092d3aaee8, type: 2}
+  comPort: COM10
   player1Active: 0
   player2Active: 0
 --- !u!4 &1117377933
@@ -3487,6 +3489,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349387136}
   m_Mesh: {fileID: -8219499742440135881, guid: 06a85f4896b47a24db33c51e01a1ff99, type: 3}
+--- !u!114 &1117377943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349387136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6e04ce001d1464390243fcbd1162ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateAnimation
+  animator1: {fileID: 441822921}
+  animator2: {fileID: 1100863109}
 --- !u!1 &1122344371
 GameObject:
   m_ObjectHideFlags: 0
