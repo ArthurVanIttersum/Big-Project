@@ -91,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 15ba9c768fcf2754d950b388d52e0609,
         type: 3}
       propertyPath: m_Name
-      value: mushroom_hang
+      value: mushrom_hang2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -109,6 +109,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1029821828547098446}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 15ba9c768fcf2754d950b388d52e0609,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2765274461920170840}
   m_SourcePrefab: {fileID: 100100000, guid: 15ba9c768fcf2754d950b388d52e0609, type: 3}
 --- !u!1 &2796245195815721328 stripped
 GameObject:
@@ -171,3 +175,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8149357, y: 2.92, z: 4.186004}
   m_Center: {x: 1.1741965, y: 3.16, z: 0.15760761}
+--- !u!114 &2765274461920170840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2796245195815721328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c9dcd4eec3924facc8b67e299dbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Particlestuff
+  prefabWithParticleSystem: {fileID: 6236014955839658347, guid: d1b553fd8f7537240bd91a29d2df8595,
+    type: 3}
