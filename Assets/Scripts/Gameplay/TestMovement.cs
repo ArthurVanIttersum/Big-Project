@@ -227,13 +227,19 @@ public class TestMovement : MonoBehaviour
     private void OnPlayer1(InputValue value)
     {
         if (value.isPressed)
+        {
             player1Pressed = true;
+            player1Active = true;
+        }
     }
 
     private void OnPlayer2(InputValue value)
     {
         if (value.isPressed)
+        {
             player2Pressed = true;
+            player2Active = true;
+        }
     }
 
     private void FixedUpdate()

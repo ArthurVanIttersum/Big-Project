@@ -17,11 +17,30 @@ public class EndSceneCameraController : MonoBehaviour
     [SerializeField] private int activePriority = 10;
     [SerializeField] private int inactivePriority = 0;
 
-    [Header("Temporary test controls (legacy Input)")]
-    [SerializeField] private KeyCode nextKey = KeyCode.DownArrow;
-    [SerializeField] private KeyCode previousKey = KeyCode.UpArrow;
+    [SerializeField] private TestMovement testMovement;
+
+    private bool previousPlayer1Active;
+    private bool previousPlayer2Active;
 
     private int currentIndex = 0;
+
+    private void OnEnable()
+    {
+        if (testMovement != null)
+        {
+            testMovement.player1Press += OnPrevious;
+            testMovement.player2Press += OnNext;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (testMovement != null)
+        {
+            testMovement.player1Press -= OnPrevious;
+            testMovement.player2Press -= OnNext;
+        }
+    }
 
     private void Start()
     {
@@ -37,9 +56,6 @@ public class EndSceneCameraController : MonoBehaviour
     private void Update()
     {
         if (vignetteCameras == null || vignetteCameras.Count == 0) return;
-
-        if (Input.GetKeyDown(previousKey)) OnPrevious();
-        if (Input.GetKeyDown(nextKey)) OnNext();
     }
 
     public void OnNext()

@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,7 @@ public class StartRestart : MonoBehaviour
 {
     [SerializeField] private TestMovement testMovement;
     [SerializeField] private float timeToStartRestart;
-    [SerializeField] string sceneName;
+    [SerializeField] SceneAsset sceneName;
     private float timer;
 
     private void Update()
@@ -27,6 +28,6 @@ public class StartRestart : MonoBehaviour
 
     private void RestartScene()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName.name);
     }
 }
