@@ -125,7 +125,7 @@ public class TestMovement : MonoBehaviour
     {
         if (!FindArduinoPort(out string detectedPort))
         {
-            Debug.LogError("Could not find the Arduino controller on any COM port.");
+            Debug.LogWarning("Could not find the Arduino controller on any COM port.");
             return;
         }
 
