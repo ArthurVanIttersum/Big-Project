@@ -2936,6 +2936,7 @@ GameObject:
   - component: {fileID: 984899331}
   - component: {fileID: 984899330}
   - component: {fileID: 984899329}
+  - component: {fileID: 984899333}
   m_Layer: 0
   m_Name: Dungball
   m_TagString: Untagged
@@ -3058,6 +3059,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984899327}
   m_Mesh: {fileID: -8219499742440135881, guid: 06a85f4896b47a24db33c51e01a1ff99, type: 3}
+--- !u!114 &984899333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984899327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249c2b556cc008d4e935836c2c993619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimationSpeedBall
+  animator: {fileID: 984899329}
+  multiplier: 0.1
 --- !u!4 &987630599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 589201070780524428, guid: 70d65f00f0b704045a31fcea38c2990f,

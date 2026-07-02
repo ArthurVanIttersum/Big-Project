@@ -25,6 +25,7 @@ public class TestMovement : MonoBehaviour
 
     public event Action player1Press;
     public event Action player2Press;
+    public event Action<float> animationSpeed;
 
     [HideInInspector] public bool player1Active;
     [HideInInspector] public bool player2Active;
@@ -340,6 +341,9 @@ public class TestMovement : MonoBehaviour
     private void ApplyDrag()
     {
         speed = rb.linearVelocity.magnitude;
+
+        animationSpeed.Invoke(speed);
+
         if (speed <= 0f) return;
 
         float speedDrop = movementVariables.deceleraionRate * Time.fixedDeltaTime;
