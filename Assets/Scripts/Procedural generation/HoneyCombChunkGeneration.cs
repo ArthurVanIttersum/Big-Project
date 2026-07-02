@@ -56,31 +56,50 @@ public class HoneyCombChunkGeneration : MonoBehaviour
     //Object settings
     [SerializeField] private float minSize;
     [SerializeField] private float maxSize;
-
-
+    [SerializeField] private float minGrassSize = 0.5f;
+    [SerializeField] private float maxGrassSize = 0.8f;
 
     private void Awake()
     {
-        if (biomeSelection != null)
+        if (biomeSelection == null)
         {
-            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(0);
+            Debug.LogWarning("generation settings not assigned");
         }
         else
         {
-            Debug.LogWarning("generation settings not assigned");
+            ScriptableObject settingsFile = biomeSelection.Biome(0);
+            if (settingsFile is ReworkedHoneyGenerationSettings)
+            {
+                generationSettings = (ReworkedHoneyGenerationSettings)settingsFile;
+            }
+            else
+            {
+                Debug.LogWarning("generation settings not assigned");
+            }
         }
     }
 
+    
+
     void GenerateChunk(GameObject chunk)
     {
-        if (biomeSelection != null)
-        {
-            generationSettings = (ReworkedHoneyGenerationSettings)biomeSelection.Biome(biomeSelection.randomBiomeChance);
-        }
-        else
+        if (biomeSelection == null)
         {
             Debug.LogWarning("generation settings not assigned");
         }
+        else
+        {
+            ScriptableObject settingsFile = biomeSelection.Biome(biomeSelection.randomBiomeChance);
+            if (settingsFile is ReworkedHoneyGenerationSettings)
+            {
+                generationSettings = (ReworkedHoneyGenerationSettings)settingsFile;
+            }
+            else
+            {
+                Debug.LogWarning("generation settings not assigned");
+            }
+        }
+
 
         print("Generating Chunk");
         if (generationSettings == null) return;//quick test
@@ -774,7 +793,7 @@ public class HoneyCombChunkGeneration : MonoBehaviour
             for (int j = rangeStart; j < rangeEnd; j++)
             {
                 newObject = Instantiate(generationSettings.grassAndStuff[objectToSpawn].prefab, VectorConversion.vec2Tovec3(grassStuffArray[indices[j]]) + chunk.transform.position, Quaternion.identity, chunk.transform);
-                newObject.transform.localScale *= UnityEngine.Random.Range(minSize, maxSize);
+                newObject.transform.localScale *= UnityEngine.Random.Range(minGrassSize, maxGrassSize);
                 spawnedObjectCount++;
 
             }

@@ -10,6 +10,9 @@ public class PlayerWinObserver : PlayerObserver
 
     [SerializeField] float coroutineTime;
     private Coroutine currentCoroutine;
+    [SerializeField] GameObject prefabVillage;
+    [SerializeField] Transform playerTransform;
+    [SerializeField] Vector3 offsetFromPlayer;
 
     protected override void OnVSFX(int listIndex)
     { }
@@ -19,9 +22,9 @@ public class PlayerWinObserver : PlayerObserver
 
     protected override void OnTimeEnd()
     {
-        movement.enabled = false; //Disable the movement of the player
+        //movement.enabled = false; //Disable the movement of the player
         currentCoroutine = StartCoroutine(Ending()); //Start the coroutine for the ending
-        restart.gameObject.SetActive(true);
+        //restart.gameObject.SetActive(true);
 
         Debug.Log("Time finished");
     }
@@ -35,6 +38,7 @@ public class PlayerWinObserver : PlayerObserver
     IEnumerator Ending()
     {
         //code
+        Instantiate(prefabVillage, playerTransform.position + offsetFromPlayer, Quaternion.identity);
         yield return new WaitForSeconds(coroutineTime);
         //code
         //yield return new WaitForSeconds(coroutineTime);

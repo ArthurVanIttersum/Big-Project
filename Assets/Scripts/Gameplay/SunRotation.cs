@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum RotationAxis
 {
-    X, Y,Z
+    X, Y, Z, Custom
 }
 
 public class SunRotation : MonoBehaviour
@@ -32,6 +32,10 @@ public class SunRotation : MonoBehaviour
             case RotationAxis.Z:
                 rotationVector = Vector3.forward;
                 break; 
+            case RotationAxis.Custom:
+                rotationVector = Vector3.up + Vector3.back * 0.25f;
+                rotationVector.Normalize();
+                break;
         }
     }
 
