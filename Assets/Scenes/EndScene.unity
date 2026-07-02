@@ -5069,6 +5069,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Endscene Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8927191764480227688, guid: ac8368a738b5f0c4ab4867cf43fa8610,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015773315230756869, guid: ac8368a738b5f0c4ab4867cf43fa8610,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015773315230756869, guid: ac8368a738b5f0c4ab4867cf43fa8610,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015773315230756869, guid: ac8368a738b5f0c4ab4867cf43fa8610,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 9162182530669167426, guid: ac8368a738b5f0c4ab4867cf43fa8610,
         type: 3}
       propertyPath: m_Camera
