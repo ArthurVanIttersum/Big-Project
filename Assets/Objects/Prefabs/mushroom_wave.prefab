@@ -162,5 +162,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d3c9dcd4eec3924facc8b67e299dbf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Particlestuff
-  prefabWithParticleSystem: {fileID: 6335365175765120975, guid: 179a6b37a07b2a64a9789948b00e7369,
+  prefabWithParticleSystem: {fileID: 6236014955839658347, guid: d1b553fd8f7537240bd91a29d2df8595,
     type: 3}
