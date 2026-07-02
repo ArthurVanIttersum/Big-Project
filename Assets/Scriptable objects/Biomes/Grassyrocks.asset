@@ -25,10 +25,10 @@ MonoBehaviour:
   grassAndStuff:
   - prefab: {fileID: 2573344275019714, guid: 8f3a6157d2ee65a41847a1f2b0def3d4, type: 3}
     minSpawnCount: 5
-    maxSpawnCount: 10
+    maxSpawnCount: 8
   - prefab: {fileID: 914987552013322551, guid: 36b30e935ff211c47bb712b5de5eb1d5, type: 3}
     minSpawnCount: 5
-    maxSpawnCount: 10
+    maxSpawnCount: 8
   objects:
   - prefab: {fileID: 2284881884688275089, guid: 4ebe593ec1041444284e80b42ce3d876,
       type: 3}

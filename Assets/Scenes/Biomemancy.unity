@@ -860,10 +860,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BiomeSelection
   biomes:
-  - {fileID: 11400000, guid: 821a9c9d1cf35f44f9ca61d39fe1294e, type: 2}
   - {fileID: 11400000, guid: 2b7f8b750a3b5564084eb12ac1316100, type: 2}
-  secBetweenBiomeChange: 2
-  chanceForBiomeChange: 0.474
+  - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
+  - {fileID: 11400000, guid: 821a9c9d1cf35f44f9ca61d39fe1294e, type: 2}
+  secBetweenBiomeChange: 15
+  chanceForBiomeChange: 0.5
   randomBiomeChance: 0
 --- !u!114 &462112202
 MonoBehaviour:
@@ -2032,6 +2033,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1045524343
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2796245195815721328, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_Name
+      value: mushroom_hang
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.03811698
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280189103862006730, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453706267760965797, guid: d5b11f325ac8feb4aae229a3ece7e7d0,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 652e224baae39fd4a86c490180a10713, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5b11f325ac8feb4aae229a3ece7e7d0, type: 3}
 --- !u!1 &1100863107 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e577e27ee4bc7443918bf0bfdfa14f6,
@@ -2256,6 +2330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
   movementVariables: {fileID: 11400000, guid: 03113db3d405f8c4b8d67d092d3aaee8, type: 2}
+  comPort: COM7
 --- !u!114 &1117377928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4570,3 +4645,4 @@ SceneRoots:
   - {fileID: 1895963114}
   - {fileID: 2100297150}
   - {fileID: 6460127197222335859}
+  - {fileID: 1045524343}
