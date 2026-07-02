@@ -25,7 +25,6 @@ public class TestMovement : MonoBehaviour
 
     public event Action player1Press;
     public event Action player2Press;
-    public event Action<float> animationSpeed;
 
     [HideInInspector] public bool player1Active;
     [HideInInspector] public bool player2Active;
@@ -35,9 +34,6 @@ public class TestMovement : MonoBehaviour
     private float latestPot1;
     private float latestPot2;
     private string serialBuffer = "";
-
-     private Key player1Key = Key.W;
-     private Key player2Key = Key.UpArrow;
 
     private void Awake()
     {
@@ -225,51 +221,26 @@ public class TestMovement : MonoBehaviour
 
     private void Update()
     {
-        if (serialPort != null && serialPort.IsOpen)
-            ProcessInput(latestPot1, latestPot2);
+        ProcessInput(latestPot1, latestPot2);
+    }
 
-        else
+    private void OnPlayer1(InputValue value)
+    {
+        if (value.isPressed)
         {
-            var keyBoard = Keyboard.current;
-            float key1 = (keyBoard != null && keyBoard[player1Key].isPressed) ? 1f : 0f;
-            float key2 = (keyBoard != null && keyBoard[player2Key].isPressed) ? 1f : 0f;
-            ProcessInput(key1, key2);
+            player1Pressed = true;
+            player1Active = true;
         }
     }
 
-    //private void OnPlayer1(InputValue value)
-    //{
-    //    if (value.isPressed)
-    //    {
-    //        if (!player1Active)
-    //        {
-    //            player1Pressed = true;
-    //            player1Active = true;
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        player1Active = false;
-    //    }
-    //}
-
-    //private void OnPlayer2(InputValue value)
-    //{
-    //    if (value.isPressed)
-    //    {
-    //        if (!player2Active)
-    //        {
-    //            player2Pressed = true;
-    //            player2Active = true;
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        player2Active = false;
-    //    }
-    //}
+    private void OnPlayer2(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            player2Pressed = true;
+            player2Active = true;
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -341,9 +312,6 @@ public class TestMovement : MonoBehaviour
     private void ApplyDrag()
     {
         speed = rb.linearVelocity.magnitude;
-
-        animationSpeed.Invoke(speed);
-
         if (speed <= 0f) return;
 
         float speedDrop = movementVariables.deceleraionRate * Time.fixedDeltaTime;
