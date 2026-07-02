@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ChunkBasedGeneration : MonoBehaviour
 {
