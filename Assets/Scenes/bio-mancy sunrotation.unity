@@ -4800,6 +4800,7 @@ MonoBehaviour:
   score: 0
   adjustedTime: 0
   timer: 0
+  publishScore: {fileID: 11400000, guid: d781893320a0b0b4881fa7eddbf460fe, type: 2}
 --- !u!4 &2143357685
 Transform:
   m_ObjectHideFlags: 0
