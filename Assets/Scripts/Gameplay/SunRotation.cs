@@ -33,7 +33,7 @@ public class SunRotation : MonoBehaviour
                 rotationVector = Vector3.forward;
                 break; 
             case RotationAxis.Custom:
-                rotationVector = Vector3.up + Vector3.back * 0.25f;
+                rotationVector = Vector3.up + Vector3.back * 0.125f;
                 rotationVector.Normalize();
                 break;
         }

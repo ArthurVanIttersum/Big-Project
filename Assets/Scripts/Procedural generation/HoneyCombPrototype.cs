@@ -537,7 +537,9 @@ public class HoneyCombPrototype : MonoBehaviour
             for (int i = 0; i < hexToTri[item].Count; i++)
             {
                 Gizmos.DrawLine(VectorConversion.vec2Tovec3(item), VectorConversion.vec2Tovec3(hexToTri[item][i]));
+#if UNITY_EDITOR
                 UnityEditor.Handles.Label(VectorConversion.vec2Tovec3(item), hexToTri[item].Count.ToString(), style);
+#endif
             }
         }
 
