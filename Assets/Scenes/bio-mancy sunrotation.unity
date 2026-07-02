@@ -4177,8 +4177,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 821a9c9d1cf35f44f9ca61d39fe1294e, type: 2}
   - {fileID: 11400000, guid: 2b7f8b750a3b5564084eb12ac1316100, type: 2}
   - {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7, type: 2}
-  secBetweenBiomeChange: 2
-  chanceForBiomeChange: 0.474
+  secBetweenBiomeChange: 15
+  chanceForBiomeChange: 0.5
   randomBiomeChance: 0
 --- !u!114 &1367504826
 MonoBehaviour:
@@ -5596,6 +5596,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 78aa742176d120d4dbfb9745623a4df7,
         type: 2}
+    - target: {fileID: 6591252444548848105, guid: 8889997be8caffe4e87cc66e21dd2dd2,
+        type: 3}
+      propertyPath: chanceForBiomeChange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591252444548848105, guid: 8889997be8caffe4e87cc66e21dd2dd2,
+        type: 3}
+      propertyPath: secBetweenBiomeChange
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8914242637494520059, guid: 8889997be8caffe4e87cc66e21dd2dd2,
         type: 3}
       propertyPath: m_Enabled
