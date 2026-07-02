@@ -4294,12 +4294,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ed61a253618260e4391b970119885333,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed61a253618260e4391b970119885333,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ed61a253618260e4391b970119885333,
         type: 3}
@@ -4341,6 +4341,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeetleAnimatedSeparated_Sun
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: ed61a253618260e4391b970119885333,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e17a4b12c45798e4d816d5a36864411d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
