@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7387852360903657017}
   - component: {fileID: 7534368215642192962}
   - component: {fileID: 9073371238626219739}
+  - component: {fileID: 6692021291037286117}
   m_Layer: 0
   m_Name: BreakingParticles
   m_TagString: Untagged
@@ -4895,3 +4896,18 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!114 &6692021291037286117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236014955839658347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3114d515ad00cad49ae8e87219ae1ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleEnd
+  particleSystem: {fileID: 7643631460916818062, guid: 179a6b37a07b2a64a9789948b00e7369,
+    type: 3}
+  timeBeforeEnd: 5
