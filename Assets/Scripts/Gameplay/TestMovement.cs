@@ -26,8 +26,8 @@ public class TestMovement : MonoBehaviour
     public event Action player1Press;
     public event Action player2Press;
 
-    private bool player1Active;
-    private bool player2Active;
+    [HideInInspector] public bool player1Active;
+    [HideInInspector] public bool player2Active;
     private SerialPort serialPort;
     private Thread serialThread;
     private bool isRunning;
