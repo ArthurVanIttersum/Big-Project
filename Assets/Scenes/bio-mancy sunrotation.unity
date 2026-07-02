@@ -3072,7 +3072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationSpeedBall
   animator: {fileID: 984899329}
-  multiplier: 0.1
+  multiplier: 0.05
 --- !u!4 &987630599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 589201070780524428, guid: 70d65f00f0b704045a31fcea38c2990f,
