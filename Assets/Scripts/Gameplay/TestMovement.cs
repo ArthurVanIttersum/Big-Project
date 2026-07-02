@@ -14,7 +14,7 @@ public class TestMovement : MonoBehaviour
 
     private float speed;
 
-    private string comPort = "COM10";
+    public string comPort = "COM10";
     private int baudRate = 9600;
 
     private bool player1Pressed;
@@ -50,8 +50,87 @@ public class TestMovement : MonoBehaviour
         StartCoroutine(ReadSerialCoroutine());
     }
 
+    private const string Expected_ID = "Controller";
+    private const string PORT_PREF_KEY = "ArduinoComPort";
+
+    private bool FindArduinoPort(out string foundPort)
+    {
+        foundPort = null;
+
+        string cachedPort = PlayerPrefs.GetString(PORT_PREF_KEY, "");
+        if (!string.IsNullOrEmpty(cachedPort) && TryProbePort(cachedPort))
+        {
+            foundPort = cachedPort;
+            return true;
+        }
+
+        string[] portNames = SerialPort.GetPortNames();
+        Array.Sort(portNames);
+        Array.Reverse(portNames);
+
+        foreach (string port in portNames)
+        {
+            if (port == cachedPort) continue;
+            if (TryProbePort(port))
+            {
+                foundPort = port;
+                PlayerPrefs.SetString(PORT_PREF_KEY, port);
+                PlayerPrefs.Save();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool TryProbePort(string port)
+    {
+        SerialPort testPort = null;
+        try
+        {
+            testPort = new SerialPort(port, baudRate);
+            testPort.DtrEnable = true;
+            testPort.ReadTimeout = 400;
+            testPort.WriteTimeout = 400;
+            testPort.NewLine = "\n";
+            testPort.Open();
+
+            testPort.DiscardInBuffer();
+            testPort.WriteLine("ID?");
+
+            for (int attempt = 0; attempt < 3; attempt++)
+            {
+                try
+                {
+                    if (testPort.ReadLine().Trim() == Expected_ID)
+                    {
+                        testPort.Close();
+                        return true;
+                    }
+                }
+                catch (TimeoutException) { break; }
+            }
+
+            testPort.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Port {port} not the controller: {e.Message}");
+            if (testPort != null && testPort.IsOpen) testPort.Close();
+        }
+        return false;
+    }
+
     private void StartSerial()
     {
+        if (!FindArduinoPort(out string detectedPort))
+        {
+            Debug.LogError("Could not find the Arduino controller on any COM port.");
+            return;
+        }
+
+        comPort = detectedPort;
+
         try
         {
             serialPort = new SerialPort(comPort, baudRate);
@@ -59,9 +138,11 @@ public class TestMovement : MonoBehaviour
             serialPort.ReadTimeout = 10;
             serialPort.NewLine = "\n";
             serialPort.Open();
+
+            serialPort.DiscardInBuffer();
+
             Debug.Log("Serial port opened on " + comPort);
         }
-
         catch (System.Exception e)
         {
             Debug.LogError("Could not open serial port: " + e.Message);

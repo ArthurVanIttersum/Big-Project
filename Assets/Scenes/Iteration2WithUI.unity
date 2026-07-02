@@ -1464,6 +1464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestMovement
   movementVariables: {fileID: 11400000, guid: 03113db3d405f8c4b8d67d092d3aaee8, type: 2}
+  comPort: COM7
 --- !u!114 &1117377928
 MonoBehaviour:
   m_ObjectHideFlags: 0
