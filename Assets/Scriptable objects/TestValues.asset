@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlaytimeValues
   playTime: 240
   scoreMultiplier: 0.1
-  ballScoreRatio: 0.005
+  ballScoreRatio: 0.03
   maxBallSize: 3
   maxClampScore: 200
   cameraZAxisMultiplier: 6
