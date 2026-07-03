@@ -908,6 +908,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &438867466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438867468}
+  - component: {fileID: 438867467}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &438867467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438867466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ddd84143564ad4a85b8b97b7edec47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveSystem
+  data:
+    savedPortName: COM3
+    scoresList: 
+--- !u!4 &438867468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438867466}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -182.711, y: 38.92728, z: 809.7321}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &441822919 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e577e27ee4bc7443918bf0bfdfa14f6,
@@ -3034,7 +3081,6 @@ MonoBehaviour:
   comPort: COM10
   player1Active: 0
   player2Active: 0
-  Saveport: {fileID: 11400000, guid: db113b4c26cb66546a57342f0bd97da5, type: 2}
 --- !u!4 &1117377933
 Transform:
   m_ObjectHideFlags: 0
@@ -4707,7 +4753,6 @@ MonoBehaviour:
   score: 0
   adjustedTime: 0
   timer: 0
-  publishScore: {fileID: 11400000, guid: d781893320a0b0b4881fa7eddbf460fe, type: 2}
 --- !u!4 &2143357685
 Transform:
   m_ObjectHideFlags: 0
@@ -6281,3 +6326,4 @@ SceneRoots:
   - {fileID: 2110653700}
   - {fileID: 7253217098209730137}
   - {fileID: 1328700307}
+  - {fileID: 438867468}

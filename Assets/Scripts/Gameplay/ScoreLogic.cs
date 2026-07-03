@@ -20,17 +20,16 @@ public class ScoreLogic : MonoBehaviour
     [HideInInspector] public float adjustedTime;
     [HideInInspector] public float timer;
     private bool winHappen = false;
-    [SerializeField] private scores publishScore;
 
     private void Start()
     {
         if (playtimeValues.scoreMultiplier == 0)
-            Debug.LogError($"Score multiplier is set to O.");
+            Debug.LogError($"Score multiplier is set to 0.");
 
         cameraStartOffeset = camera.FollowOffset;
         rb = ball.GetComponent<Rigidbody>();
         ballStartScale = ball.transform.localScale;
-        startMass = rb.mass; 
+        startMass = rb.mass;
 
         adjustedTime = playtimeValues.playTime;
         InvokeScoreUpdate();
@@ -43,7 +42,7 @@ public class ScoreLogic : MonoBehaviour
             timeEnded?.Invoke();
             winHappen = true;
         }
-            
+
         if (!winHappen)
         {
             timer += Time.deltaTime;
@@ -62,7 +61,7 @@ public class ScoreLogic : MonoBehaviour
         }
 
         if (ball.transform.localScale.x >= playtimeValues.maxBallSize)
-            ball.transform.localScale = new Vector3 (playtimeValues.maxBallSize, playtimeValues.maxBallSize, playtimeValues.maxBallSize);
+            ball.transform.localScale = new Vector3(playtimeValues.maxBallSize, playtimeValues.maxBallSize, playtimeValues.maxBallSize);
 
         if (rb.mass >= playtimeValues.maxMass)
             rb.mass = playtimeValues.maxMass;
@@ -70,8 +69,20 @@ public class ScoreLogic : MonoBehaviour
 
     public void InvokeScoreUpdate() => scoreUpdate?.Invoke();
 
+    // MODIFIED FOR BUILT GAME STABILITY:
     public void PublishScore()
     {
-        publishScore.scoresList.Add((int)clampScore);
+        if (SaveSystem.Instance != null)
+        {
+            // 1. Add score to the build's runtime tracking memory
+            SaveSystem.Instance.data.scoresList.Add((int)clampScore);
+
+            // 2. Commit it immediately to physical storage
+            SaveSystem.Instance.SaveGame();
+        }
+        else
+        {
+            Debug.LogError("Could not save high score because SaveSystem instance wasn't found.");
+        }
     }
 }

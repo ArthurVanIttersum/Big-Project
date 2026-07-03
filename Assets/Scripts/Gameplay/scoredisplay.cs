@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class scoredisplay : MonoBehaviour
 {
-    public scores scores;
     [SerializeField] TextMeshProUGUI scoreDisplay;
     private string scoreText;
     public int topN = 10;
@@ -13,18 +13,30 @@ public class scoredisplay : MonoBehaviour
     {
         scoreText = "Scoreboard\n";
         topNUpdating = topN;
-        if (scores.scoresList.Count < topN)
+
+        // Ensure the SaveSystem exists before trying to read from it
+        if (SaveSystem.Instance == null)
         {
-            topNUpdating = scores.scoresList.Count;
+            Debug.LogError("SaveSystem is missing from the scene!");
+            return;
         }
-        scores.scoresList.Sort();
-        scores.scoresList.Reverse();
+
+        // Duplicate the list from our SaveSystem so we don't accidentally ruin the original order while sorting
+        List<int> temporaryScoresList = new List<int>(SaveSystem.Instance.data.scoresList);
+
+        if (temporaryScoresList.Count < topN)
+        {
+            topNUpdating = temporaryScoresList.Count;
+        }
+
+        // Sort descending (highest scores first)
+        temporaryScoresList.Sort();
+        temporaryScoresList.Reverse();
+
         for (int i = 0; i < topNUpdating; i++)
         {
-            scoreText += "Rank: " + (i+1).ToString() + " Score: " + scores.scoresList[i].ToString() + "\n";
+            scoreText += "Rank: " + (i + 1).ToString() + " Score: " + temporaryScoresList[i].ToString() + "\n";
         }
         scoreDisplay.text = scoreText;
     }
-
-
 }

@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
-
 public class TestMovement : MonoBehaviour
 {
     [SerializeField] private MovementVariables movementVariables;
@@ -29,15 +28,19 @@ public class TestMovement : MonoBehaviour
 
     [HideInInspector] public bool player1Active;
     [HideInInspector] public bool player2Active;
-    public saveport Saveport;
+
+    // CHANGED: Removed the 'saveport' ScriptableObject reference completely.
+    // The live SerialPort now lives directly inside this component at runtime.
+    private SerialPort activeSerialPort;
+
     private Thread serialThread;
     private bool isRunning;
     private float latestPot1;
     private float latestPot2;
     private string serialBuffer = "";
 
-     private Key player1Key = Key.W;
-     private Key player2Key = Key.UpArrow;
+    private Key player1Key = Key.W;
+    private Key player2Key = Key.UpArrow;
 
     private void Awake()
     {
@@ -55,13 +58,18 @@ public class TestMovement : MonoBehaviour
     }
 
     private const string Expected_ID = "Controller";
-    private const string PORT_PREF_KEY = "ArduinoComPort";
 
     private bool FindArduinoPort(out string foundPort)
     {
         foundPort = null;
 
-        string cachedPort = PlayerPrefs.GetString(PORT_PREF_KEY, "");
+        // CHANGED: Instead of PlayerPrefs, grab the cached port from our new central SaveSystem JSON
+        string cachedPort = "";
+        if (SaveSystem.Instance != null)
+        {
+            cachedPort = SaveSystem.Instance.data.savedPortName;
+        }
+
         if (!string.IsNullOrEmpty(cachedPort) && TryProbePort(cachedPort))
         {
             foundPort = cachedPort;
@@ -78,8 +86,13 @@ public class TestMovement : MonoBehaviour
             if (TryProbePort(port))
             {
                 foundPort = port;
-                PlayerPrefs.SetString(PORT_PREF_KEY, port);
-                PlayerPrefs.Save();
+
+                // CHANGED: Instead of PlayerPrefs, save the newly discovered working port to our JSON file
+                if (SaveSystem.Instance != null)
+                {
+                    SaveSystem.Instance.data.savedPortName = port;
+                    SaveSystem.Instance.SaveGame();
+                }
                 return true;
             }
         }
@@ -137,13 +150,14 @@ public class TestMovement : MonoBehaviour
 
         try
         {
-            Saveport.savedPort = new SerialPort(comPort, baudRate);
-            Saveport.savedPort.DtrEnable = true;
-            Saveport.savedPort.ReadTimeout = 10;
-            Saveport.savedPort.NewLine = "\n";
-            Saveport.savedPort.Open();
+            // CHANGED: Initializing local activeSerialPort stream rather than using a ScriptableObject asset
+            activeSerialPort = new SerialPort(comPort, baudRate);
+            activeSerialPort.DtrEnable = true;
+            activeSerialPort.ReadTimeout = 10;
+            activeSerialPort.NewLine = "\n";
+            activeSerialPort.Open();
 
-            Saveport.savedPort.DiscardInBuffer();
+            activeSerialPort.DiscardInBuffer();
 
             Debug.Log("Serial port opened on " + comPort);
         }
@@ -157,11 +171,12 @@ public class TestMovement : MonoBehaviour
     {
         while (true)
         {
-            if (Saveport.savedPort != null && Saveport.savedPort.IsOpen)
+            // CHANGED: Reading from the script's local activeSerialPort instance
+            if (activeSerialPort != null && activeSerialPort.IsOpen)
             {
                 try
                 {
-                    string data = Saveport.savedPort.ReadExisting();
+                    string data = activeSerialPort.ReadExisting();
                     if (!string.IsNullOrEmpty(data))
                     {
                         serialBuffer += data;
@@ -205,7 +220,6 @@ public class TestMovement : MonoBehaviour
             player1Pressed = true;
             player1Active = true;
         }
-
         else if (player1Active && val1 < movementVariables.releaseThreshold)
         {
             player1Active = false;
@@ -216,7 +230,6 @@ public class TestMovement : MonoBehaviour
             player2Pressed = true;
             player2Active = true;
         }
-
         else if (player2Active && val2 < movementVariables.releaseThreshold)
         {
             player2Active = false;
@@ -225,9 +238,9 @@ public class TestMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Saveport.savedPort != null && Saveport.savedPort.IsOpen)
+        // CHANGED: Updated target check to use the build-safe instance
+        if (activeSerialPort != null && activeSerialPort.IsOpen)
             ProcessInput(latestPot1, latestPot2);
-
         else
         {
             var keyBoard = Keyboard.current;
@@ -236,40 +249,6 @@ public class TestMovement : MonoBehaviour
             ProcessInput(key1, key2);
         }
     }
-
-    //private void OnPlayer1(InputValue value)
-    //{
-    //    if (value.isPressed)
-    //    {
-    //        if (!player1Active)
-    //        {
-    //            player1Pressed = true;
-    //            player1Active = true;
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        player1Active = false;
-    //    }
-    //}
-
-    //private void OnPlayer2(InputValue value)
-    //{
-    //    if (value.isPressed)
-    //    {
-    //        if (!player2Active)
-    //        {
-    //            player2Pressed = true;
-    //            player2Active = true;
-    //        }
-    //    }
-
-    //    else
-    //    {
-    //        player2Active = false;
-    //    }
-    //}
 
     private void FixedUpdate()
     {
@@ -294,7 +273,7 @@ public class TestMovement : MonoBehaviour
     private void ApplyForce(int direction)
     {
         float scaleDegrees = CalculateRotation(direction);
-        
+
         currentYAngle += scaleDegrees;
         currentYAngle = Mathf.Clamp(currentYAngle, startYAngle - movementVariables.maxDegree, startYAngle + movementVariables.maxDegree);
 
@@ -309,7 +288,6 @@ public class TestMovement : MonoBehaviour
         float forceMultiplier = 1f - Mathf.Clamp01(speed / movementVariables.maxSpeed);
         rb.AddForce(transform.forward * movementVariables.force * forceMultiplier, ForceMode.Impulse);
 
-        // Update and notify animation listeners about the new speed
         speed = rb.linearVelocity.magnitude;
         animationSpeed?.Invoke(speed);
     }
@@ -320,16 +298,13 @@ public class TestMovement : MonoBehaviour
         float distanceInDirection = direction * offset;
 
         float threshold = movementVariables.thresholdPercentage * movementVariables.maxDegree;
-
         float multiplier;
 
         if (distanceInDirection <= threshold)
             multiplier = 1;
-
         else
         {
             float thresholdCal = (distanceInDirection - threshold) / (movementVariables.maxDegree - threshold);
-
             thresholdCal = Mathf.Clamp01(thresholdCal);
 
             float maxVal = 1f;
@@ -351,7 +326,6 @@ public class TestMovement : MonoBehaviour
         float newSpeed = Mathf.Max(0f, speed - speedDrop);
         rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
 
-        // Update and notify animation listeners about the new speed
         speed = newSpeed;
         animationSpeed?.Invoke(speed);
     }
@@ -361,8 +335,6 @@ public class TestMovement : MonoBehaviour
         if (rb.linearVelocity.magnitude > movementVariables.maxSpeed)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * movementVariables.maxSpeed;
-
-            // Update and notify animation listeners about the clamped speed
             speed = rb.linearVelocity.magnitude;
             animationSpeed?.Invoke(speed);
         }
@@ -372,7 +344,9 @@ public class TestMovement : MonoBehaviour
     {
         isRunning = false;
         serialThread?.Join(500);
-        if (Saveport.savedPort != null && Saveport.savedPort.IsOpen)
-            Saveport.savedPort.Close();
+
+        // CHANGED: Properly clean up and release our local connection stream when exiting the scene/game
+        if (activeSerialPort != null && activeSerialPort.IsOpen)
+            activeSerialPort.Close();
     }
 }
