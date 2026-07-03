@@ -29,7 +29,7 @@ public class TestMovement : MonoBehaviour
 
     [HideInInspector] public bool player1Active;
     [HideInInspector] public bool player2Active;
-    private SerialPort serialPort;
+    public saveport Saveport;
     private Thread serialThread;
     private bool isRunning;
     private float latestPot1;
@@ -137,13 +137,13 @@ public class TestMovement : MonoBehaviour
 
         try
         {
-            serialPort = new SerialPort(comPort, baudRate);
-            serialPort.DtrEnable = true;
-            serialPort.ReadTimeout = 10;
-            serialPort.NewLine = "\n";
-            serialPort.Open();
+            Saveport.savedPort = new SerialPort(comPort, baudRate);
+            Saveport.savedPort.DtrEnable = true;
+            Saveport.savedPort.ReadTimeout = 10;
+            Saveport.savedPort.NewLine = "\n";
+            Saveport.savedPort.Open();
 
-            serialPort.DiscardInBuffer();
+            Saveport.savedPort.DiscardInBuffer();
 
             Debug.Log("Serial port opened on " + comPort);
         }
@@ -157,11 +157,11 @@ public class TestMovement : MonoBehaviour
     {
         while (true)
         {
-            if (serialPort != null && serialPort.IsOpen)
+            if (Saveport.savedPort != null && Saveport.savedPort.IsOpen)
             {
                 try
                 {
-                    string data = serialPort.ReadExisting();
+                    string data = Saveport.savedPort.ReadExisting();
                     if (!string.IsNullOrEmpty(data))
                     {
                         serialBuffer += data;
@@ -225,7 +225,7 @@ public class TestMovement : MonoBehaviour
 
     private void Update()
     {
-        if (serialPort != null && serialPort.IsOpen)
+        if (Saveport.savedPort != null && Saveport.savedPort.IsOpen)
             ProcessInput(latestPot1, latestPot2);
 
         else
@@ -372,7 +372,7 @@ public class TestMovement : MonoBehaviour
     {
         isRunning = false;
         serialThread?.Join(500);
-        if (serialPort != null && serialPort.IsOpen)
-            serialPort.Close();
+        if (Saveport.savedPort != null && Saveport.savedPort.IsOpen)
+            Saveport.savedPort.Close();
     }
 }

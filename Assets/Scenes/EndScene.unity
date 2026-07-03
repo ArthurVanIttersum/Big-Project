@@ -3837,6 +3837,7 @@ MonoBehaviour:
   comPort: COM10
   player1Active: 0
   player2Active: 0
+  Saveport: {fileID: 11400000, guid: db113b4c26cb66546a57342f0bd97da5, type: 2}
 --- !u!114 &1771062006
 MonoBehaviour:
   m_ObjectHideFlags: 0
