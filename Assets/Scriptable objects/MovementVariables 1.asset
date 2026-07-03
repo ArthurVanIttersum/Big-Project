@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: MovementVariables 1
   m_EditorClassIdentifier: Assembly-CSharp::MovementVariables
   force: 2.5
-  maxSpeed: 120
-  deceleraionRate: 8
+  maxSpeed: 80
+  deceleraionRate: 6
   degreesPerClick: 10
   maxDegree: 45
   thresholdPercentage: 0.605
   exponentialStrength: 20
   pressThreshold: 0.6
-  releaseThreshold: 0.3
+  releaseThreshold: 0.4

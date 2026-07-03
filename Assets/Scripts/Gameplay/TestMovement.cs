@@ -140,17 +140,27 @@ public class TestMovement : MonoBehaviour
 
     private void StartSerial()
     {
-        if (!FindArduinoPort(out string detectedPort))
+        // 1. FIRST CHECK: See if our SaveSystem already has a valid, known working port
+        if (SaveSystem.Instance != null && !string.IsNullOrEmpty(SaveSystem.Instance.data.savedPortName))
         {
-            Debug.LogWarning("Could not find the Arduino controller on any COM port.");
-            return;
+            comPort = SaveSystem.Instance.data.savedPortName;
+            Debug.Log($"Fast-loading serial port from JSON cache: {comPort}");
+        }
+        else
+        {
+            // 2. FALLBACK: Only do the heavy, slow port scanning if the JSON file is totally empty
+            Debug.Log("No cached port found in JSON. Starting full controller search...");
+            if (!FindArduinoPort(out string detectedPort))
+            {
+                Debug.LogWarning("Could not find the Arduino controller on any COM port.");
+                return;
+            }
+            comPort = detectedPort;
         }
 
-        comPort = detectedPort;
-
+        // 3. Open the port instantly using our confirmed string
         try
         {
-            // CHANGED: Initializing local activeSerialPort stream rather than using a ScriptableObject asset
             activeSerialPort = new SerialPort(comPort, baudRate);
             activeSerialPort.DtrEnable = true;
             activeSerialPort.ReadTimeout = 10;
@@ -159,11 +169,18 @@ public class TestMovement : MonoBehaviour
 
             activeSerialPort.DiscardInBuffer();
 
-            Debug.Log("Serial port opened on " + comPort);
+            Debug.Log("Serial port opened cleanly on " + comPort);
         }
         catch (System.Exception e)
         {
             Debug.LogWarning("Could not open serial port: " + e.Message);
+
+            // Clear the bad port data so the game will try searching again on next boot
+            if (SaveSystem.Instance != null)
+            {
+                SaveSystem.Instance.data.savedPortName = "";
+                SaveSystem.Instance.SaveGame();
+            }
         }
     }
 
@@ -208,8 +225,8 @@ public class TestMovement : MonoBehaviour
             int.TryParse(parts[0], out int raw1) &&
             int.TryParse(parts[1], out int raw2))
         {
-            latestPot1 = raw1 / 1023f;
-            latestPot2 = raw2 / 1023f;
+            latestPot1 = raw2 / 1023f;
+            latestPot2 = raw1 / 1023f;
         }
     }
 
