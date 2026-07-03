@@ -966,7 +966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &479291349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2111,6 +2111,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1100863110}
   m_SourcePrefab: {fileID: 100100000, guid: 5e577e27ee4bc7443918bf0bfdfa14f6, type: 3}
+--- !u!1 &886418293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4980102483097546038, guid: 06bcbabec53456742b9048b84b27aaf1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7253217098209730137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904727349
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,8 +5608,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: 9c6ef0bcab1b4bd4eae682bc06d1a110,
+      objectReference: {fileID: 32900000, guid: 25ab4d660b32c44438dff9b44df96bb3,
         type: 3}
+    - target: {fileID: 3872655080869285019, guid: 06bcbabec53456742b9048b84b27aaf1,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3872655080869285019, guid: 06bcbabec53456742b9048b84b27aaf1,
+        type: 3}
+      propertyPath: m_SkipOnDrop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3872655080869285019, guid: 06bcbabec53456742b9048b84b27aaf1,
         type: 3}
       propertyPath: m_TargetCamera
@@ -5663,7 +5679,7 @@ PrefabInstance:
         type: 3}
       propertyPath: endEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 479291350}
+      objectReference: {fileID: 886418293}
     - target: {fileID: 4117701973187522995, guid: 06bcbabec53456742b9048b84b27aaf1,
         type: 3}
       propertyPath: endEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -5767,7 +5783,7 @@ PrefabInstance:
     - target: {fileID: 4117701973187522995, guid: 06bcbabec53456742b9048b84b27aaf1,
         type: 3}
       propertyPath: endEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_enabled
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 4117701973187522995, guid: 06bcbabec53456742b9048b84b27aaf1,
         type: 3}
@@ -5877,7 +5893,7 @@ PrefabInstance:
     - target: {fileID: 4117701973187522995, guid: 06bcbabec53456742b9048b84b27aaf1,
         type: 3}
       propertyPath: endEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.UI.RawImage, UnityEngine.UI
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4117701973187522995, guid: 06bcbabec53456742b9048b84b27aaf1,
         type: 3}
