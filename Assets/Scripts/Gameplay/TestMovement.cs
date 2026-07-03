@@ -25,6 +25,7 @@ public class TestMovement : MonoBehaviour
 
     public event Action player1Press;
     public event Action player2Press;
+    public event Action<float> animationSpeed;
 
     [HideInInspector] public bool player1Active;
     [HideInInspector] public bool player2Active;
@@ -279,6 +280,10 @@ public class TestMovement : MonoBehaviour
 
         float forceMultiplier = 1f - Mathf.Clamp01(speed / movementVariables.maxSpeed);
         rb.AddForce(transform.forward * movementVariables.force * forceMultiplier, ForceMode.Impulse);
+
+        // Update and notify animation listeners about the new speed
+        speed = rb.linearVelocity.magnitude;
+        animationSpeed?.Invoke(speed);
     }
 
     private float CalculateRotation(int direction)
@@ -317,12 +322,22 @@ public class TestMovement : MonoBehaviour
         float speedDrop = movementVariables.deceleraionRate * Time.fixedDeltaTime;
         float newSpeed = Mathf.Max(0f, speed - speedDrop);
         rb.linearVelocity = rb.linearVelocity.normalized * newSpeed;
+
+        // Update and notify animation listeners about the new speed
+        speed = newSpeed;
+        animationSpeed?.Invoke(speed);
     }
 
     private void ClampSpeed()
     {
         if (rb.linearVelocity.magnitude > movementVariables.maxSpeed)
+        {
             rb.linearVelocity = rb.linearVelocity.normalized * movementVariables.maxSpeed;
+
+            // Update and notify animation listeners about the clamped speed
+            speed = rb.linearVelocity.magnitude;
+            animationSpeed?.Invoke(speed);
+        }
     }
 
     private void OnDestroy()
