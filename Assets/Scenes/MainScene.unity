@@ -1992,7 +1992,7 @@ PrefabInstance:
     - target: {fileID: 9107588975204543308, guid: 70d65f00f0b704045a31fcea38c2990f,
         type: 3}
       propertyPath: endAngle
-      value: 30
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 9107588975204543308, guid: 70d65f00f0b704045a31fcea38c2990f,
         type: 3}

@@ -32,7 +32,7 @@ public class ScoreLogic : MonoBehaviour
         ballStartScale = ball.transform.localScale;
         startMass = rb.mass; 
 
-        adjustedTime = playtimeValues.playTime * 60;
+        adjustedTime = playtimeValues.playTime;
         InvokeScoreUpdate();
     }
 

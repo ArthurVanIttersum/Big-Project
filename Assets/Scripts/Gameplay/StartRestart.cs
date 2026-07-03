@@ -6,7 +6,7 @@ public class StartRestart : MonoBehaviour
 {
     [SerializeField] private TestMovement testMovement;
     [SerializeField] private float timeToStartRestart;
-    [SerializeField] SceneAsset sceneName;
+    [SerializeField] string sceneName;
     private float timer;
 
     private void Update()
@@ -28,6 +28,6 @@ public class StartRestart : MonoBehaviour
 
     private void RestartScene()
     {
-        SceneManager.LoadScene(sceneName.name);
+        SceneManager.LoadScene(sceneName);
     }
 }

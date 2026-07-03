@@ -36,6 +36,9 @@ public class TestMovement : MonoBehaviour
     private float latestPot2;
     private string serialBuffer = "";
 
+     private Key player1Key = Key.W;
+     private Key player2Key = Key.UpArrow;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -222,26 +225,51 @@ public class TestMovement : MonoBehaviour
 
     private void Update()
     {
-        ProcessInput(latestPot1, latestPot2);
-    }
+        if (serialPort != null && serialPort.IsOpen)
+            ProcessInput(latestPot1, latestPot2);
 
-    private void OnPlayer1(InputValue value)
-    {
-        if (value.isPressed)
+        else
         {
-            player1Pressed = true;
-            player1Active = true;
+            var keyBoard = Keyboard.current;
+            float key1 = (keyBoard != null && keyBoard[player1Key].isPressed) ? 1f : 0f;
+            float key2 = (keyBoard != null && keyBoard[player2Key].isPressed) ? 1f : 0f;
+            ProcessInput(key1, key2);
         }
     }
 
-    private void OnPlayer2(InputValue value)
-    {
-        if (value.isPressed)
-        {
-            player2Pressed = true;
-            player2Active = true;
-        }
-    }
+    //private void OnPlayer1(InputValue value)
+    //{
+    //    if (value.isPressed)
+    //    {
+    //        if (!player1Active)
+    //        {
+    //            player1Pressed = true;
+    //            player1Active = true;
+    //        }
+    //    }
+
+    //    else
+    //    {
+    //        player1Active = false;
+    //    }
+    //}
+
+    //private void OnPlayer2(InputValue value)
+    //{
+    //    if (value.isPressed)
+    //    {
+    //        if (!player2Active)
+    //        {
+    //            player2Pressed = true;
+    //            player2Active = true;
+    //        }
+    //    }
+
+    //    else
+    //    {
+    //        player2Active = false;
+    //    }
+    //}
 
     private void FixedUpdate()
     {
