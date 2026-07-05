@@ -2971,7 +2971,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 1.34
+  near clip plane: 3
   far clip plane: 5000
   field of view: 40
   orthographic: 0
@@ -3489,7 +3489,7 @@ MonoBehaviour:
   Lens:
     FieldOfView: 40
     OrthographicSize: 10
-    NearClipPlane: 1.34
+    NearClipPlane: 3
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -5572,6 +5572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013731573017959007, guid: 6c5ce49f99f8fb647803d292e06f2530,
+        type: 3}
+      propertyPath: Lens.NearClipPlane
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8013731573017959007, guid: 6c5ce49f99f8fb647803d292e06f2530,
         type: 3}
