@@ -6,8 +6,24 @@ using UnityEngine;
 [System.Serializable]
 public class GameSaveData
 {
-    public string savedPortName = "COM3"; // Default fallback port
-    public List<int> scoresList = new List<int>();
+    public string savedPortName = "COM3";
+
+    public int pendingScore;
+
+    public List<ScoreboardData> scoresList = new();
+}
+
+[System.Serializable]
+public class ScoreboardData
+{
+    public int score;
+    public string name;
+
+    public ScoreboardData(int score, string name)
+    {
+        this.score = score;
+        this.name = name;
+    }
 }
 
 public class SaveSystem : MonoBehaviour
@@ -53,5 +69,12 @@ public class SaveSystem : MonoBehaviour
             Debug.Log("No save file found. Initializing with defaults.");
             SaveGame();
         }
+    }
+
+    public void DeleteAllScores()
+    {
+        data.scoresList.Clear();
+        data.pendingScore = 0;
+        print("deleted all scores");
     }
 }

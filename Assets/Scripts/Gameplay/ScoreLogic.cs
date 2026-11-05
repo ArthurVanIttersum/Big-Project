@@ -75,8 +75,8 @@ public class ScoreLogic : MonoBehaviour
         if (SaveSystem.Instance != null)
         {
             // 1. Add score to the build's runtime tracking memory
-            SaveSystem.Instance.data.scoresList.Add((int)clampScore);
-
+            SaveSystem.Instance.data.pendingScore = (int)clampScore;
+            
             // 2. Commit it immediately to physical storage
             SaveSystem.Instance.SaveGame();
         }

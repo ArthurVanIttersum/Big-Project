@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -212,7 +212,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64682e61557fdfa4aa5268079168dcd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::scoredisplay
-  scores: {fileID: 11400000, guid: d781893320a0b0b4881fa7eddbf460fe, type: 2}
   scoreDisplay: {fileID: 2108236690881083984}
   topN: 10
 --- !u!1 &3348893718444733506

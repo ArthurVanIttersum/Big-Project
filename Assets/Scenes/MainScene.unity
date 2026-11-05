@@ -940,6 +940,7 @@ MonoBehaviour:
   data:
     savedPortName: COM3
     scoresList: 
+    namesList: []
 --- !u!4 &438867468
 Transform:
   m_ObjectHideFlags: 0
