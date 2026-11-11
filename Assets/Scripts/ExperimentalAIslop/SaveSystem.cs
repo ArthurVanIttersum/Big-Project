@@ -75,6 +75,7 @@ public class SaveSystem : MonoBehaviour
     {
         data.scoresList.Clear();
         data.pendingScore = 0;
+        SaveGame();
         print("deleted all scores");
     }
 }

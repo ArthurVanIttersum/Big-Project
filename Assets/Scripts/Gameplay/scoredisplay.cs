@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.LowLevelPhysics2D.PhysicsLayers;
 
 public class scoredisplay : MonoBehaviour
@@ -19,6 +20,8 @@ public class scoredisplay : MonoBehaviour
     private int topNUpdating;
 
     private states state;
+
+    public UnityEvent scorepublished;
 
     enum states
     {
@@ -63,6 +66,7 @@ public class scoredisplay : MonoBehaviour
             {
                 PublishScore();
                 state = states.displayScores;
+                scorepublished.Invoke();
                 return;
             }
             else if (!char.IsControl(c))
